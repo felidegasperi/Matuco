@@ -24,7 +24,13 @@ const NavBar = () => {
             <span class="navbar-toggler-icon"></span>
           </button> */}
           <div
-            class="d-flex justify-content-center bd-highlight"
+            style={{
+              fontSize: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              fontSize: "20px",
+            }}
             id="navbarSupportedContent"
           >
             <ul class="navbar-nav mb-2 mb-lg-auto">
