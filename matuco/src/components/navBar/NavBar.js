@@ -7,7 +7,7 @@ const NavBar = () => {
         <div class="container-fluid">
           <a class="navbar-brand" href="#">
             <img
-              style={{ width: "80px", height: "80px" }}
+              style={{ width: "100px", height: "90px" }}
               src={"../assets/icon.png"}
             />
           </a>

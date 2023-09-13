@@ -1,4 +1,5 @@
 import React from "react";
+import Card from "./Card";
 
 const Home = () => {
   return (
@@ -10,6 +11,9 @@ const Home = () => {
             src={"../assets/mate2.jpg"}
             alt="mate1"
           />
+        </div>
+        <div>
+          <Card/>
         </div>
       </div>
     </div>
