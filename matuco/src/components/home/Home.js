@@ -3,7 +3,7 @@ import Card from "./Card";
 
 const Home = () => {
   return (
-    <div style={{ backgroundColor: "#3f3f3f" }}>
+    <div style={{ backgroundColor: "#171717" }}>
       <div>
         <div
           class="d-flex justify-content-center aling-items-center"
