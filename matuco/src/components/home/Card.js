@@ -56,7 +56,7 @@ const Card = () => {
             onMouseLeave={() => setIsHovered2(false)}
           >
             <img
-              src="../assets/bombillaCard.jpg"
+              src="../assets/bombilla.png"
               className="card-img-top"
               alt="Bombilla"
               style={{

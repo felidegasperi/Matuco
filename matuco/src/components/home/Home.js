@@ -12,7 +12,7 @@ const Home = () => {
             backgroundSize: "cover",
             backgroundPosition: "center",
             width: "100%", // Ancho de la ventana
-            height: "650px", // Alto de la ventana
+            height: "100vh", // Alto de la ventana
           }}
         >
           <div
