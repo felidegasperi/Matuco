@@ -1,5 +1,5 @@
 import React from "react";
-import {  Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 const NavBar = () => {
   return (
     <>
@@ -35,7 +35,7 @@ const NavBar = () => {
           >
             <Row class="navbar-nav mb-2 mb-lg-auto text-bg-dark p-3">
               <Col class="nav-item ">
-                <a class="nav-link"  href="#">
+                <a class="nav-link" href="#">
                   Inicio
                 </a>
               </Col>
