@@ -33,34 +33,22 @@ const NavBar = () => {
             }}
             id="navbarSupportedContent"
           >
-            <Row class="navbar-nav mb-2 mb-lg-auto text-bg-dark p-3">
-              <Col class="nav-item ">
-                <a class="nav-link" href="#">
+            <Row className="navbar-nav mb-2 mb-lg-auto text-bg-dark p-3">
+              <Col className="nav-item mx-2 py-2">
+                <a className="nav-link" href="#">
                   Inicio
                 </a>
               </Col>
-              <Col class="nav-item">
-                <a class="nav-link " href="#">
+              <Col className="nav-item mx-2 py-2">
+                <a className="nav-link " href="#">
                   Productos
                 </a>
               </Col>
-              <Col
-                class="nav-item dropdown"
-                id="navbarDropdown"
-                role="button"
-                data-bs-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <a
-                  class="nav-link dropdown-toggle"
-                  href="#"
-                  id="navbarDropdown"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Carrito
-                </a>
+              <Col className="nav-item dropdown mx-2 py-2">
+                <a className="nav-link dropdown-toggle">Carrito</a>      
+              </Col>
+              <Col className="d-inline-flex p-2  mx-4 py-1 text-light bg-dark">
+                <p className="">Hola -username-!</p>
               </Col>
             </Row>
           </div>

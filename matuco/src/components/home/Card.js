@@ -8,7 +8,7 @@ const Card = () => {
   const normalStyles = {
     Width: "18rem",
     Height: "18rem",
-    backgroundColor: "#838383",
+    backgroundColor: "#ffffff",
     transition: "transform 0.3s", // Transición de escala
   };
 
@@ -16,7 +16,7 @@ const Card = () => {
     Width: "18rem",
     Height: "18rem",
     transform: "scale(1.1)", // Escala de 110% en hover
-    backgroundColor: "#838383",
+    backgroundColor: "#ffffff",
     transition: "transform 0.3s", // Transición de escala
   };
 
