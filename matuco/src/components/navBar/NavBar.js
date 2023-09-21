@@ -1,10 +1,10 @@
 import React from "react";
-
+import {  Col, Row } from "react-bootstrap";
 const NavBar = () => {
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
+        <div class="container">
           <a class="navbar-brand" href="#">
             <img
               style={{ width: "100px", height: "90px" }}
@@ -33,18 +33,18 @@ const NavBar = () => {
             }}
             id="navbarSupportedContent"
           >
-            <ul class="navbar-nav mb-2 mb-lg-auto">
-              <li class="nav-item m">
-                <a class="nav-link active" aria-current="page" href="#">
+            <Row class="navbar-nav mb-2 mb-lg-auto text-bg-dark p-3">
+              <Col class="nav-item ">
+                <a class="nav-link"  href="#">
                   Inicio
                 </a>
-              </li>
-              <li class="nav-item">
+              </Col>
+              <Col class="nav-item">
                 <a class="nav-link " href="#">
                   Productos
                 </a>
-              </li>
-              <li
+              </Col>
+              <Col
                 class="nav-item dropdown"
                 id="navbarDropdown"
                 role="button"
@@ -61,8 +61,8 @@ const NavBar = () => {
                 >
                   Carrito
                 </a>
-              </li>
-            </ul>
+              </Col>
+            </Row>
           </div>
         </div>
       </nav>
