@@ -1,7 +1,8 @@
 import "./App.css";
 
-import Login from './components/login/Login'
+import Login from "./components/login/Login";
 import Home from "./components/home/Home";
+import PageNotFound from "./components/security/pageNotFound/PageNotFound";
 
 import { Navigate, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
@@ -19,6 +20,10 @@ function App() {
     {
       path: "/home",
       element: <Home />,
+    },
+    {
+      path: "*",
+      element: <PageNotFound />,
     },
   ]);
   return <RouterProvider router={router} />;

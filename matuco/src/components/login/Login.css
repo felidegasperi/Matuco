@@ -1,0 +1,11 @@
+.vstack {
+    display: flex;
+    flex: 1 1 auto;
+    flex-direction: column;
+    align-self: stretch;
+  }
+
+  .inputs-conteiner{
+    font-size: 20px; /* Tamaño de fuente más grande */
+    padding: 10px 15px; /* Espaciado interior más grande */
+  }
