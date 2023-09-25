@@ -12,15 +12,21 @@ const PageNotFount = () => {
   return (
     <>
       <NavBar />
-      <div className="text-center">
+      <div className="text-center py-5 m-5">
         <h2>
-          ops a ocurrido un problema!<br />Pagina que quiere buscar no se
-          encuentra disponible toque en el boton para reedirigirse.
+          Ops... Ha ocurrido un problema!
+          <br />
+          La página que desea buscar no se encuentra disponible, apriete el
+          botón para ser redirigido al home.
         </h2>
-        <div>
-        <Button  class="position-relative py-2 px-4 text-bg-secondary border border-secondary rounded-pill" onClick={backToHomePageHandler} variant="dark">
-          Volver al inicio
-        </Button>
+        <div className="py-4">
+          <Button
+            class="position-relative py-2 px-4 text-bg-secondary border border-secondary rounded-pill"
+            onClick={backToHomePageHandler}
+            variant="dark"
+          >
+            Volver al inicio
+          </Button>
         </div>
       </div>
     </>
