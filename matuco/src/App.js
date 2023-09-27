@@ -1,4 +1,3 @@
-
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
 import PageNotFound from "./components/security/pageNotFound/PageNotFound";
@@ -26,6 +25,6 @@ function App() {
     },
   ]);
   return <RouterProvider router={router} />;
-
+}
 
 export default App;
