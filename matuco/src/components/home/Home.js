@@ -1,8 +1,11 @@
 import React from "react";
+
 import Card from "./Card";
 
 const Home = () => {
   return (
+    <>
+    <NavBar/>
     <div style={{ backgroundColor: "##f2f2f2" }}>
       <div>
         <div
@@ -34,7 +37,9 @@ const Home = () => {
         </div>
       </div>
     </div>
+    </>
   );
 };
+
 
 export default Home;
