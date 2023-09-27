@@ -41,7 +41,7 @@ const Login = () => {
       <div className="d-flex justify-content-end mb-3 w-auto container mt-5 p-5">
         <div className="col-md-7">
           <img
-            src="" // Reemplaza con la ruta de tu imagen
+            src="../" // Reemplaza con la ruta de tu imagen
             alt="Imagen de inicio de sesión"
             className="img-fluid" // Para hacer la imagen responsive
           />
