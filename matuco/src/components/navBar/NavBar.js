@@ -13,6 +13,10 @@ const NavBar = () => {
     navigate("/login");
   };
 
+  const NavigateRegisterHandler = () => {
+    navigate("/register");
+  };
+
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -66,7 +70,11 @@ const NavBar = () => {
               </button>
             </Col>
             <Col className="d-flex">
-              <button className="btn btn-primary btn-sm p-2 m-2" type="button">
+              <button
+                className="btn btn-primary btn-sm p-2 m-2"
+                type="button"
+                onClick={NavigateRegisterHandler}
+              >
                 Registrarse
               </button>
             </Col>
