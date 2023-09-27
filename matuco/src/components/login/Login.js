@@ -3,6 +3,7 @@ import React, { useRef, useState } from "react";
 import "./Login.css";
 
 import NavBar from "../navBar/NavBar";
+import Footer from "../footer/Footer";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -112,6 +113,7 @@ const Login = () => {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 };
