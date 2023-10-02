@@ -3,55 +3,83 @@ import "./Register.css";
 
 import Footer from "../footer/Footer";
 import NavBar from "../navBar/NavBar";
+import { useRef, useState } from "react";
 
 const Register = () => {
-  //   const [email, setEmail] = useState("");
-  //   const [password, setPassword] = useState("");
-  //   const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
+  const [error, setError] = useState("");
+  const [username, setUsername] = useState("");
 
-  //   const emailRef = useRef(null);
-  //   const passwordRef = useRef(null);
+  const usernameRef = useRef(null);
+  const emailRef = useRef(null);
+  const passwordRef = useRef(null);
+  const confirmPasswordRef = useRef(null);
 
-  //   const changeEmailHandler = (e) => {
-  //     if (emailRef.current.value.length > 0) {
-  //       emailRef.current.style.borderColor = "";
-  //       emailRef.current.style.outline = "";
-  //     }
-  //     setEmail(e.target.value);
-  //   };
+  const changeUsernameHandler = (e) => {
+    setUsername(e.target.value);
+  };
 
-  //   const changePasswordHandler = (e) => {
-  //     setPassword(e.target.value);
-  //   };
-  //   const loginHandler = () => {
-  //     if (emailRef.current.value.length === 0) {
-  //       emailRef.current.focus();
-  //       emailRef.current.style.borderColor = "red";
-  //       emailRef.current.style.outline = "none";
-  //       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+  const changeEmailHandler = (e) => {
+    if (emailRef.current.value.length > 0) {
+      emailRef.current.style.borderColor = "";
+      emailRef.current.style.outline = "";
+    }
+    setEmail(e.target.value);
+  };
 
-  //       return;
-  //     }
+  const changePasswordHandler = (e) => {
+    setPassword(e.target.value);
+  };
 
-  //     if (password.length === 0) {
-  //       passwordRef.current.focus();
-  //       passwordRef.current.style.borderColor = "red";
-  //       passwordRef.current.style.outline = "none";
-  //       setError(
-  //         "Credenciales incorrectas. Por favor, inténta rellendando con una contraseña "
-  //       );
-  //       return;
-  //     } else if (password.length <= 8) {
-  //       passwordRef.current.focus();
-  //       passwordRef.current.style.borderColor = "red";
-  //       passwordRef.current.style.outline = "none";
-  //       setError(
-  //         "Credenciales incorrectas. Por favor, inténtalo de nuevo con una contraseña más larga."
-  //       );
-  //       return;
-  //     }
-  //     alert(`Su email es: ${email} y su password es: ${password}`);
-  //   };
+  const changeConfirmPasswordHandler = (e) => {
+    setConfirmPassword(e.target.value);
+  };
+
+  const registerHandler = () => {
+    if (emailRef.current.value.length === 0) {
+      emailRef.current.focus();
+      emailRef.current.style.borderColor = "red";
+      emailRef.current.style.outline = "none";
+      setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+    }
+
+    if (usernameRef.current.value.length === 0) {
+      usernameRef.current.focus();
+      usernameRef.current.style.borderColor = "red";
+      usernameRef.current.style.outline = "none";
+      setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+    }
+    if (password.length === 0 || confirmPassword.length === 0) {
+      passwordRef.current.focus();
+      passwordRef.current.style.borderColor = "red";
+      passwordRef.current.style.outline = "none";
+      confirmPasswordRef.current.focus();
+      confirmPasswordRef.current.style.borderColor = "red";
+      confirmPasswordRef.current.style.outline = "none";
+      setError("Ingresar una contraseña");
+    } else if (password !== confirmPassword) {
+      passwordRef.current.focus();
+      passwordRef.current.style.borderColor = "red";
+      passwordRef.current.style.outline = "none";
+      confirmPasswordRef.current.focus();
+      confirmPasswordRef.current.style.borderColor = "red";
+      confirmPasswordRef.current.style.outline = "none";
+      setError("Las contraseñas no coinsiden");
+    } else if (password.length <= 8 || confirmPassword.length <= 8) {
+      passwordRef.current.focus();
+      passwordRef.current.style.borderColor = "red";
+      passwordRef.current.style.outline = "none";
+      confirmPasswordRef.current.focus();
+      confirmPasswordRef.current.style.borderColor = "red";
+      confirmPasswordRef.current.style.outline = "none";
+      setError(
+        "Credenciales incorrectas. Por favor, inténtalo de nuevo con una contraseña más larga."
+      );
+    }
+  };
+
   return (
     <>
       <div>
@@ -72,9 +100,9 @@ const Register = () => {
                   <div className="input-conteiner mt-3 mw-100 mb-4">
                     <input
                       className="form-control form-control-lg"
-                      //   value={email}
-                      //   onChange={changeEmailHandler}
-                      //   ref={emailRef}
+                      value={username}
+                      ref={usernameRef}
+                      onChange={changeUsernameHandler}
                       placeholder="Ingrese su nombre"
                       type="text"
                     />
@@ -82,9 +110,9 @@ const Register = () => {
 
                   <div className="input-conteiner mt-3 mb-4">
                     <input
-                      //   ref={passwordRef}
-                      //   value={password}
-                      //   onChange={changePasswordHandler}
+                      ref={emailRef}
+                      value={email}
+                      onChange={changeEmailHandler}
                       className="form-control form-control-lg"
                       placeholder="Ingrese su email"
                       type="email"
@@ -93,9 +121,9 @@ const Register = () => {
 
                   <div className="input-conteiner mt-3 mb-4">
                     <input
-                      //   ref={passwordRef}
-                      //   value={password}
-                      //   onChange={changePasswordHandler}
+                      ref={passwordRef}
+                      value={password}
+                      onChange={changePasswordHandler}
                       className="form-control form-control-lg"
                       placeholder="Ingrese su contraseña"
                       type="password"
@@ -104,16 +132,16 @@ const Register = () => {
 
                   <div className="input-conteiner mt-3 mb-4">
                     <input
-                      //   ref={passwordRef}
-                      //   value={password}
-                      //   onChange={changePasswordHandler}
+                      ref={confirmPasswordRef}
+                      value={confirmPassword}
+                      onChange={changeConfirmPasswordHandler}
                       className="form-control form-control-lg"
                       placeholder="Ingrese otra vez su contraseña"
                       type="password"
                     />
                   </div>
 
-                  {/* <div className="text-danger">{error}</div> */}
+                  <div className="text-danger">{error}</div>
                   <div>
                     <a href="#" class="link-primary">
                       Ya tienes una cuenta? Ingresa aqui!
@@ -121,7 +149,7 @@ const Register = () => {
                   </div>
                   <div className="vstack mt-3 align-self-center">
                     <button
-                      //   onClick={loginHandler}
+                      onClick={registerHandler}
                       type="button"
                       className="btn btn-outline-secondary "
                     >
