@@ -3,7 +3,8 @@ import "./Register.css";
 
 import Footer from "../footer/Footer";
 import NavBar from "../navBar/NavBar";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [email, setEmail] = useState("");
@@ -11,11 +12,29 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
+  const [dato, setDato] = useState([]);
+  const [newUser, setNewUser] = useState([]);
 
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
+
+  useEffect(() => {
+    //GET a la API y almacenar los usuarios en el state
+    fetch("http://localhost:8000/users", {
+      headers: {
+        accept: "aplication/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => setDato(data))
+      .catch((error) => console.log("error al obtener los users", error));
+  }, []);
+
+  
+
+  const navigate = useNavigate();
 
   const changeUsernameHandler = (e) => {
     setUsername(e.target.value);
@@ -38,6 +57,8 @@ const Register = () => {
   };
 
   const registerHandler = () => {
+    const newUserId = dato[dato.length - 1].id + 1;
+
     if (emailRef.current.value.length === 0) {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
@@ -67,7 +88,7 @@ const Register = () => {
       confirmPasswordRef.current.style.borderColor = "red";
       confirmPasswordRef.current.style.outline = "none";
       setError("Las contraseñas no coinsiden");
-    } else if (password.length <= 8 || confirmPassword.length <= 8) {
+    } else if (password.length <= 8 && confirmPassword.length <= 8) {
       passwordRef.current.focus();
       passwordRef.current.style.borderColor = "red";
       passwordRef.current.style.outline = "none";
@@ -77,6 +98,16 @@ const Register = () => {
       setError(
         "Credenciales incorrectas. Por favor, inténtalo de nuevo con una contraseña más larga."
       );
+    } else {
+      setNewUser({
+        id: newUserId,
+        username: username,
+        type: "client",
+        email: email,
+        password: password,
+      });
+      navigate("/home")
+      console.log(newUser)
     }
   };
 
@@ -97,64 +128,66 @@ const Register = () => {
               <div className="container">
                 <form className="border rounded-3 p-5 ">
                   <h2>Registrarte</h2>
-                  <div className="input-conteiner mt-3 mw-100 mb-4">
-                    <input
-                      className="form-control form-control-lg"
-                      value={username}
-                      ref={usernameRef}
-                      onChange={changeUsernameHandler}
-                      placeholder="Ingrese su nombre"
-                      type="text"
-                    />
-                  </div>
-
-                  <div className="input-conteiner mt-3 mb-4">
-                    <input
-                      ref={emailRef}
-                      value={email}
-                      onChange={changeEmailHandler}
-                      className="form-control form-control-lg"
-                      placeholder="Ingrese su email"
-                      type="email"
-                    />
-                  </div>
-
-                  <div className="input-conteiner mt-3 mb-4">
-                    <input
-                      ref={passwordRef}
-                      value={password}
-                      onChange={changePasswordHandler}
-                      className="form-control form-control-lg"
-                      placeholder="Ingrese su contraseña"
-                      type="password"
-                    />
-                  </div>
-
-                  <div className="input-conteiner mt-3 mb-4">
-                    <input
-                      ref={confirmPasswordRef}
-                      value={confirmPassword}
-                      onChange={changeConfirmPasswordHandler}
-                      className="form-control form-control-lg"
-                      placeholder="Ingrese otra vez su contraseña"
-                      type="password"
-                    />
-                  </div>
-
-                  <div className="text-danger">{error}</div>
                   <div>
-                    <a href="#" class="link-primary">
-                      Ya tienes una cuenta? Ingresa aqui!
-                    </a>
-                  </div>
-                  <div className="vstack mt-3 align-self-center">
-                    <button
-                      onClick={registerHandler}
-                      type="button"
-                      className="btn btn-outline-secondary "
-                    >
-                      Registrarse
-                    </button>
+                    <div className="input-conteiner mt-3 mw-100 mb-4">
+                      <input
+                        className="form-control form-control-lg"
+                        value={username}
+                        ref={usernameRef}
+                        onChange={changeUsernameHandler}
+                        placeholder="Ingrese su nombre"
+                        type="text"
+                      />
+                    </div>
+
+                    <div className="input-conteiner mt-3 mb-4">
+                      <input
+                        ref={emailRef}
+                        value={email}
+                        onChange={changeEmailHandler}
+                        className="form-control form-control-lg"
+                        placeholder="Ingrese su email"
+                        type="email"
+                      />
+                    </div>
+
+                    <div className="input-conteiner mt-3 mb-4">
+                      <input
+                        ref={passwordRef}
+                        value={password}
+                        onChange={changePasswordHandler}
+                        className="form-control form-control-lg"
+                        placeholder="Ingrese su contraseña"
+                        type="password"
+                      />
+                    </div>
+
+                    <div className="input-conteiner mt-3 mb-4">
+                      <input
+                        ref={confirmPasswordRef}
+                        value={confirmPassword}
+                        onChange={changeConfirmPasswordHandler}
+                        className="form-control form-control-lg"
+                        placeholder="Ingrese otra vez su contraseña"
+                        type="password"
+                      />
+                    </div>
+
+                    <div className="text-danger">{error}</div>
+                    <div>
+                      <a href="#" class="link-primary">
+                        Ya tienes una cuenta? Ingresa aqui!
+                      </a>
+                    </div>
+                    <div className="vstack mt-3 align-self-center">
+                      <button
+                        onClick={registerHandler}
+                        type="button"
+                        className="btn btn-outline-secondary "
+                      >
+                        Registrarse
+                      </button>
+                    </div>
                   </div>
                 </form>
               </div>
