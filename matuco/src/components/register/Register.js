@@ -3,7 +3,7 @@ import "./Register.css";
 
 import Footer from "../footer/Footer";
 import NavBar from "../navBar/NavBar";
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -12,7 +12,7 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
-  const [dato, setDato] = useState([]);
+  const [users, setUsers] = useState([]);
   const [newUser, setNewUser] = useState([]);
 
   const usernameRef = useRef(null);
@@ -28,13 +28,15 @@ const Register = () => {
       },
     })
       .then((response) => response.json())
-      .then((data) => setDato(data))
+      .then((data) => setUsers(data))
       .catch((error) => console.log("error al obtener los users", error));
   }, []);
 
-  
-
   const navigate = useNavigate();
+
+  const NavigateLoginHandler = () => {
+    navigate("/login");
+  };
 
   const changeUsernameHandler = (e) => {
     setUsername(e.target.value);
@@ -56,9 +58,42 @@ const Register = () => {
     setConfirmPassword(e.target.value);
   };
 
-  const registerHandler = () => {
-    const newUserId = dato[dato.length - 1].id + 1;
+  const postNewUserHandler = useCallback(
+    (user) => {
+      setUsers((prevUsers) => [user, ...prevUsers]);
+      const newUserId = users[users.length - 1].id + 1;
 
+      fetch("http://localhost:8000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          id: newUserId,
+          firstName:"",
+          username: user.username,
+          email: user.email,
+          password: user.password,
+          type: "client",
+          
+        }),
+      })
+        .then((response) => {
+          if (response.ok) return response.json();
+          else {
+            throw new Error("The response had some errors");
+          }
+        })
+        .then(() => {
+          const newUserArray = [{ ...user, id: newUserId }, ...users];
+          setUsers(newUserArray);
+        })
+        .catch((error) => console.log(error));
+    },
+    [users]
+  );
+
+  const registerHandler = () => {
     if (emailRef.current.value.length === 0) {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
@@ -100,14 +135,15 @@ const Register = () => {
       );
     } else {
       setNewUser({
-        id: newUserId,
         username: username,
         type: "client",
         email: email,
         password: password,
       });
-      navigate("/home")
-      console.log(newUser)
+      postNewUserHandler(newUser);
+
+      //navigate("/home");
+      console.log(newUser);
     }
   };
 
@@ -175,7 +211,7 @@ const Register = () => {
 
                     <div className="text-danger">{error}</div>
                     <div>
-                      <a href="#" class="link-primary">
+                      <a onClick={NavigateLoginHandler} class="link-primary">
                         Ya tienes una cuenta? Ingresa aqui!
                       </a>
                     </div>
