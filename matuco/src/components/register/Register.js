@@ -58,6 +58,8 @@ const Register = () => {
     setConfirmPassword(e.target.value);
   };
 
+
+  //funcion para hacer el post dentro de nuestra base de datos.
   const postNewUserHandler = useCallback(
     (user) => {
       setUsers((prevUsers) => [user, ...prevUsers]);
@@ -142,8 +144,8 @@ const Register = () => {
       });
       postNewUserHandler(newUser);
 
-      //navigate("/home");
-      console.log(newUser);
+      navigate("/home");
+      //console.log(newUser);
     }
   };
 
