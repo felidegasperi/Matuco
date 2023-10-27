@@ -20,8 +20,8 @@ const NavBar = () => {
   return (
     <>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container fw-bold fs-5">
-          <a class="navbar-brand" href="#" onClick={NavigateHomeHandler}>
+        <div className="container fw-bold fs-5">
+          <a className="navbar-brand" href="#" onClick={NavigateHomeHandler}>
             <img
               style={{ width: "100px", height: "90px" }}
               src={"../assets/icon.png"}
