@@ -3,9 +3,7 @@ import "./Register.css";
 
 import Footer from "../footer/Footer";
 import NavBar from "../navBar/NavBar";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import RegisterForm from "./RegisterForm";
+import { useCallback, useEffect, useState } from "react";
 import NewRegister from "./NewRegister";
 
 const Register = () => {
