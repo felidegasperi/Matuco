@@ -1,6 +1,7 @@
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 
 const NavBar = () => {
   const navigate = useNavigate();
@@ -70,6 +71,7 @@ const NavBar = () => {
                 Registrarse
               </button>
             </Col>
+            <ToggleTheme />
           </Row>
         </div>
       </nav>
