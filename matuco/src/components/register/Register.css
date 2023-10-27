@@ -1,0 +1,17 @@
+.vstack {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-self: stretch;
+}
+
+.inputs-conteiner {
+  width: 500;
+  font-size: 20px; /* Tamaño de fuente más grande */
+  padding: 10px 15px; /* Espaciado interior más grande */
+}
+.img-custom-size {
+  margin-left: -14px;
+  width: -webkit-fill-available; /* Cambia el tamaño de la imagen según tus necesidades */
+  height: auto; /* Mantén la proporción de la imagen */
+}

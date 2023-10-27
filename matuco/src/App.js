@@ -1,6 +1,7 @@
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
 import PageNotFound from "./components/security/pageNotFound/PageNotFound";
+import Register from "./components/register/Register";
 
 import { Navigate, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
@@ -18,6 +19,10 @@ function App() {
     {
       path: "/home",
       element: <Home />,
+    },
+    {
+      path: "/register",
+      element: <Register />,
     },
     {
       path: "*",
