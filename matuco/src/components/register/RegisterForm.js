@@ -70,7 +70,7 @@ const RegisterForm = ({ onSavedUser }) => {
       confirmPasswordRef.current.focus();
       confirmPasswordRef.current.style.borderColor = "red";
       confirmPasswordRef.current.style.outline = "none";
-      setError("Las contraseñas no coinsiden");
+      setError("Las contraseñas no coinciden");
     } else if (password.length <= 8 && confirmPassword.length <= 8) {
       passwordRef.current.focus();
       passwordRef.current.style.borderColor = "red";
@@ -82,15 +82,15 @@ const RegisterForm = ({ onSavedUser }) => {
         "Credenciales incorrectas. Por favor, inténtalo de nuevo con una contraseña más larga."
       );
     } else {
-      const User = {
+      const user = {
         username: username,
         type: "client",
         email: email,
         password: password,
       };
-
-      onSavedUser(User);
-      setNewUser(User);
+      setNewUser(user);
+      onSavedUser(user);
+      
 
       console.log(newUser);
 
@@ -149,7 +149,7 @@ const RegisterForm = ({ onSavedUser }) => {
 
           <div className="text-danger">{error}</div>
           <div>
-            <a onClick={NavigateLoginHandler} class="link-primary">
+            <a onClick={NavigateLoginHandler} href="#" class="link-primary">
               Ya tienes una cuenta? Ingresa aqui!
             </a>
           </div>

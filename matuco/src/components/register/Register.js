@@ -24,7 +24,7 @@ const Register = () => {
   //funcion para hacer el post dentrode la db
   const postNewUserHandler = useCallback(
     (user) => {
-      setUsers((prevUsers) => [user, ...prevUsers]);
+      //setUsers((prevUsers) => [user, ...prevUsers]);
 
       const newUserId = users[users.length - 1].id + 1;
       console.log("User data in postNewUserHandler: ", user);
