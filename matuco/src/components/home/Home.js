@@ -1,6 +1,6 @@
 import React from "react";
 
-import Card from "./Card";
+import Card from "../card/Card";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 
@@ -11,7 +11,7 @@ const Home = () => {
       <div style={{ backgroundColor: "##f2f2f2" }}>
         <div>
           <div
-            class="d-flex justify-content-center aling-items-center"
+            className="d-flex justify-content-center aling-items-center"
             style={{
               backgroundImage: `url(${process.env.PUBLIC_URL}/assets/mate2.jpg)`,
               backgroundSize: "cover",
@@ -21,7 +21,7 @@ const Home = () => {
             }}
           >
             <div
-              class="text-center"
+              className="text-center"
               style={{
                 transform: "translateY(-50%)",
                 marginTop: "65vh",

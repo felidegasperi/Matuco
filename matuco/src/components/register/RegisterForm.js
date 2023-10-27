@@ -90,12 +90,10 @@ const RegisterForm = ({ onSavedUser }) => {
       };
       setNewUser(user);
       onSavedUser(user);
-      
 
       console.log(newUser);
 
-      //navigate("/home");
-      //console.log(newUser);
+      navigate("/home");
     }
   };
   return (

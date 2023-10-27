@@ -94,7 +94,7 @@ const Login = () => {
                   </div>
                   <div className="text-danger">{error}</div>
                   <div>
-                    <a href="#" class="link-primary">
+                    <a href="#" className="link-primary">
                       Deseas registrarte?Clickea aqui
                     </a>
                   </div>
