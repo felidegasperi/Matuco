@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import "./toggleTheme.css";
 import { ThemeContext } from "../../../services/themeContext/Theme.context";
 
 const ToggleTheme = () => {
@@ -9,9 +10,12 @@ const ToggleTheme = () => {
   };
 
   return (
-    <button onClick={handleToggleTheme}>
-      Cambiar a tema {theme === "LIGHT" ? "oscuro" : "claro"}
-    </button>
+    <div class="toggle-switch">
+      <label class="switch-label">
+        <input type="checkbox" class="checkbox" onClick={handleToggleTheme} />
+        <span class="slider"></span>
+      </label>
+    </div>
   );
 };
 

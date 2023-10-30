@@ -1,55 +1,61 @@
-.btn-class-name {
-  --primary: 255, 90, 120;
-  --secondary: 150, 50, 60;
-  width: 60px;
-  height: 50px;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  user-select: none;
-  touch-action: manipulation;
-  outline: 10px solid rgb(var(--primary), 0.5);
-  border-radius: 100%;
+.toggle-switch {
   position: relative;
+  width: 100px;
+  height: 50px;
+  --light: #d8dbe0;
+  --dark: #28292c;
+  --link: rgb(27, 129, 112);
+  --link-hover: rgb(24, 94, 82);
+}
+
+.switch-label {
+  position: absolute;
+  width: 100%;
+  height: 50px;
+  background-color: var(--dark);
+  border-radius: 25px;
+  cursor: pointer;
+  border: 3px solid var(--dark);
+}
+
+.checkbox {
+  position: absolute;
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  -webkit-transition: 0.3s;
   transition: 0.3s;
 }
 
-.btn-class-name .back {
-  background: rgb(var(--secondary));
-  border-radius: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+.checkbox:checked ~ .slider {
+  background-color: var(--light);
 }
 
-.btn-class-name .front {
-  background: linear-gradient(
-    0deg,
-    rgba(var(--primary), 0.6) 20%,
-    rgba(var(--primary)) 50%
-  );
-  box-shadow: 0 0.5em 1em -0.2em rgba(var(--secondary), 0.5);
-  border-radius: 100%;
+.slider::before {
+  content: "";
   position: absolute;
-  border: 1px solid rgb(var(--secondary));
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.2rem;
-  font-weight: 600;
-  font-family: inherit;
-  transform: translateY(-15%);
-  transition: 0.15s;
-  color: rgb(var(--secondary));
+  top: 10px;
+  left: 10px;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  -webkit-box-shadow: inset 12px -4px 0px 0px var(--light);
+  box-shadow: inset 12px -4px 0px 0px var(--light);
+  background-color: var(--dark);
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
 }
 
-.btn-class-name:active .front {
-  transform: translateY(0%);
-  box-shadow: 0 0;
+.checkbox:checked ~ .slider::before {
+  -webkit-transform: translateX(50px);
+  -ms-transform: translateX(50px);
+  transform: translateX(50px);
+  background-color: var(--dark);
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
