@@ -10,12 +10,10 @@ const ToggleTheme = () => {
   };
 
   return (
-    <div class="toggle-switch">
-      <label class="switch-label">
-        <input type="checkbox" class="checkbox" onClick={handleToggleTheme} />
-        <span class="slider"></span>
-      </label>
-    </div>
+    <label class="switch">
+    <input type="checkbox" onClick={handleToggleTheme}/>
+    <span class="slider"></span>
+</label>
   );
 };
 
