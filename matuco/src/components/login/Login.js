@@ -5,10 +5,15 @@ import "./Login.css";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 
+import { useContext } from "react";
+import { ThemeContext } from "../../services/themeContext/Theme.context";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+  const { theme } = useContext(ThemeContext);
 
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
@@ -30,12 +35,11 @@ const Login = () => {
       emailRef.current.style.borderColor = "red";
       emailRef.current.style.outline = "none";
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
-      
 
       return;
     }
 
-    if (password.length === 0 ) {
+    if (password.length === 0) {
       passwordRef.current.focus();
       passwordRef.current.style.borderColor = "red";
       passwordRef.current.style.outline = "none";
@@ -43,7 +47,7 @@ const Login = () => {
         "Credenciales incorrectas. Por favor, inténta rellendando con una contraseña "
       );
       return;
-    }else if(password.length <=8){
+    } else if (password.length <= 8) {
       passwordRef.current.focus();
       passwordRef.current.style.borderColor = "red";
       passwordRef.current.style.outline = "none";
@@ -51,12 +55,12 @@ const Login = () => {
         "Credenciales incorrectas. Por favor, inténtalo de nuevo con una contraseña más larga."
       );
       return;
-    };
+    }
     alert(`Su email es: ${email} y su password es: ${password}`);
   };
   return (
     <>
-      <div>
+      <div className={`${theme === "DARK" && "dark-theme"}`}>
         <NavBar />
         <div className="container-fluid ml-0">
           <div className="row ml-0">
@@ -64,7 +68,7 @@ const Login = () => {
               <img
                 src="../assets/mates-login.jpg" // Reemplaza con la ruta de tu imagen
                 alt="Imagen de inicio de sesión"
-                className="img-custom-size" 
+                className="img-custom-size"
               />
             </div>
             <div className="col-md-6 d-flex align-items-center p-5 ">

@@ -1,14 +1,19 @@
 import React from "react";
+import "./Home.css";
 
 import Card from "./Card";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 
+import { useContext } from "react";
+import { ThemeContext } from "../../services/themeContext/Theme.context";
+
 const Home = () => {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
       <NavBar />
-      <div style={{ backgroundColor: "##f2f2f2" }}>
+      <div className={`${theme === "DARK" && "dark-theme"}`}>
         <div>
           <div
             class="d-flex justify-content-center aling-items-center"
@@ -33,13 +38,12 @@ const Home = () => {
               <p></p>
             </div>
           </div>
-
           <div>
             <Card />
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };

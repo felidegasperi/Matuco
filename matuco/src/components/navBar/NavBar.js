@@ -71,7 +71,9 @@ const NavBar = () => {
                 Registrarse
               </button>
             </Col>
-            <ToggleTheme />
+            <Col>
+              <ToggleTheme />
+            </Col>
           </Row>
         </div>
       </nav>

@@ -1,19 +1,17 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../../services/themeContext/theme.context";
+import { ThemeContext } from "../../../services/themeContext/Theme.context";
 
 const ToggleTheme = () => {
-  const { toggleTheme } = useContext(ThemeContext);
+  const { theme, toggleTheme } = useContext(ThemeContext);
 
   const handleToggleTheme = () => {
     toggleTheme();
   };
 
   return (
-    <div>
-        <button onClick={handleToggleTheme}>
-
-        </button>
-    </div>
+    <button onClick={handleToggleTheme}>
+      Cambiar a tema {theme === "LIGHT" ? "oscuro" : "claro"}
+    </button>
   );
 };
 

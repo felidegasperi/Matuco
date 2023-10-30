@@ -2,15 +2,15 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
-import { ThemeContextProvider } from "./components/services/themeContext/Theme.context";
+import { ThemeContextProvider } from "./services/themeContext/Theme.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <ThemeProvider>
+    <ThemeContextProvider>
       <App />
       
-    </ThemeProvider>
+    </ThemeContextProvider>
   </React.StrictMode>
 );
 
