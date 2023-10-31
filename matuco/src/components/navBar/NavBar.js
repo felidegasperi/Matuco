@@ -27,8 +27,8 @@ const NavBar = () => {
               : "navbar navbar-expand-lg navbar-light bg-light border-bottom"
           }`}
         >
-          <div className="container fw-bold fs-5">
-            <a className="navbar-brand" href="#" onClick={NavigateHomeHandler}>
+          <div class="container fw-bold fs-5">
+            <a class="navbar-brand" href="#" onClick={NavigateHomeHandler}>
               {theme === "DARK" ? (
                 <>
                   <img
