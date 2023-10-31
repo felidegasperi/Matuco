@@ -1,10 +1,8 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
+import { Col, Row } from "react-bootstrap";
 
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
-import { Col, Row } from "react-bootstrap";
-import "./NavBar";
-
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const NavBar = () => {
@@ -29,12 +27,23 @@ const NavBar = () => {
               : "navbar navbar-expand-lg navbar-light bg-light border-bottom"
           }`}
         >
-          <div class="container fw-bold fs-5">
-            <a class="navbar-brand" href="#" onClick={NavigateHomeHandler}>
-              <img
-                style={{ width: "100px", height: "90px" }}
-                src={"../assets/icon.png"}
-              />
+          <div className="container fw-bold fs-5">
+            <a className="navbar-brand" href="#" onClick={NavigateHomeHandler}>
+              {theme === "DARK" ? (
+                <>
+                  <img
+                    style={{ width: "100px", height: "90px" }}
+                    src={"../assets/icon.png"}
+                  />
+                </>
+              ) : (
+                <>
+                  <img
+                    style={{ width: "100px", height: "90px" }}
+                    src={"../assets/icon2.png"}
+                  />
+                </>
+              )}
             </a>
 
             {/* boton para el dropdown */}
