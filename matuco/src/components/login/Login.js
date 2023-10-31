@@ -92,7 +92,7 @@ const Login = () => {
                       ref={passwordRef}
                       value={password}
                       onChange={changePasswordHandler}
-                      className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-ligth "}`}
+                      className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-light text-dark "}`}
                       placeholder="Ingrese su contraseña"
                       type="password"
                     />
