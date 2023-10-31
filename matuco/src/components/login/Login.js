@@ -76,8 +76,9 @@ const Login = () => {
                 <form className="border rounded-3 p-5 ">
                   <h2>Iniciar sesión</h2>
                   <div className="input-conteiner mt-3 mw-100 mb-4">
+                    
                     <input
-                      className="form-control form-control-lg"
+                      className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-light text-dark"}`}
                       value={email}
                       onChange={changeEmailHandler}
                       placeholder="Ingrese su email"
@@ -91,7 +92,7 @@ const Login = () => {
                       ref={passwordRef}
                       value={password}
                       onChange={changePasswordHandler}
-                      className="form-control form-control-lg"
+                      className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-ligth "}`}
                       placeholder="Ingrese su contraseña"
                       type="password"
                     />
