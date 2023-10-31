@@ -31,10 +31,21 @@ const NavBar = () => {
         >
           <div class="container fw-bold fs-5">
             <a class="navbar-brand" href="#" onClick={NavigateHomeHandler}>
-              <img
-                style={{ width: "100px", height: "90px" }}
-                src={"../assets/icon.png"}
-              />
+              {theme === "DARK" ? (
+                <>
+                  <img
+                    style={{ width: "100px", height: "90px" }}
+                    src={"../assets/icon.png"}
+                  />
+                </>
+              ) : (
+                <>
+                  <img
+                    style={{ width: "100px", height: "90px" }}
+                    src={"../assets/icono-2.png"}
+                  />
+                </>
+              )}
             </a>
 
             {/* boton para el dropdown */}
