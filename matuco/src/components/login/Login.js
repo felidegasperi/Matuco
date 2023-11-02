@@ -29,7 +29,7 @@ const Login = () => {
   const changePasswordHandler = (e) => {
     setPassword(e.target.value);
   };
-  const onLoginHandleroginHandler = () => {
+  const onLoginHandler = () => {
     if (emailRef.current.value.length === 0) {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
