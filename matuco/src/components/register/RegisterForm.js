@@ -1,6 +1,8 @@
 import React from "react";
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+
+import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const RegisterForm = ({ onSavedUser }) => {
   const [email, setEmail] = useState("");
@@ -14,6 +16,8 @@ const RegisterForm = ({ onSavedUser }) => {
   const emailRef = useRef(null);
   const passwordRef = useRef(null);
   const confirmPasswordRef = useRef(null);
+
+  const { theme } = useContext(ThemeContext);
 
   const navigate = useNavigate();
 
@@ -103,7 +107,7 @@ const RegisterForm = ({ onSavedUser }) => {
         <div>
           <div className="input-conteiner mt-3 mw-100 mb-4">
             <input
-              className="form-control form-control-lg"
+              className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-light text-dark"}`}
               value={username}
               ref={usernameRef}
               onChange={changeUsernameHandler}
@@ -117,7 +121,7 @@ const RegisterForm = ({ onSavedUser }) => {
               ref={emailRef}
               value={email}
               onChange={changeEmailHandler}
-              className="form-control form-control-lg"
+              className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-light text-dark"}`}
               placeholder="Ingrese su email"
               type="email"
             />
@@ -128,7 +132,7 @@ const RegisterForm = ({ onSavedUser }) => {
               ref={passwordRef}
               value={password}
               onChange={changePasswordHandler}
-              className="form-control form-control-lg"
+              className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-light text-dark"}`}
               placeholder="Ingrese su contraseña"
               type="password"
             />
@@ -139,7 +143,7 @@ const RegisterForm = ({ onSavedUser }) => {
               ref={confirmPasswordRef}
               value={confirmPassword}
               onChange={changeConfirmPasswordHandler}
-              className="form-control form-control-lg"
+              className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-light text-dark"}`}
               placeholder="Ingrese otra vez su contraseña"
               type="password"
             />

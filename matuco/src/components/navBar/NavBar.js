@@ -102,6 +102,7 @@ const NavBar = () => {
                       : "btn btn-outline-dark btn-sm p-2 m-2"
                   }`}
                   type="button"
+                  onClick={NavigateRegisterHandler}
                 >
                   Registrarse
                 </button>

@@ -3,11 +3,15 @@ import "./Register.css";
 
 import Footer from "../footer/Footer";
 import NavBar from "../navBar/NavBar";
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useState, useContext } from "react";
 import NewRegister from "./NewRegister";
+
+import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const Register = () => {
   const [users, setUsers] = useState([]);
+
+  const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
     //GET a la API y almacenar los usuarios en el state
@@ -59,7 +63,7 @@ const Register = () => {
 
   return (
     <>
-      <div>
+      <div className={`${theme === "DARK" && "dark-theme"}`}>
         <NavBar />
         <div className="container-fluid ml-0">
           <div className="row ml-0">
