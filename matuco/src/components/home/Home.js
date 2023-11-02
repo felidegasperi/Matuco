@@ -1,12 +1,13 @@
 import React from "react";
 import "./Home.css";
 
-import Card from "./Card";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
+import Card from "../card/Card.js";
 
 import { useContext } from "react";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
+
 
 const Home = () => {
   const { theme } = useContext(ThemeContext);

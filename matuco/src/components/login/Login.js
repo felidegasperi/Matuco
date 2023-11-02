@@ -29,7 +29,7 @@ const Login = () => {
   const changePasswordHandler = (e) => {
     setPassword(e.target.value);
   };
-  const loginHandler = () => {
+  const onLoginHandleroginHandler = () => {
     if (emailRef.current.value.length === 0) {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
@@ -105,7 +105,7 @@ const Login = () => {
                   </div>
                   <div className="vstack mt-3 align-self-center">
                     <button
-                      onClick={loginHandler}
+                      onClick={onLoginHandler}
                       type="button"
                       className="btn btn-outline-secondary "
                     >

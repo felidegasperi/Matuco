@@ -9,7 +9,7 @@ const userValue = JSON.parse(localStorage.getItem("user"));
 export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(userValue);
 
-  const handleLogin = (email) => {
+  const handleSigIn = (email) => {
     localStorage.setItem("user", JSON.stringify({ ...user, email }));
     setUser({ ...user, email });
   };
@@ -20,7 +20,7 @@ export const AuthenticationContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthenticationContext.Provider value={{ user, handleLogin, handleLogout }}>
+    <AuthenticationContext.Provider value={{ user, handleSigIn, handleLogout }}>
       {children}
     </AuthenticationContext.Provider>
   );
