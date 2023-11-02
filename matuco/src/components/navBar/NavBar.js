@@ -17,8 +17,11 @@ const NavBar = () => {
     navigate("/login");
   };
 
+  const NavigateRegisterHandler = () => {
+    navigate("/register");
+  };
+
   return (
-    <>
       <div className={`${theme === "DARK" && "dark-theme"}`}>
         <nav
           className={`${
@@ -110,7 +113,6 @@ const NavBar = () => {
           </div>
         </nav>
       </div>
-    </>
   );
 };
 

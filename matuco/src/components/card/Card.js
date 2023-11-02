@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 
-import { useContext } from "react";
-import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const Card = () => {
   const [isHovered1, setIsHovered1] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
   const [isHovered3, setIsHovered3] = useState(false);
 
-  const { theme } = useContext(ThemeContext);
 
   const normalStyles = {
     Width: "18rem",
@@ -26,7 +23,6 @@ const Card = () => {
   };
 
   return (
-    
       <div className="container-fluid">
         <div className="card-container d-flex flex-row mt-5 mb-5 justify-content-evenly">
           <a className="nav-link" href="#">
@@ -105,7 +101,6 @@ const Card = () => {
           </a>
         </div>
       </div>
-    
   );
 };
 
