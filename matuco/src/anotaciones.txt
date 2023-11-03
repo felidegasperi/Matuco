@@ -1,0 +1,4 @@
+para mostrar determinados componentes dependiendo el rol de usuario tenemos 3 opciones:
+- por ruta (protected)
+- por renderizado condicional (userValue.type === "Owner" && <button> )
+- 
