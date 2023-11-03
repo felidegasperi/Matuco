@@ -7,6 +7,7 @@ import "./Login.css";
 
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
+import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 
 const Login = () => {
   const [users, setUsers] = useState([]);
@@ -16,6 +17,7 @@ const Login = () => {
 
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
+  const { handleLogin, handleLogout } = useContext(AuthenticationContext);
 
   useEffect(() => {
     // GET a la API y almacenar los usuarios en el estado
@@ -40,7 +42,9 @@ const Login = () => {
 
     if (user) {
       alert("Usuario ingresado correctamente");
-      console.log(user)
+      handleLogin(user);
+      console.log(user);
+      navigate("/")
     } else {
       alert("Error al iniciar sesion");
     }
@@ -59,7 +63,7 @@ const Login = () => {
   // };
   // const loginHandler = () => {
   //   if (emailRef.current.value.length === 0) {
-  //     emailRef.current.focus();
+  //      emailRef.current.focus();
   //     emailRef.current.style.borderColor = "red";
   //     emailRef.current.style.outline = "none";
   //     setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
