@@ -24,6 +24,9 @@ const NavBar = () => {
   const NavigateRegisterHandler = () => {
     navigate("/register");
   };
+  const NavigateSettingsHandler = () =>{
+    navigate("/settings")
+  }
 
   const onLogoutHandler = () => {
     handleLogout();
@@ -99,6 +102,7 @@ const NavBar = () => {
                       : "btn btn-outline-dark btn-sm p-2 m-2"
                   }`}
                   type="button"
+                  onClick={NavigateSettingsHandler}
                 >
                   Settings
                 </button>
