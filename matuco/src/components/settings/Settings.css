@@ -1,0 +1,11 @@
+.dark-theme {
+  background-color: #1f2124;
+  color: white;
+  height: 150%;
+}
+
+.content-container {
+  margin: 100px 0; /* Márgenes arriba y abajo de 20px (ajusta según tus necesidades) */
+  padding: 80px; /* Relleno interno para espacio adicional (ajusta según tus necesidades) */
+  /* Otros estilos personalizados que desees aplicar */
+}

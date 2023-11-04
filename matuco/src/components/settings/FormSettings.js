@@ -10,7 +10,7 @@ const FormSettings = ({ setViewForm }) => {
 
   return (
     <>
-      <form className="border rounded-3 p-5 ">
+      <form className="border rounded-3 mt-5 p-5 ">
         <div>
           <div className="input-conteiner mt-3 mw-100 mb-4">
             <input
@@ -47,7 +47,7 @@ const FormSettings = ({ setViewForm }) => {
             </button>
             <button
               type="button"
-              className="btn btn-outline-secondary"
+              className="btn btn-outline-danger"
               onClick={closeFormHandler}
             >
               Cancelar
