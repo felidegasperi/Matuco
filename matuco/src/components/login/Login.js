@@ -41,55 +41,13 @@ const Login = () => {
     );
 
     if (user) {
-      alert("Usuario ingresado correctamente");
       handleLogin(user);
       console.log(user);
-      navigate("/")
+      navigate("/");
     } else {
-      alert("Error al iniciar sesion");
+      setError("Error al iniciar sesion, intente nuevamente.");
     }
   };
-
-  // const changeEmailHandler = (e) => {
-  //   if (emailRef.current.value.length > 0) {
-  //     emailRef.current.style.borderColor = "";
-  //     emailRef.current.style.outline = "";
-  //   }
-  //   setEmail(e.target.value);
-  // };
-
-  // const changePasswordHandler = (e) => {
-  //   setPassword(e.target.value);
-  // };
-  // const loginHandler = () => {
-  //   if (emailRef.current.value.length === 0) {
-  //      emailRef.current.focus();
-  //     emailRef.current.style.borderColor = "red";
-  //     emailRef.current.style.outline = "none";
-  //     setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
-
-  //     return;
-  //   }
-
-  //   if (password.length === 0) {
-  //     passwordRef.current.focus();
-  //     passwordRef.current.style.borderColor = "red";
-  //     passwordRef.current.style.outline = "none";
-  //     setError(
-  //       "Credenciales incorrectas. Por favor, inténta rellendando con una contraseña "
-  //     );
-  //     return;
-  //   } else if (password.length <= 8) {
-  //     passwordRef.current.focus();
-  //     passwordRef.current.style.borderColor = "red";
-  //     passwordRef.current.style.outline = "none";
-  //     setError(
-  //       "Credenciales incorrectas. Por favor, inténtalo de nuevo con una contraseña más larga."
-  //     );
-  //     return;
-  //   }
-  //   alert(`Su email es: ${email} y su password es: ${password}`);
-  // };
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
@@ -134,7 +92,7 @@ const Login = () => {
                     placeholder="Ingrese su contraseña"
                   />
                 </div>
-                {/* <div className="text-danger">{error}</div> */}
+                <div className="text-danger">{error}</div>
                 <div>
                   <a href="#" class="link-primary">
                     Deseas registrarte? Clickea aqui

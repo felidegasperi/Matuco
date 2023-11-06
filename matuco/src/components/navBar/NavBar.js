@@ -58,19 +58,6 @@ const NavBar = () => {
             )}
           </a>
 
-          {/* boton para el dropdown */}
-          {/* <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button> */}
-
           <Row className="navbar-nav mb-2 mb-lg-auto p-2">
             <Col className="nav-item mx-2 py-2">
               <a className="nav-link" href="#" onClick={NavigateHomeHandler}>
