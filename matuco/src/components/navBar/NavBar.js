@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import { Col, Row } from "react-bootstrap";
-
-import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
+
+import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 
 const NavBar = () => {
   const { theme } = useContext(ThemeContext);

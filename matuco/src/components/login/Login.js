@@ -2,12 +2,12 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
+import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 
 import "./Login.css";
 
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
-import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 
 const Login = () => {
   const [users, setUsers] = useState([]);
@@ -18,6 +18,10 @@ const Login = () => {
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
   const { handleLogin, handleLogout } = useContext(AuthenticationContext);
+
+  const NavigateRegisterHandler = () => {
+    navigate("/register");
+  };
 
   useEffect(() => {
     // GET a la API y almacenar los usuarios en el estado
@@ -94,8 +98,12 @@ const Login = () => {
                 </div>
                 <div className="text-danger">{error}</div>
                 <div>
-                  <a href="#" class="link-primary">
-                    Deseas registrarte? Clickea aqui
+                  <a
+                    href="#"
+                    class="link-primary"
+                    onClick={NavigateRegisterHandler}
+                  >
+                    Deseas registrarte? Clickea aqui!
                   </a>
                 </div>
                 <div className="vstack mt-3 align-self-center">
