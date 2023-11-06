@@ -76,7 +76,7 @@ const Register = () => {
             </div>
             <div className="col-md-6 d-flex align-items-center p-5 ">
               <div className="container">
-                <NewRegister onSavedUser={postNewUserHandler} />
+                <NewRegister users={users} onSavedUser={postNewUserHandler} />
               </div>
             </div>
           </div>

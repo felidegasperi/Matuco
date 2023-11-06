@@ -3,14 +3,14 @@ import { useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { ThemeContext } from "../../services/themeContext/Theme.context";
+import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 
-const RegisterForm = ({ onSavedUser }) => {
+const RegisterForm = ({ users, onSavedUser }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState("");
   const [username, setUsername] = useState("");
-  const [newUser, setNewUser] = useState([]);
 
   const usernameRef = useRef(null);
   const emailRef = useRef(null);
@@ -18,6 +18,7 @@ const RegisterForm = ({ onSavedUser }) => {
   const confirmPasswordRef = useRef(null);
 
   const { theme } = useContext(ThemeContext);
+  const { handleLogin } = useContext(AuthenticationContext);
 
   const navigate = useNavigate();
 
@@ -46,6 +47,12 @@ const RegisterForm = ({ onSavedUser }) => {
   };
 
   const registerHandler = () => {
+
+    const emailValidation = users.find(
+      (user) => user.email === email
+    )
+
+
     if (emailRef.current.value.length === 0) {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
@@ -53,12 +60,18 @@ const RegisterForm = ({ onSavedUser }) => {
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     }
 
+    
+
+
+
     if (usernameRef.current.value.length === 0) {
       usernameRef.current.focus();
       usernameRef.current.style.borderColor = "red";
       usernameRef.current.style.outline = "none";
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     }
+
+
     if (password.length === 0 || confirmPassword.length === 0) {
       passwordRef.current.focus();
       passwordRef.current.style.borderColor = "red";
@@ -85,20 +98,25 @@ const RegisterForm = ({ onSavedUser }) => {
       setError(
         "Credenciales incorrectas. Por favor, inténtalo de nuevo con una contraseña más larga."
       );
-    } else {
+    } else if(emailValidation){
+      emailRef.current.focus();
+      emailRef.current.style.borderColor = "red";
+      emailRef.current.style.outline = "none";
+      setError("Email ya registrado, intente con otro email.");
+    }else {
       const user = {
         username: username,
         type: "client",
         email: email,
         password: password,
+        isActive :true,
       };
-      setNewUser(user);
+
       onSavedUser(user);
-
-      console.log(newUser);
-
+      handleLogin(user);
       navigate("/home");
     }
+    
   };
   return (
     <>
@@ -107,7 +125,11 @@ const RegisterForm = ({ onSavedUser }) => {
         <div>
           <div className="input-conteiner mt-3 mw-100 mb-4">
             <input
-              className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-light text-dark"}`}
+              className={`${
+                theme === "DARK"
+                  ? "form-control form-control-lg bg-dark text-light"
+                  : "form-control form-control-lg bg-light text-dark"
+              }`}
               value={username}
               ref={usernameRef}
               onChange={changeUsernameHandler}
@@ -121,7 +143,11 @@ const RegisterForm = ({ onSavedUser }) => {
               ref={emailRef}
               value={email}
               onChange={changeEmailHandler}
-              className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-light text-dark"}`}
+              className={`${
+                theme === "DARK"
+                  ? "form-control form-control-lg bg-dark text-light"
+                  : "form-control form-control-lg bg-light text-dark"
+              }`}
               placeholder="Ingrese su email"
               type="email"
             />
@@ -132,7 +158,11 @@ const RegisterForm = ({ onSavedUser }) => {
               ref={passwordRef}
               value={password}
               onChange={changePasswordHandler}
-              className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-light text-dark"}`}
+              className={`${
+                theme === "DARK"
+                  ? "form-control form-control-lg bg-dark text-light"
+                  : "form-control form-control-lg bg-light text-dark"
+              }`}
               placeholder="Ingrese su contraseña"
               type="password"
             />
@@ -143,7 +173,11 @@ const RegisterForm = ({ onSavedUser }) => {
               ref={confirmPasswordRef}
               value={confirmPassword}
               onChange={changeConfirmPasswordHandler}
-              className={`${theme === "DARK" ? "form-control form-control-lg bg-dark text-light":"form-control form-control-lg bg-light text-dark"}`}
+              className={`${
+                theme === "DARK"
+                  ? "form-control form-control-lg bg-dark text-light"
+                  : "form-control form-control-lg bg-light text-dark"
+              }`}
               placeholder="Ingrese otra vez su contraseña"
               type="password"
             />

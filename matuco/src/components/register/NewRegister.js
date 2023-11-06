@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import RegisterForm from "./RegisterForm";
 
-const NewRegister = memo(({ onSavedUser }) => {
+const NewRegister = memo(({ users, onSavedUser }) => {
   console.log("new user create");
   const savedUserHandler = (user) => {
     onSavedUser(user);
@@ -9,7 +9,7 @@ const NewRegister = memo(({ onSavedUser }) => {
 
   return (
     <>
-      <RegisterForm onSavedUser={savedUserHandler} />
+      <RegisterForm users={users} onSavedUser={savedUserHandler} />
     </>
   );
 });
