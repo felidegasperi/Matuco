@@ -1,12 +1,25 @@
-import React from 'react'
+import React, { memo, useState } from "react";
+import FormProduct from "./FormProduct";
 
-
-const AddProduct = () => {
+const AddProduct = memo(({onPostNewProductHandler}) => {
+  const [isValid, setIsValid] = useState(false);
+  const onValidHandler = () => {
+    setIsValid(true);
+  };
   return (
     <div>
-        <button>Agregar Producto</button>
-    </div>
-  )
-}
+      <button onClick={onValidHandler}>Agregar Producto</button>
 
-export default AddProduct
+      <div>
+        {isValid === true ? (
+          <FormProduct onPostNewProductHandler={onPostNewProductHandler}/>
+        ) : (
+          <p>Haga Click en el Boton Agregar Producto</p>
+        )}
+      </div>
+    </div>
+  );
+
+});
+
+export default AddProduct;
