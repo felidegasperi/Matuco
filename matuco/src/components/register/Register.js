@@ -3,8 +3,9 @@ import "./Register.css";
 
 import Footer from "../footer/Footer";
 import NavBar from "../navBar/NavBar";
+import RegisterForm from "./RegisterForm";
 import { useCallback, useEffect, useState, useContext } from "react";
-import NewRegister from "./NewRegister";
+
 
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 
@@ -76,7 +77,7 @@ const Register = () => {
             </div>
             <div className="col-md-6 d-flex align-items-center p-5 ">
               <div className="container">
-                <NewRegister users={users} onSavedUser={postNewUserHandler} />
+                <RegisterForm users={users} onSavedUser={postNewUserHandler} />
               </div>
             </div>
           </div>

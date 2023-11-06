@@ -11,8 +11,10 @@ const FormSettings = ({ setViewForm }) => {
   return (
     <>
       <form className="border rounded-3 mt-5 p-5 ">
+        <h1>Modifica tus datos</h1>
         <div>
           <div className="input-conteiner mt-3 mw-100 mb-4">
+            <label>Nuevo nombre de usuario</label>
             <input
               className={`${
                 theme === "DARK"
@@ -23,6 +25,7 @@ const FormSettings = ({ setViewForm }) => {
           </div>
 
           <div className="input-conteiner mt-3 mb-4">
+          <label>Nuevo email</label>
             <input
               className={`${
                 theme === "DARK"
@@ -33,6 +36,7 @@ const FormSettings = ({ setViewForm }) => {
           </div>
 
           <div className="input-conteiner mt-3 mb-4">
+          <label>Nueva contraseña</label>
             <input
               className={`${
                 theme === "DARK"

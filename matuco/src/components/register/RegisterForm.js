@@ -47,11 +47,7 @@ const RegisterForm = ({ users, onSavedUser }) => {
   };
 
   const registerHandler = () => {
-
-    const emailValidation = users.find(
-      (user) => user.email === email
-    )
-
+    const emailValidation = users.find((user) => user.email === email);
 
     if (emailRef.current.value.length === 0) {
       emailRef.current.focus();
@@ -60,17 +56,12 @@ const RegisterForm = ({ users, onSavedUser }) => {
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     }
 
-    
-
-
-
     if (usernameRef.current.value.length === 0) {
       usernameRef.current.focus();
       usernameRef.current.style.borderColor = "red";
       usernameRef.current.style.outline = "none";
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     }
-
 
     if (password.length === 0 || confirmPassword.length === 0) {
       passwordRef.current.focus();
@@ -98,25 +89,24 @@ const RegisterForm = ({ users, onSavedUser }) => {
       setError(
         "Credenciales incorrectas. Por favor, inténtalo de nuevo con una contraseña más larga."
       );
-    } else if(emailValidation){
+    } else if (emailValidation) {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
       emailRef.current.style.outline = "none";
       setError("Email ya registrado, intente con otro email.");
-    }else {
+    } else {
       const user = {
         username: username,
         type: "client",
         email: email,
         password: password,
-        isActive :true,
+        isActive: true,
       };
 
       onSavedUser(user);
       handleLogin(user);
       navigate("/home");
     }
-    
   };
   return (
     <>
