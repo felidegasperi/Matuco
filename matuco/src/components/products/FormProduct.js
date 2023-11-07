@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-const FormProduct = ({ onPostNewProductHandler, setIsValid }) => {
+const FormProduct = ({ onNewProductHandler, setIsValid }) => {
   const [nameProduct, setNameProduct] = useState("");
   const [typeProduct, setTypeProduct] = useState("");
   const [priceProduct, setPriceProduct] = useState("");
@@ -23,14 +23,33 @@ const FormProduct = ({ onPostNewProductHandler, setIsValid }) => {
     setIsValid(false);
   };
 
-  const productHandler = () => {
+  const productHandler = (e) => {
+    e.preventDefault();
     if (nameProductRef.current.value.length === 0) {
       nameProductRef.current.focus();
       nameProductRef.current.style.borderColor = "red";
       nameProductRef.current.style.outline = "none";
-      setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
+      setError("Debes poner un nombre valido.");
     }
-    console.log(priceProduct, typeProduct, nameProduct)
+
+    if (priceProductRef.current.value.length === 0) {
+      priceProductRef.current.focus();
+      priceProductRef.current.style.borderColor = "red";
+      priceProductRef.current.style.outline = "none";
+      setError("Debes poner un precio valido.");
+    } else if (typeProductRef.current.value.length === 0) {
+      typeProductRef.current.focus();
+      typeProductRef.current.style.borderColor = "red";
+      typeProductRef.current.style.outline = "none";
+    } else {
+      const newProduct = {
+        name: nameProduct,
+        price: priceProduct,
+        type: typeProduct,
+      };
+      onNewProductHandler(newProduct);
+      console.log(newProduct);
+    }
   };
 
   return (
@@ -63,7 +82,7 @@ const FormProduct = ({ onPostNewProductHandler, setIsValid }) => {
         <input
           className="form-control form-control-lg"
           placeholder=""
-          type="text"
+          type="number"
           value={priceProduct}
           ref={priceProductRef}
           onChange={changePriceProductHandler}
@@ -71,10 +90,15 @@ const FormProduct = ({ onPostNewProductHandler, setIsValid }) => {
       </div>
       <div className="text-danger">{error}</div>
       <div className="row justify-content-center">
-        <button className="btn btn-outline-secondary col-4" onClick={productHandler}>
+        <button
+          type="button"
+          className="btn btn-outline-secondary col-4"
+          onClick={productHandler}
+        >
           Agregar
         </button>
         <button
+          type="button"
           className="btn btn-outline-danger col-4"
           onClick={onCancelFormHandler}
         >

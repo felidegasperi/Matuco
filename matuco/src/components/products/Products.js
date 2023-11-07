@@ -15,21 +15,19 @@ const Products = () => {
       },
     })
       .then((response) => response.json())
-      .then((products) => {
-        setProducts(products);
+      .then((data) => {
+        setProducts(data);
       })
       .catch((error) => console.error("Error:", error));
   }, []);
-
-
 
   const postNewProductHandler = useCallback(
     (product) => {
       //setUsers((prevUsers) => [user, ...prevUsers]);
 
-      const newProductId = product[product.length - 1].id + 1;
+      const newProductId = products.length > 0 ? products[products.length - 1].id + 1 : 1;
       console.log("User data in postNewUserHandler: ", product);
-      fetch("http://localhost:8000/users", {
+      fetch("http://localhost:8000/products", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -38,8 +36,7 @@ const Products = () => {
           id: newProductId,
           name: product.name,
           type: product.type,
-          price: product.price
-          
+          price: product.price,
         }),
       })
         .then((response) => {
@@ -50,7 +47,10 @@ const Products = () => {
         })
         .then(() => {
           console.log("product en then", product);
-          const newProductArray = [{ ...product, id: newProductId }, ...products];
+          const newProductArray = [
+            { ...product, id: newProductId },
+            ...products,
+          ];
           setProducts(newProductArray);
         })
         .catch((error) => console.log(error));
@@ -67,7 +67,7 @@ const Products = () => {
         ))}
       </div>
       <div className="border-top">
-      <AddProduct onPostNewProductHandler={postNewProductHandler}/>
+        <AddProduct onPostNewProductHandler={postNewProductHandler} />
       </div>
       <Footer />
     </div>
