@@ -61,12 +61,14 @@ const Products = () => {
   return (
     <div>
       <NavBar />
-      <div className="row">
+      <div className="row p-5">
         {products.map((product, index) => (
           <CardProducts key={index} product={product} />
         ))}
       </div>
+      <div className="border-top">
       <AddProduct onPostNewProductHandler={postNewProductHandler}/>
+      </div>
       <Footer />
     </div>
   );

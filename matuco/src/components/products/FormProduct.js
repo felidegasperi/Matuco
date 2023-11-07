@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 
-const FormProduct = ({ onPostNewProductHandler }) => {
+const FormProduct = ({ onPostNewProductHandler, setIsValid }) => {
   const [nameProduct, setNameProduct] = useState("");
   const [typeProduct, setTypeProduct] = useState("");
   const [priceProduct, setPriceProduct] = useState("");
@@ -15,9 +15,12 @@ const FormProduct = ({ onPostNewProductHandler }) => {
   const changeTypeProductHandler = (e) => {
     setTypeProduct(e.target.value);
   };
-
   const changePriceProductHandler = (e) => {
     setPriceProduct(e.target.value);
+  };
+
+  const onCancelFormHandler = () => {
+    setIsValid(false);
   };
 
   const productHandler = () => {
@@ -27,6 +30,7 @@ const FormProduct = ({ onPostNewProductHandler }) => {
       nameProductRef.current.style.outline = "none";
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     }
+    console.log(priceProduct, typeProduct, nameProduct)
   };
 
   return (
@@ -66,7 +70,17 @@ const FormProduct = ({ onPostNewProductHandler }) => {
         />
       </div>
       <div className="text-danger">{error}</div>
-      <button onClick={productHandler}>Agregar</button>
+      <div className="row justify-content-center">
+        <button className="btn btn-outline-secondary col-4" onClick={productHandler}>
+          Agregar
+        </button>
+        <button
+          className="btn btn-outline-danger col-4"
+          onClick={onCancelFormHandler}
+        >
+          Cancelar
+        </button>
+      </div>
     </form>
   );
 };

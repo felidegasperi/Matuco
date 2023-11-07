@@ -7,12 +7,13 @@ const AddProduct = memo(({onPostNewProductHandler}) => {
     setIsValid(true);
   };
   return (
-    <div>
-      <button onClick={onValidHandler}>Agregar Producto</button>
-
-      <div>
+    <div className="row justify-content-around mt-5 p-5">
+      <div className="col-4  d-flex align-items-center">
+      <button className="btn btn-outline-dark d-flex justify-content-center" onClick={onValidHandler}>Agregar Producto</button>
+      </div>
+      <div className="col-4">
         {isValid === true ? (
-          <FormProduct onPostNewProductHandler={onPostNewProductHandler}/>
+          <FormProduct onPostNewProductHandler={onPostNewProductHandler} setIsValid={setIsValid} isValid={isValid}/>
         ) : (
           <p>Haga Click en el Boton Agregar Producto</p>
         )}
