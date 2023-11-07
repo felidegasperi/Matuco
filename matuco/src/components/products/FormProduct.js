@@ -8,6 +8,7 @@ const FormProduct = ({ onPostNewProductHandler }) => {
   const nameProductRef = useRef(null);
   const typeProductRef = useRef(null);
   const priceProductRef = useRef(null);
+
   const changeNameProductHandler = (e) => {
     setNameProduct(e.target.value);
   };
@@ -18,6 +19,7 @@ const FormProduct = ({ onPostNewProductHandler }) => {
   const changePriceProductHandler = (e) => {
     setPriceProduct(e.target.value);
   };
+
   const productHandler = () => {
     if (nameProductRef.current.value.length === 0) {
       nameProductRef.current.focus();
@@ -29,8 +31,9 @@ const FormProduct = ({ onPostNewProductHandler }) => {
 
   return (
     <form className="border rounded-3 p-5 ">
-      <h2>Ingrese Un Producto</h2>
+      <h2>Ingreso de un producto</h2>
       <div className="input-conteiner mt-3 mb-4">
+        <label>Ingrese el nombre del producto:</label>
         <input
           className="form-control form-control-lg"
           placeholder=""
@@ -41,6 +44,7 @@ const FormProduct = ({ onPostNewProductHandler }) => {
         />
       </div>
       <div className="input-conteiner mt-3 mb-4">
+        <label>Ingrese el tipo de producto:</label>
         <input
           className="form-control form-control-lg"
           placeholder=""
@@ -51,6 +55,7 @@ const FormProduct = ({ onPostNewProductHandler }) => {
         />
       </div>
       <div className="input-conteiner mt-3 mb-4">
+        <label>Ingrese el precio del producto:</label>
         <input
           className="form-control form-control-lg"
           placeholder=""
@@ -60,6 +65,7 @@ const FormProduct = ({ onPostNewProductHandler }) => {
           onChange={changePriceProductHandler}
         />
       </div>
+      <div className="text-danger">{error}</div>
       <button onClick={productHandler}>Agregar</button>
     </form>
   );
