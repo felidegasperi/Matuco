@@ -29,14 +29,16 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
       nameProductRef.current.focus();
       nameProductRef.current.style.borderColor = "red";
       nameProductRef.current.style.outline = "none";
-      setError("Debes poner un nombre valido.");
+      setError("Debes ingresar un nombre valido.");
     }
-
-    if (priceProductRef.current.value.length === 0) {
+    if (
+      priceProductRef.current.value === "0" ||
+      priceProductRef.current.value.length === 0
+    ) {
       priceProductRef.current.focus();
       priceProductRef.current.style.borderColor = "red";
       priceProductRef.current.style.outline = "none";
-      setError("Debes poner un precio valido.");
+      setError("Debes ingresar un precio valido.");
     } else if (typeProductRef.current.value.length === 0) {
       typeProductRef.current.focus();
       typeProductRef.current.style.borderColor = "red";
@@ -67,7 +69,17 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
         />
       </div>
       <div className="input-conteiner mt-3 mb-4">
-        <label>Ingrese el tipo de producto:</label>
+        <label>Seleccione el tipo de producto:</label>
+        {/* <select
+          className="form-control form-control-lg"
+          value={typeProduct}
+          ref={typeProductRef}
+          onChange={changeTypeProductHandler}
+        >
+          <option>mate</option>
+          <option>termo</option>
+          <option>bombilla</option>
+        </select> */}
         <input
           className="form-control form-control-lg"
           placeholder=""
