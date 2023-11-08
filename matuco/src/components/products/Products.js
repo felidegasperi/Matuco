@@ -23,7 +23,7 @@ const Products = () => {
 
   const postNewProductHandler = useCallback(
     (product) => {
-      //setUsers((prevUsers) => [user, ...prevUsers]);
+     
 
       const newProductId = products.length > 0 ? products[products.length - 1].id + 1 : 1;
       console.log("User data in postNewUserHandler: ", product);

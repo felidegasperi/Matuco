@@ -6,9 +6,10 @@ const CardProducts = ({ product }) => {
     alert("Producto añadido al carrito");
   };
   return (
-    <div className="col-md-4">
+    <div className="col-md-3">
       <div class="card">
         <div class="card-info">
+          
           <p class="text-title">{product.name} </p>
           <p class="text-body">{product.type}</p>
         </div>
