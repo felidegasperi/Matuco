@@ -7,23 +7,30 @@ import { useCallback, useEffect, useState, useContext } from "react";
 import NewRegister from "./NewRegister";
 
 import { ThemeContext } from "../../services/themeContext/Theme.context";
+import { useFetch } from "../../hooks/useFetch";
 
 const Register = () => {
-  const [users, setUsers] = useState([]);
-
+  // const [users, setUsers] = useState([]);
   const { theme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    //GET a la API y almacenar los usuarios en el state
-    fetch("http://localhost:8000/users", {
-      headers: {
-        accept: "aplication/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) => console.log("error al obtener los users", error));
-  }, []);
+  const apiUrl = "http://localhost:8000/users";
+  const { users, error } = useFetch(apiUrl);
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  // useEffect(() => {
+  //   //GET a la API y almacenar los usuarios en el state
+  //   fetch("http://localhost:8000/users", {
+  //     headers: {
+  //       accept: "aplication/json",
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => setUsers(data))
+  //     .catch((error) => console.log("error al obtener los users", error));
+  // }, []);
 
   //funcion para hacer el post dentrode la db
   const postNewUserHandler = useCallback(
