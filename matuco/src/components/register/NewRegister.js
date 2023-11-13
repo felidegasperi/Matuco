@@ -1,17 +1,17 @@
-import React, { memo } from "react";
-import RegisterForm from "./RegisterForm";
+// import React, { memo } from "react";
+// import RegisterForm from "./RegisterForm";
 
-const NewRegister = memo(({ onSavedUser }) => {
-  console.log("new user create");
-  const savedUserHandler = (user) => {
-    onSavedUser(user);
-  };
+// const NewRegister = memo(({ users, onSavedUser }) => {
+//   console.log("new user create");
+//   const savedUserHandler = (user) => {
+//     onSavedUser(user);
+//   };
 
-  return (
-    <>
-      <RegisterForm onSavedUser={savedUserHandler} />
-    </>
-  );
-});
+//   return (
+//     <>
+//       <RegisterForm users={users} onSavedUser={savedUserHandler} />
+//     </>
+//   );
+// });
 
-export default NewRegister;
+// export default NewRegister;

@@ -24,6 +24,11 @@ const NavBar = () => {
   const NavigateRegisterHandler = () => {
     navigate("/register");
   };
+
+  const NavigateSettingsHandler = () => {
+    navigate("/settings");
+  };
+  
   const NavigateProductHandler = () => {
     navigate("/products");
   };
@@ -77,7 +82,7 @@ const NavBar = () => {
                 Carrito
               </a>
             </Col>
-            <Col className="mx-4 ">
+            <Col className="mx-2 ">
               {user && <p className="">Hola {user.username} !</p>}
             </Col>
             <Col className="d-flex">
@@ -89,6 +94,7 @@ const NavBar = () => {
                       : "btn btn-outline-dark btn-sm p-2 m-2"
                   }`}
                   type="button"
+                  onClick={NavigateSettingsHandler}
                 >
                   Settings
                 </button>

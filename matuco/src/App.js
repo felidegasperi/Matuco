@@ -3,6 +3,8 @@ import Home from "./components/home/Home";
 import PageNotFound from "./components/security/pageNotFound/PageNotFound";
 import Products from "./components/products/Products";
 import Register from "./components/register/Register";
+import Settings from "./components/settings/Settings";
+import Protected from "./components/security/protected/Protected";
 
 import { Navigate, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
@@ -35,6 +37,14 @@ function App() {
     {
       path: "*",
       element: <PageNotFound />,
+    },
+    {
+      path: "/settings",
+      element: (
+        <Protected >
+          <Settings />
+        </Protected>
+      ),
     },
   ]);
   return (
