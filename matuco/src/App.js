@@ -5,6 +5,7 @@ import Products from "./components/products/Products";
 import Register from "./components/register/Register";
 import Settings from "./components/settings/Settings";
 import Protected from "./components/security/protected/Protected";
+import ListProducts from "./components/listProducts/ListProducts";
 
 import { Navigate, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
@@ -43,6 +44,14 @@ function App() {
       element: (
         <Protected>
           <Settings />
+        </Protected>
+      ),
+    },
+    {
+      path: "/listProducts",
+      element: (
+        <Protected>
+          <ListProducts />
         </Protected>
       ),
     },
