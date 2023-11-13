@@ -59,7 +59,7 @@ const Products = () => {
   );
 
   return (
-    <div>
+    <>
       <NavBar />
       <div className="row p-5">
         {products.map((product, index) => (
@@ -70,7 +70,7 @@ const Products = () => {
         <AddProduct onPostNewProductHandler={postNewProductHandler} />
       </div>
       <Footer />
-    </div>
+    </>
   );
 };
 

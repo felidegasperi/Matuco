@@ -53,6 +53,7 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
         type: typeProduct,
       };
       onNewProductHandler(newProduct);
+      setIsValid(false)
       console.log(newProduct);
     }
   };
