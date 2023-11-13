@@ -1,16 +1,16 @@
-import React, { useState } from "react";
-
+import React, { useContext, useState } from "react";
+import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const Card = () => {
   const [isHovered1, setIsHovered1] = useState(false);
   const [isHovered2, setIsHovered2] = useState(false);
   const [isHovered3, setIsHovered3] = useState(false);
 
+  const { theme } = useContext(ThemeContext);
 
   const normalStyles = {
     Width: "18rem",
     Height: "18rem",
-    backgroundColor: "#ffffff",
     transition: "transform 0.3s", // Transición de escala
   };
 
@@ -18,11 +18,11 @@ const Card = () => {
     Width: "18rem",
     Height: "18rem",
     transform: "scale(1.1)", // Escala de 110% en hover
-    backgroundColor: "#ffffff",
     transition: "transform 0.3s", // Transición de escala
   };
 
   return (
+    <div className={`${theme === "DARK" && "dark-theme"}`}>
       <div className="container-fluid">
         <div className="card-container d-flex flex-row mt-5 mb-5 justify-content-evenly">
           <a className="nav-link" href="#">
@@ -101,6 +101,7 @@ const Card = () => {
           </a>
         </div>
       </div>
+    </div>
   );
 };
 

@@ -1,12 +1,13 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import CardProducts from "./CardProducts"; // Asegúrate de importar el componente CardProducts desde la ubicación correcta
 import AddProduct from "./AddProduct";
-
+import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
+  const { user } = useContext(AuthenticationContext);
 
   useEffect(() => {
     // Llama a la API aquí
@@ -24,9 +25,8 @@ const Products = () => {
 
   const postNewProductHandler = useCallback(
     (product) => {
-     
-
-      const newProductId = products.length > 0 ? products[products.length - 1].id + 1 : 1;
+      const newProductId =
+        products.length > 0 ? products[products.length - 1].id + 1 : 1;
       console.log("User data in postNewUserHandler: ", product);
       fetch("http://localhost:8000/products", {
         method: "POST",
@@ -68,7 +68,9 @@ const Products = () => {
         ))}
       </div>
       <div className="border-top">
-        <AddProduct onPostNewProductHandler={postNewProductHandler} />
+        {user.type === "owner" && (
+          <AddProduct onPostNewProductHandler={postNewProductHandler} />
+        )}
       </div>
       <Footer />
     </>
