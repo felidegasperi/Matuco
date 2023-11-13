@@ -24,6 +24,9 @@ const NavBar = () => {
   const NavigateRegisterHandler = () => {
     navigate("/register");
   };
+  const NavigateProductHandler = () => {
+    navigate("/products");
+  };
 
   const onLogoutHandler = () => {
     handleLogout();
@@ -65,7 +68,7 @@ const NavBar = () => {
               </a>
             </Col>
             <Col className="nav-item  py-2">
-              <a className="nav-link " href="#">
+              <a className="nav-link " onClick={NavigateProductHandler} href="#">
                 Productos
               </a>
             </Col>

@@ -4,7 +4,6 @@ import PageNotFound from "./components/security/pageNotFound/PageNotFound";
 import Products from "./components/products/Products";
 import Register from "./components/register/Register";
 
-
 import { Navigate, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
 import { useContext } from "react";
@@ -26,9 +25,8 @@ function App() {
       element: <Home />,
     },
     {
-
       path: "/products",
-      element: <Products/>,
+      element: <Products />,
     },
     {
       path: "/register",
@@ -38,7 +36,6 @@ function App() {
       path: "*",
       element: <PageNotFound />,
     },
-    
   ]);
   return (
     <div className={`${theme === "dark" && "dark-theme"}`}>

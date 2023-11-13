@@ -4,6 +4,7 @@ import Footer from "../footer/Footer";
 import CardProducts from "./CardProducts"; // Asegúrate de importar el componente CardProducts desde la ubicación correcta
 import AddProduct from "./AddProduct";
 
+
 const Products = () => {
   const [products, setProducts] = useState([]);
 
