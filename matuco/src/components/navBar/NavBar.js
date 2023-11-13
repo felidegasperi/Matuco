@@ -1,8 +1,16 @@
-import React from "react";
-import { Col, Row } from "react-bootstrap";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
+import { Col, Row } from "react-bootstrap";
+import { ThemeContext } from "../../services/themeContext/Theme.context";
+import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
+
+import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 
 const NavBar = () => {
+  const { theme } = useContext(ThemeContext);
+
+  const { handleLogout, user } = useContext(AuthenticationContext);
+
   const navigate = useNavigate();
 
   const NavigateHomeHandler = () => {
@@ -13,31 +21,44 @@ const NavBar = () => {
     navigate("/login");
   };
 
+  const NavigateRegisterHandler = () => {
+    navigate("/register");
+  };
+
+  const onLogoutHandler = () => {
+    handleLogout();
+    navigate("/");
+  };
+
   return (
-    <>
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div className={`${theme === "DARK" && "dark-theme"}`}>
+      <nav
+        className={`${
+          theme === "DARK"
+            ? "navbar navbar-expand-lg navbar-dark bg-dark"
+            : "navbar navbar-expand-lg navbar-light bg-light border-bottom"
+        }`}
+      >
         <div class="container fw-bold fs-5">
           <a class="navbar-brand" href="#" onClick={NavigateHomeHandler}>
-            <img
-              style={{ width: "100px", height: "90px" }}
-              src={"../assets/icon.png"}
-            />
+            {theme === "DARK" ? (
+              <>
+                <img
+                  style={{ width: "100px", height: "90px" }}
+                  src={"../assets/icon.png"}
+                />
+              </>
+            ) : (
+              <>
+                <img
+                  style={{ width: "100px", height: "90px" }}
+                  src={"../assets/icon2.png"}
+                />
+              </>
+            )}
           </a>
 
-          {/* boton para el dropdown */}
-          {/* <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button> */}
-
-          <Row className="navbar-nav mb-2 mb-lg-auto text-bg-dark p-2">
+          <Row className="navbar-nav mb-2 mb-lg-auto p-2">
             <Col className="nav-item mx-2 py-2">
               <a className="nav-link" href="#" onClick={NavigateHomeHandler}>
                 Inicio
@@ -53,27 +74,69 @@ const NavBar = () => {
                 Carrito
               </a>
             </Col>
-            <Col className="mx-4 text-light bg-dark">
-              <p className="">Hola -username-!</p>
+            <Col className="mx-4 ">
+              {user && <p className="">Hola {user.username} !</p>}
             </Col>
             <Col className="d-flex">
-              <button
-                className="btn btn-primary btn-sm p-2 m-2 "
-                type="button"
-                onClick={NavigateLoginHandler}
-              >
-                Iniciar Sesion
-              </button>
+              {user !== null ? (
+                <button
+                  className={`${
+                    theme === "DARK"
+                      ? "btn btn-outline-light btn-sm p-2 m-2"
+                      : "btn btn-outline-dark btn-sm p-2 m-2"
+                  }`}
+                  type="button"
+                >
+                  Settings
+                </button>
+              ) : (
+                <button
+                  className={`${
+                    theme === "DARK"
+                      ? "btn btn-outline-light btn-sm p-2 m-2"
+                      : "btn btn-outline-dark btn-sm p-2 m-2"
+                  }`}
+                  type="button"
+                  onClick={NavigateLoginHandler}
+                >
+                  Iniciar Sesion
+                </button>
+              )}
             </Col>
             <Col className="d-flex">
-              <button className="btn btn-primary btn-sm p-2 m-2" type="button">
-                Registrarse
-              </button>
+              {user !== null ? (
+                <button
+                  className={`${
+                    theme === "DARK"
+                      ? "btn btn-outline-danger btn-sm p-2 m-2"
+                      : "btn btn-outline-danger btn-sm p-2 m-2"
+                  }`}
+                  type="button"
+                  onClick={onLogoutHandler}
+                >
+                  Cerrar Sesion
+                </button>
+              ) : (
+                <button
+                  className={`${
+                    theme === "DARK"
+                      ? "btn btn-outline-light btn-sm p-2 m-2"
+                      : "btn btn-outline-dark btn-sm p-2 m-2"
+                  }`}
+                  type="button"
+                  onClick={NavigateRegisterHandler}
+                >
+                  Registrarse
+                </button>
+              )}
+            </Col>
+            <Col className="my-3">
+              <ToggleTheme />
             </Col>
           </Row>
         </div>
       </nav>
-    </>
+    </div>
   );
 };
 

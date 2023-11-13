@@ -1,10 +1,19 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Row, Col } from "react-bootstrap";
+import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const Footer = () => {
+  const { theme } = useContext(ThemeContext);
+
   return (
     <>
-      <footer className="bg-dark text-light text-center py-2">
+      <footer
+        className={`${
+          theme === "DARK"
+            ? "bg-dark text-light text-center py-2"
+            : "bg-light text-dark text-center py-2 border-top"
+        }`}
+      >
         <div className="container w-100 pt-3 pb-2">
           <Row>
             <Col className="d-flex ">

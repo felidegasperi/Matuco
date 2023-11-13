@@ -1,17 +1,22 @@
 import React from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../../services/themeContext/Theme.context";
 
-import Card from "./Card";
+import "./Home.css";
+
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
+import Card from "../card/Card.js";
 
 const Home = () => {
+  const { theme } = useContext(ThemeContext);
   return (
     <>
       <NavBar />
-      <div style={{ backgroundColor: "##f2f2f2" }}>
+      <div className={`${theme === "DARK" && "dark-theme"}`}>
         <div>
           <div
-            class="d-flex justify-content-center aling-items-center"
+            className="d-flex justify-content-center aling-items-center"
             style={{
               backgroundImage: `url(${process.env.PUBLIC_URL}/assets/mate2.jpg)`,
               backgroundSize: "cover",
@@ -21,7 +26,7 @@ const Home = () => {
             }}
           >
             <div
-              class="text-center"
+              className="text-center"
               style={{
                 transform: "translateY(-50%)",
                 marginTop: "65vh",
@@ -33,13 +38,12 @@ const Home = () => {
               <p></p>
             </div>
           </div>
-
           <div>
             <Card />
           </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };
