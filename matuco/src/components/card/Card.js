@@ -43,7 +43,7 @@ const Card = () => {
                 }}
               />
               <div className="card-body">
-                <p className="card-text" style={{ color: "black" }}>
+                <p className="card-text text-center" style={{ color: "black" }}>
                   Mates
                 </p>
               </div>
@@ -68,7 +68,7 @@ const Card = () => {
                 }}
               />
               <div className="card-body">
-                <p className="card-text" style={{ color: "black" }}>
+                <p className="card-text text-center" style={{ color: "black" }}>
                   Bombillas
                 </p>
               </div>
@@ -93,7 +93,7 @@ const Card = () => {
                 }}
               />
               <div className="card-body">
-                <p className="card-text" style={{ color: "black" }}>
+                <p className="card-text text-center" style={{ color: "black" }}>
                   Termos
                 </p>
               </div>

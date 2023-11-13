@@ -28,23 +28,27 @@ function App() {
     },
     {
       path: "/products",
-      element: <Products />,
+      element: (
+        <Protected>
+          <Products />
+        </Protected>
+      ),
     },
     {
       path: "/register",
       element: <Register />,
     },
     {
-      path: "*",
-      element: <PageNotFound />,
-    },
-    {
       path: "/settings",
       element: (
-        <Protected >
+        <Protected>
           <Settings />
         </Protected>
       ),
+    },
+    {
+      path: "*",
+      element: <PageNotFound />,
     },
   ]);
   return (
