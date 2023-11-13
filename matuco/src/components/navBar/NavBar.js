@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import { Col, Row } from "react-bootstrap";
-
-import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
+
+import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 
 const NavBar = () => {
   const { theme } = useContext(ThemeContext);
@@ -24,8 +24,13 @@ const NavBar = () => {
   const NavigateRegisterHandler = () => {
     navigate("/register");
   };
+
   const NavigateSettingsHandler = () => {
     navigate("/settings");
+  };
+  
+  const NavigateProductHandler = () => {
+    navigate("/products");
   };
 
   const onLogoutHandler = () => {
@@ -61,19 +66,6 @@ const NavBar = () => {
             )}
           </a>
 
-          {/* boton para el dropdown */}
-          {/* <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent"
-            aria-controls="navbarSupportedContent"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button> */}
-
           <Row className="navbar-nav mb-2 mb-lg-auto p-2">
             <Col className="nav-item mx-2 py-2">
               <a className="nav-link" href="#" onClick={NavigateHomeHandler}>
@@ -81,7 +73,7 @@ const NavBar = () => {
               </a>
             </Col>
             <Col className="nav-item  py-2">
-              <a className="nav-link " href="#">
+              <a className="nav-link " onClick={NavigateProductHandler} href="#">
                 Productos
               </a>
             </Col>

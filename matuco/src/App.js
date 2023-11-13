@@ -1,6 +1,7 @@
 import Login from "./components/login/Login";
 import Home from "./components/home/Home";
 import PageNotFound from "./components/security/pageNotFound/PageNotFound";
+import Products from "./components/products/Products";
 import Register from "./components/register/Register";
 import Settings from "./components/settings/Settings";
 import Protected from "./components/security/protected/Protected";
@@ -24,6 +25,10 @@ function App() {
     {
       path: "/home",
       element: <Home />,
+    },
+    {
+      path: "/products",
+      element: <Products />,
     },
     {
       path: "/register",

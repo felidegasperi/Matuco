@@ -1,13 +1,12 @@
 import React, { useContext } from "react";
-
-import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router";
+import { ThemeContext } from "../../../services/themeContext/Theme.context";
+import { Button } from "react-bootstrap";
+
 import "./PageNotFound.css";
 
 import NavBar from "../../navBar/NavBar";
 import Footer from "../../footer/Footer";
-
-import { ThemeContext } from "../../../services/themeContext/Theme.context";
 
 const PageNotFount = () => {
   const { theme } = useContext(ThemeContext);
