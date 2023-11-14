@@ -12,7 +12,7 @@ import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useNavigate } from "react-router-dom";
 import AddProduct from "./AddProduct";
 
-const ListProducts = () => {
+const ListProducts = ({deleteProductHandler}) => {
   const [products, setProducts] = useState([]);
 
   const navigate = useNavigate();
@@ -38,7 +38,7 @@ const ListProducts = () => {
       .catch((error) => console.error("Error:", error));
   }, []);
 
-  const deleteProductHandler = (id) => {};
+ 
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
@@ -102,7 +102,7 @@ const ListProducts = () => {
                       </button>
                       <button
                         className="btn"
-                       // onClick={() => deleteProductHandler()}
+                        onClick={() => deleteProductHandler(product.id)}
                       >
                         {theme === "DARK" ? (
                           <TiDeleteOutline color="white" />
