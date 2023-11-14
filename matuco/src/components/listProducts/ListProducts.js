@@ -92,7 +92,7 @@ const ListProducts = () => {
                     <td>
                       <button
                         className="btn"
-                        onClick={() => editProductHandler()}
+                        //onClick={() => editProductHandler()}
                       >
                         {theme === "DARK" ? (
                           <MdOutlineModeEdit color="white" />
@@ -102,7 +102,7 @@ const ListProducts = () => {
                       </button>
                       <button
                         className="btn"
-                        onClick={() => deleteProductHandler()}
+                       // onClick={() => deleteProductHandler()}
                       >
                         {theme === "DARK" ? (
                           <TiDeleteOutline color="white" />

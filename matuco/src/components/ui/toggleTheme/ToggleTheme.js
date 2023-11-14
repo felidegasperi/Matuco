@@ -5,11 +5,11 @@ import "./toggleTheme.css";
 
 const ToggleTheme = () => {
   const { theme, toggleTheme } = useContext(ThemeContext);
-
+  localStorage.setItem("theme", theme);
   const handleToggleTheme = () => {
     toggleTheme();
   };
-
+ 
   return (
     <label class="switch">
       <input type="checkbox" onClick={handleToggleTheme} />
