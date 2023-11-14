@@ -1,5 +1,8 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import FormProduct from "./FormProduct";
+
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const AddProduct = () => {
@@ -7,9 +10,11 @@ const AddProduct = () => {
   const [products, setProducts] = useState([]);
 
   const { theme } = useContext(ThemeContext);
+  const navigate = useNavigate();
 
   const onValidHandler = () => {
     setIsValid(true);
+    navigate("/listProducts");
   };
 
   useEffect(() => {
