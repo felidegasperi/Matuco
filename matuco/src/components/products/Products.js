@@ -2,12 +2,9 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import CardProducts from "./CardProducts"; // Asegúrate de importar el componente CardProducts desde la ubicación correcta
-import AddProduct from "../listProducts/AddProduct";
-import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const { user } = useContext(AuthenticationContext);
 
   useEffect(() => {
     // Llama a la API aquí
@@ -27,6 +24,7 @@ const Products = () => {
     <>
       <NavBar />
       <div className="row p-5">
+        {/* implementar condicional para cuando no se pueden obtener los productos */}
         {products.map((product, index) => (
           <CardProducts key={index} product={product} />
         ))}
