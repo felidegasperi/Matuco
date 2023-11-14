@@ -38,7 +38,7 @@ const ListProducts = () => {
       .catch((error) => console.error("Error:", error));
   }, []);
 
-  
+  const deleteProductHandler = (id) => {};
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
