@@ -67,6 +67,33 @@ const AddProduct = () => {
     [products]
   );
 
+  // const postNewProductHandler = useCallback(async (product) => {
+  //   try {
+  //     console.log("User data in postNewUserHandler: ", product);
+  //     const response = await fetch("http://localhost:8000/products", {
+  //       method: "POST",
+  //       headers: {
+  //         "content-type": "application/json",
+  //       },
+  //       body: JSON.stringify({
+  //         name: product.name,
+  //         type: product.type,
+  //         price: product.price,
+  //       }),
+  //     });
+
+  //     if (!response.ok) {
+  //       throw new Error("The response had some errors");
+  //     }
+
+  //     const newProduct = await response.json();
+  //     console.log("newProduct en then", newProduct);
+  //     setProducts((prevProducts) => [newProduct, ...prevProducts]);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, []);
+
   return (
     <div className="row justify-content-center mt-5 p-5">
       <div className=" col-1 d-flex align-items-center">

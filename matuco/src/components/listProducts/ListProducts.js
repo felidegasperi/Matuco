@@ -12,8 +12,12 @@ import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useNavigate } from "react-router-dom";
 import AddProduct from "./AddProduct";
 
-const ListProducts = ({deleteProductHandler}) => {
-  const [products, setProducts] = useState([]);
+const ListProducts = ({
+  products,
+  deleteProductHandler,
+  editProductHandler,
+}) => {
+  // const [products, setProducts] = useState([]);
 
   const navigate = useNavigate();
 
@@ -24,25 +28,22 @@ const ListProducts = ({deleteProductHandler}) => {
     navigate("/home");
   };
 
-  useEffect(() => {
-    // Llama a la API aquí
-    fetch("http://localhost:8000/products", {
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
-
- 
+  // useEffect(() => {
+  //   // Llama a la API aquí
+  //   fetch("http://localhost:8000/products", {
+  //     headers: {
+  //       accept: "application/json",
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       setProducts(data);
+  //     })
+  //     .catch((error) => console.error("Error:", error));
+  // }, []);
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
-      <NavBar />
       <div>
         {user.type !== "owner" ? (
           <>
@@ -92,7 +93,7 @@ const ListProducts = ({deleteProductHandler}) => {
                     <td>
                       <button
                         className="btn"
-                        //onClick={() => editProductHandler()}
+                        onClick={() => editProductHandler(product)}
                       >
                         {theme === "DARK" ? (
                           <MdOutlineModeEdit color="white" />
@@ -118,7 +119,6 @@ const ListProducts = ({deleteProductHandler}) => {
           </div>
         )}
       </div>
-      <Footer />
     </div>
   );
 };
