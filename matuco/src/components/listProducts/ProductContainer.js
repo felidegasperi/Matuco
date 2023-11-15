@@ -25,43 +25,59 @@ const ProductContainer = () => {
   }, []);
 
   const deleteProductHandler = (id) => {
+    const confirmDelete = window.confirm(
+      "¿Estás seguro de que deseas eliminar este producto?"
+    );
+
     console.log(id);
-    fetch(`http://localhost:8000/products/${id}`, {
-      method: "DELETE",
-    })
-      .then((response) => {
-        if (response.ok) {
-          alert("Producto eliminado con exito");
-          setProducts((prevProducts) =>
-            prevProducts.filter((product) => product.id !== id)
-          );
-          // const newListProducts = products.filter(
-          //   (product) => product.id !== id
-          // );
-          // setProducts(newListProducts);
-        } else {
-          throw new Error("No se pudo eliminar el producto.");
-        }
+    if (confirmDelete) {
+      fetch(`http://localhost:8000/products/${id}`, {
+        method: "DELETE",
       })
-      .catch((err) => console.error(err));
+        .then((response) => {
+          if (response.ok) {
+            alert("Producto eliminado con exito");
+            setProducts((prevProducts) =>
+              prevProducts.filter((product) => product.id !== id)
+            );
+            // const newListProducts = products.filter(
+            //   (product) => product.id !== id
+            // );
+            // setProducts(newListProducts);
+          } else {
+            throw new Error("No se pudo eliminar el producto.");
+          }
+        })
+        .catch((err) => console.error(err));
+    }
   };
 
   const editProductHandler = (product) => {
+    console.log(
+      "Estado de selectedProduct antes de la solicitud PUT:",
+      product
+    );
     setSelectedProduct(product);
   };
   const cancelFormHandler = () => {
     setSelectedProduct(null);
-  }
+  };
 
   const updateProductHandler = () => {
     if (!selectedProduct) return;
 
+    console.log("Datos a enviar:", JSON.stringify(selectedProduct));
+    console.log(
+      "Estado de selectedProduct antes de la solicitud PUT:",
+      selectedProduct
+    );
+
     // Llamada a la API para actualizar el producto seleccionado
     fetch(`http://localhost:8000/products/${selectedProduct.id}`, {
       method: "PUT",
-      // headers: {
-      //   "Content-Type": "application/json",
-      // },
+      headers: {
+        "Content-Type": "application/json",
+      },
       body: JSON.stringify(selectedProduct),
     })
       .then((response) => {
@@ -78,9 +94,14 @@ const ProductContainer = () => {
           )
         );
         // Limpiar la selección después de la actualización
-        setSelectedProduct(null);
+        // setSelectedProduct(null);
       })
-      .catch((err) => console.error("Error", err));
+      .catch((err) => {
+        console.error("Error", err);
+        console.log(
+          "Error al actualizar el producto. Por favor, inténtelo de nuevo."
+        );
+      });
   };
 
   return (
@@ -104,11 +125,20 @@ const ProductContainer = () => {
                       ? "form-control form-control-lg bg-dark text-light"
                       : "form-control form-control-lg bg-light text-dark"
                   }`}
-                  placeholder=""
+                  placeholder={`${selectedProduct.name}`}
                   type="text"
-                  // value={nameProduct}
-                  // ref={nameProductRef}
-                  // onChange={changeNameProductHandler}
+                  value={selectedProduct.name}
+                  onChange={(e) => {
+                    const inputValue = e.target.value;
+                    if (inputValue.length <= 0) {
+                      alert("Ingrese un nombre correcto");
+                    } else {
+                      setSelectedProduct({
+                        ...selectedProduct,
+                        name: inputValue,
+                      });
+                    }
+                  }}
                 />
               </div>
               <div className="input-container mt-3 mb-4">
@@ -121,6 +151,7 @@ const ProductContainer = () => {
                   }`}
                   disabled
                   placeholder={`${selectedProduct.type}`}
+                  value={selectedProduct.type}
                 />
               </div>
               <div className="input-container mt-3 mb-4">
@@ -132,11 +163,20 @@ const ProductContainer = () => {
                       : "form-control form-control-lg bg-light text-dark"
                   }`}
                   min="0"
-                  placeholder=""
+                  placeholder={`${selectedProduct.price}`}
                   type="number"
-                  // value={priceProduct}
-                  // ref={priceProductRef}
-                  // onChange={changePriceProductHandler}
+                  value={selectedProduct.price}
+                  onChange={(e) => {
+                    const inputValue = parseInt(e.target.value);
+                    if (inputValue <= 0) {
+                      alert("Ingrese un precio correcto");
+                    } else {
+                      setSelectedProduct({
+                        ...selectedProduct,
+                        price: inputValue,
+                      });
+                    }
+                  }}
                 />
               </div>
               {/* <div className="text-danger">{error}</div> */}
@@ -144,9 +184,11 @@ const ProductContainer = () => {
                 <button
                   type="button"
                   className="btn btn-outline-secondary col-4"
-                  onClick={updateProductHandler}
+                  onClick={() => {
+                    updateProductHandler(selectedProduct);
+                  }}
                 >
-                  Agregar
+                  Modificar producto
                 </button>
                 <button
                   type="button"
