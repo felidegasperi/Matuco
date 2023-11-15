@@ -1,6 +1,7 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
+import FilteredProducts from "../filteredProducts/FilteredProducts";
 import CardProducts from "./CardProducts"; // Asegúrate de importar el componente CardProducts desde la ubicación correcta
 import AddProduct from "./AddProduct";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
@@ -62,15 +63,20 @@ const Products = () => {
   return (
     <>
       <NavBar />
-      <div className="row p-5">
-        {products.map((product, index) => (
-          <CardProducts key={index} product={product} />
-        ))}
-      </div>
-      <div className="border-top">
-        {user.type === "owner" && (
-          <AddProduct onPostNewProductHandler={postNewProductHandler} />
-        )}
+      <div>
+        <div>
+          <FilteredProducts />
+        </div>
+        <div className="row p-5">
+          {products.map((product, index) => (
+            <CardProducts key={index} product={product} />
+          ))}
+        </div>
+        <div className="border-top">
+          {user.type === "owner" && (
+            <AddProduct onPostNewProductHandler={postNewProductHandler} />
+          )}
+        </div>
       </div>
       <Footer />
     </>
