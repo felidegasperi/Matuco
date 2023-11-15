@@ -44,7 +44,7 @@
 }
 
 .radio-input label:has(input:checked) ~ .selection {
-  background-color: rgb(15, 87, 12);
+  background-color: rgb(43, 0, 255);
   display: inline-block;
 }
 
