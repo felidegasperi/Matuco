@@ -1,12 +1,15 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
+import FilteredProducts from "../filteredProducts/FilteredProducts";
 import CardProducts from "./CardProducts"; // Asegúrate de importar el componente CardProducts desde la ubicación correcta
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-
+  const [filterProduct, setFilterProduct] = useState();
+  
+  const { user } = useContext(AuthenticationContext);
   const { theme } = useContext(ThemeContext);
 
   useEffect(() => {
@@ -26,11 +29,29 @@ const Products = () => {
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
-      <div className="row p-5">
-        {/* implementar condicional para cuando no se pueden obtener los productos */}
-        {products.map((product, index) => (
-          <CardProducts key={index} product={product} />
-        ))}
+      <div>
+        <div className="d-flex justify-content-end p-4">
+          <FilteredProducts
+            filterProduct={filterProduct}
+            setFilterProduct={setFilterProduct}
+          />
+        </div>
+        <div className="row p-5">
+          {filterProduct
+            ? products
+                .filter((product) => product.type === filterProduct)
+                .map((filteredProduct, index) => (
+                  <CardProducts key={index} product={filteredProduct} />
+                ))
+            : products.map((product, index) => (
+                <CardProducts key={index} product={product} />
+              ))}
+        </div>
+        <div className="border-top">
+          {user.type === "owner" && (
+            <AddProduct onPostNewProductHandler={postNewProductHandler} />
+          )}
+        </div>
       </div>
       <Footer />
     </div>
