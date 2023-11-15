@@ -8,6 +8,7 @@ import CardProducts from "./CardProducts"; // Asegúrate de importar el componen
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
+import AddProduct from "../listProducts/AddProduct";
 
 const Products = () => {
   // const [products, setProducts] = useState([]);

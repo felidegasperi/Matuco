@@ -13,6 +13,7 @@ import Footer from "../footer/Footer";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [errors, setErrors] = useState("")
 
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
@@ -48,7 +49,7 @@ const Login = () => {
       console.log(user);
       navigate("/");
     } else {
-      setError("Error al iniciar sesion, intente nuevamente.");
+      setErrors("Error al iniciar sesion, intente nuevamente.");
     }
   };
 
@@ -95,7 +96,7 @@ const Login = () => {
                     placeholder="Ingrese su contraseña"
                   />
                 </div>
-                <div className="text-danger">{error}</div>
+                <div className="text-danger">{errors}</div>
                 <div>
                   <a
                     href="#"
