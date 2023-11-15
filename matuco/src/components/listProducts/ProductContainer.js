@@ -49,6 +49,9 @@ const ProductContainer = () => {
   const editProductHandler = (product) => {
     setSelectedProduct(product);
   };
+  const cancelFormHandler = () => {
+    setSelectedProduct(null);
+  }
 
   const updateProductHandler = () => {
     if (!selectedProduct) return;
@@ -89,79 +92,69 @@ const ProductContainer = () => {
           deleteProductHandler={deleteProductHandler}
           editProductHandler={editProductHandler}
         />
-        <div>
+        <div className="row justify-content-center mt-5 p-5">
           {selectedProduct && (
-            <form className="d-flex border rounded-3 col-6 p-5 mt-5">
-              <div className="">
-                <div className="">
-                  <h2>Ingreso de un producto</h2>
-                  <div className="input-container mt-3 mb-4">
-                    <label>Ingrese el nombre del producto:</label>
-                    <input
-                      // className={`${
-                      //   theme === "DARK"
-                      //     ? "form-control form-control-lg bg-dark text-light"
-                      //     : "form-control form-control-lg bg-light text-dark"
-                      // }`}
-                      placeholder=""
-                      type="text"
-                      // value={nameProduct}
-                      // ref={nameProductRef}
-                      // onChange={changeNameProductHandler}
-                    />
-                  </div>
-                  <div className="input-container mt-3 mb-4">
-                    <label>Seleccione el tipo de producto:</label>
-                    <select
-                    // className={`${
-                    //   theme === "DARK"
-                    //     ? "form-control form-control-lg bg-dark text-light"
-                    //     : "form-control form-control-lg bg-light text-dark"
-                    // }`}
-                    // value={typeProduct}
-                    // ref={typeProductRef}
-                    // onChange={changeTypeProductHandler}
-                    >
-                      <option value="">Seleccione tipo de producto</option>
-                      <option value="mate">mate</option>
-                      <option value="termo">termo</option>
-                      <option value="bombilla">bombilla</option>
-                    </select>
-                  </div>
-                  <div className="input-container mt-3 mb-4">
-                    <label>Ingrese el precio del producto:</label>
-                    <input
-                      // className={`${
-                      //   theme === "DARK"
-                      //     ? "form-control form-control-lg bg-dark text-light"
-                      //     : "form-control form-control-lg bg-light text-dark"
-                      // }`}
-                      min="0"
-                      placeholder=""
-                      type="number"
-                      // value={priceProduct}
-                      // ref={priceProductRef}
-                      // onChange={changePriceProductHandler}
-                    />
-                  </div>
-                  {/* <div className="text-danger">{error}</div> */}
-                  <div className="row justify-content-center">
-                    <button
-                      type="button"
-                      className="btn btn-outline-secondary col-4"
-                      onClick={updateProductHandler}
-                    >
-                      Agregar
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline-danger col-4"
-                      // onClick={onCancelFormHandler}
-                    >
-                      Cancelar
-                    </button>
-                  </div>
-                </div>
+            <form className="border rounded-3 col-6 p-5 mt-5">
+              <h2>Ingreso de un producto</h2>
+              <div className="input-container mt-3 mb-4">
+                <label>Ingrese el nombre del producto:</label>
+                <input
+                  className={`${
+                    theme === "DARK"
+                      ? "form-control form-control-lg bg-dark text-light"
+                      : "form-control form-control-lg bg-light text-dark"
+                  }`}
+                  placeholder=""
+                  type="text"
+                  // value={nameProduct}
+                  // ref={nameProductRef}
+                  // onChange={changeNameProductHandler}
+                />
+              </div>
+              <div className="input-container mt-3 mb-4">
+                <label>Tipo de producto a modificar:</label>
+                <input
+                  className={`${
+                    theme === "DARK"
+                      ? "form-control form-control-lg bg-dark text-light"
+                      : "form-control form-control-lg bg-light text-dark"
+                  }`}
+                  disabled
+                  placeholder={`${selectedProduct.type}`}
+                />
+              </div>
+              <div className="input-container mt-3 mb-4">
+                <label>Ingrese el precio del producto:</label>
+                <input
+                  className={`${
+                    theme === "DARK"
+                      ? "form-control form-control-lg bg-dark text-light"
+                      : "form-control form-control-lg bg-light text-dark"
+                  }`}
+                  min="0"
+                  placeholder=""
+                  type="number"
+                  // value={priceProduct}
+                  // ref={priceProductRef}
+                  // onChange={changePriceProductHandler}
+                />
+              </div>
+              {/* <div className="text-danger">{error}</div> */}
+              <div className="row justify-content-center">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary col-4"
+                  onClick={updateProductHandler}
+                >
+                  Agregar
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-danger col-4"
+                  onClick={cancelFormHandler}
+                >
+                  Cancelar
+                </button>
               </div>
             </form>
           )}
