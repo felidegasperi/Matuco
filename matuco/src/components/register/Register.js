@@ -1,10 +1,10 @@
-// import React, { useRef, useState } from "react";
+import React, { useCallback, useEffect, useState, useContext } from "react";
 import "./Register.css";
 
 import Footer from "../footer/Footer";
 import NavBar from "../navBar/NavBar";
-import { useCallback, useContext } from "react";
-import NewRegister from "./NewRegister";
+
+import RegisterForm from "./RegisterForm";
 
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useFetchUsers } from "../../hooks/useFetchUsers";
@@ -83,7 +83,7 @@ const Register = () => {
             </div>
             <div className="col-md-6 d-flex align-items-center p-5 ">
               <div className="container">
-                <NewRegister onSavedUser={postNewUserHandler} />
+                <RegisterForm users={users} onSavedUser={postNewUserHandler} />
               </div>
             </div>
           </div>

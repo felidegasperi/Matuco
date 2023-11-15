@@ -6,7 +6,7 @@ const Protected = ({ children }) => {
   const { user } = useContext(AuthenticationContext);
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/" replace />;
   } else return children;
 };
 

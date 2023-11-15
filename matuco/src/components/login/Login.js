@@ -52,7 +52,12 @@ const Login = () => {
       (user) => user.email === email && user.password === password
     );
 
-    if (user) {
+    const userValid = users.find(
+      (user) => user.isActive === true 
+    );
+
+    if (user && userValid) {
+      alert("Usuario ingresado correctamente");
       handleLogin(user);
       console.log(user);
       navigate("/");

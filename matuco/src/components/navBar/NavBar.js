@@ -25,6 +25,17 @@ const NavBar = () => {
     navigate("/register");
   };
 
+  const NavigateSettingsHandler = () => {
+    navigate("/settings");
+  };
+
+  const NavigateProductHandler = () => {
+    navigate("/products");
+  };
+  const NavigateListProductHandler = () => {
+    navigate("/listproducts");
+  };
+
   const onLogoutHandler = () => {
     handleLogout();
     navigate("/");
@@ -65,7 +76,11 @@ const NavBar = () => {
               </a>
             </Col>
             <Col className="nav-item  py-2">
-              <a className="nav-link " href="#">
+              <a
+                className="nav-link "
+                onClick={NavigateProductHandler}
+                href="#"
+              >
                 Productos
               </a>
             </Col>
@@ -74,21 +89,38 @@ const NavBar = () => {
                 Carrito
               </a>
             </Col>
-            <Col className="mx-4 ">
-              {user && <p className="">Hola {user.username} !</p>}
+            <Col className="mx-2 ">
+              {user && <p className="">Hola {user.username}!</p>}
             </Col>
             <Col className="d-flex">
               {user !== null ? (
-                <button
-                  className={`${
-                    theme === "DARK"
-                      ? "btn btn-outline-light btn-sm p-2 m-2"
-                      : "btn btn-outline-dark btn-sm p-2 m-2"
-                  }`}
-                  type="button"
-                >
-                  Settings
-                </button>
+                <>
+                  {user.type === "owner" ? (
+                    <button
+                      className={`${
+                        theme === "DARK"
+                          ? "btn btn-outline-light btn-sm p-2 m-2"
+                          : "btn btn-outline-dark btn-sm p-2 m-2"
+                      }`}
+                      type="button"
+                      onClick={NavigateListProductHandler}
+                    >
+                      Lista de productos
+                    </button>
+                  ) : (
+                    <button
+                      className={`${
+                        theme === "DARK"
+                          ? "btn btn-outline-light btn-sm p-2 m-2"
+                          : "btn btn-outline-dark btn-sm p-2 m-2"
+                      }`}
+                      type="button"
+                      onClick={NavigateSettingsHandler}
+                    >
+                      Settings
+                    </button>
+                  )}
+                </>
               ) : (
                 <button
                   className={`${

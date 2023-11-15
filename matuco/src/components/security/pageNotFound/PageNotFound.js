@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import { ThemeContext } from "../../../services/themeContext/Theme.context";
-import { Button } from "react-bootstrap";
 
 import "./PageNotFound.css";
 
@@ -39,13 +38,17 @@ const PageNotFount = () => {
               botón para ser redirigido al home.
             </h2>
             <div className="py-4">
-              <Button
-                class="position-relative py-2 px-4 text-bg-secondary border border-secondary rounded-pill"
+              <button
+                className={`${
+                  theme === "DARK"
+                    ? "btn btn-outline-light btn-sm p-2 m-2"
+                    : "btn btn-outline-dark btn-sm p-2 m-2"
+                }`}
+                type="button"
                 onClick={backToHomePageHandler}
-                variant="dark"
               >
                 Volver al inicio
-              </Button>
+              </button>
             </div>
           </div>
         </div>

@@ -1,4 +1,15 @@
 para mostrar determinados componentes dependiendo el rol de usuario tenemos 3 opciones:
 - por ruta (protected)
 - por renderizado condicional (userValue.type === "Owner" && <button> )
-- 
+-
+
+para el apartado de settings del usuario:
+- En settings vamos a tener una card con los datos del usuario que esta en sesion en el momento (datos guardados en el storage),
+ademas vamos a tener dos botones, modificar datos y borrar cuenta.
+- Modificar datos: componente que tiene un form donde vamos a ingresar los datos de la cuenta a modificar
+- Borrar cuenta: Un boton que cuando lo apretamos haga un cambio de estado de una propiedad en la base de datos llamada
+isActive (donde true sea que el usuario esta activo, y false sea que el usuario esta eliminado. Esto se llama baja logica)
+DEFINIR DONDE HACER LA LLAMADA A LA API Y SI UTILIZAR EL API CONTEXT QUE ESTA EN EL REPO DE GABI
+
+-custom hook para la llamada a la api, para no tener q hacer el fetch siempre q se necesite
+una vez que se modifican los datos, buscar la manera para dibularlos otra vez en la db y en el mismo settings
