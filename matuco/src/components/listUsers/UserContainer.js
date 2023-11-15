@@ -28,8 +28,8 @@ const UserContainer = () => {
       <div>
         <ListUsers
           users={users}
-        //   deleteProductHandler={deleteProductHandler}
-        //   editProductHandler={editProductHandler}
+          //   deleteProductHandler={deleteProductHandler}
+          //   editProductHandler={editProductHandler}
         />
         {/* <div className="row justify-content-center mt-5 p-5">
           {selectedProduct && (
@@ -120,7 +120,9 @@ const UserContainer = () => {
           )}
         </div> */}
       </div>
-      <Footer />
+      <div className="footer-container">
+        <Footer />
+      </div>
     </div>
   );
 };

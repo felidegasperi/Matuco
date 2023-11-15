@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 
+import "./ListUsers.css";
+
 import { TiDeleteOutline, TiDelete } from "react-icons/ti";
 import { MdOutlineModeEdit, MdModeEdit } from "react-icons/md";
 
@@ -19,7 +21,7 @@ const ListUsers = ({ users }) => {
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
-      <div>
+      <div className="table-container">
         {user.type !== "superAdmin" ? (
           <>
             <h2> No tiene los permisos para vizualizar esta pagina.</h2>
