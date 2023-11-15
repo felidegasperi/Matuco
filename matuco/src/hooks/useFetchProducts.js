@@ -20,5 +20,5 @@ export const useFetchProducts = (url) => {
       .catch((err) => setError(err));
   }, [url]);
 
-  return { users, error };
+  return { products, setProducts, error };
 };

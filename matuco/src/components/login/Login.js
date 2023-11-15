@@ -11,10 +11,8 @@ import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 
 const Login = () => {
-  // const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [error, setError] = useState("");
 
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
@@ -30,18 +28,6 @@ const Login = () => {
   const NavigateRegisterHandler = () => {
     navigate("/register");
   };
-
-  // useEffect(() => {
-  // GET a la API y almacenar los usuarios en el estado
-  //   fetch("http://localhost:8000/users", {
-  //     headers: {
-  //       accept: "aplication/json",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => setUsers(data))
-  //     .catch((error) => console.error("Error al obtener los usuarios", error));
-  // }, []);
 
   //funcion que va a manejar el envio del formulario
   const handleSumbit = (e) => {

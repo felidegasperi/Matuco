@@ -4,32 +4,26 @@ import FormProduct from "./FormProduct";
 
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
+import { useFetchProducts } from "../../hooks/useFetchProducts";
 
 const AddProduct = () => {
   const [isValid, setIsValid] = useState(false);
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
 
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
+
+  const apiUrl = "http://localhost:8000/products";
+  const { products, setProducts, error } = useFetchProducts(apiUrl);
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   const onValidHandler = () => {
     setIsValid(true);
     navigate("/listProducts");
   };
-
-  useEffect(() => {
-    // Llama a la API aquí
-    fetch("http://localhost:8000/products", {
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
 
   const postNewProductHandler = useCallback(
     (product) => {
