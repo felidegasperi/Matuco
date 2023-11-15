@@ -39,6 +39,12 @@ const Home = () => {
             </div>
           </div>
           <div>
+            <h2
+              className="d-flex justify-content-center aling-items-center"
+              style={{ fontSize: "40px" }}
+            >
+              En este E-Commerse vas a encontrar
+            </h2>
             <Card />
           </div>
         </div>

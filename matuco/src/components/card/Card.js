@@ -25,80 +25,74 @@ const Card = () => {
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <div className="container-fluid">
         <div className="card-container d-flex flex-row mt-5 mb-5 justify-content-evenly">
-          <a className="nav-link" href="#">
-            <div
-              className="card"
-              style={isHovered1 ? hoverStyles : normalStyles}
-              onMouseEnter={() => setIsHovered1(true)}
-              onMouseLeave={() => setIsHovered1(false)}
-            >
-              <img
-                src="../assets/mateCard.png"
-                className="card-img-top"
-                alt="Mate"
-                style={{
-                  width: "100%",
-                  height: "250px",
-                  transition: "transform 0.3s",
-                }}
-              />
-              <div className="card-body">
-                <p className="card-text text-center" style={{ color: "black" }}>
-                  Mates
-                </p>
-              </div>
+          <div
+            className="card"
+            style={isHovered1 ? hoverStyles : normalStyles}
+            onMouseEnter={() => setIsHovered1(true)}
+            onMouseLeave={() => setIsHovered1(false)}
+          >
+            <img
+              src="../assets/mateCard.png"
+              className="card-img-top"
+              alt="Mate"
+              style={{
+                width: "100%",
+                height: "250px",
+                transition: "transform 0.3s",
+              }}
+            />
+            <div className="card-body">
+              <p className="card-text text-center" style={{ color: "black" }}>
+                Mates
+              </p>
             </div>
-          </a>
+          </div>
 
-          <a className="nav-link" href="#">
-            <div
-              className="card"
-              style={isHovered2 ? hoverStyles : normalStyles}
-              onMouseEnter={() => setIsHovered2(true)}
-              onMouseLeave={() => setIsHovered2(false)}
-            >
-              <img
-                src="../assets/bombilla.png"
-                className="card-img-top"
-                alt="Bombilla"
-                style={{
-                  width: "100%",
-                  height: "250px",
-                  transition: "transform 0.3s",
-                }}
-              />
-              <div className="card-body">
-                <p className="card-text text-center" style={{ color: "black" }}>
-                  Bombillas
-                </p>
-              </div>
+          <div
+            className="card"
+            style={isHovered2 ? hoverStyles : normalStyles}
+            onMouseEnter={() => setIsHovered2(true)}
+            onMouseLeave={() => setIsHovered2(false)}
+          >
+            <img
+              src="../assets/bombilla.png"
+              className="card-img-top"
+              alt="Bombilla"
+              style={{
+                width: "100%",
+                height: "250px",
+                transition: "transform 0.3s",
+              }}
+            />
+            <div className="card-body">
+              <p className="card-text text-center" style={{ color: "black" }}>
+                Bombillas
+              </p>
             </div>
-          </a>
+          </div>
 
-          <a className="nav-link" href="#">
-            <div
-              className="card"
-              style={isHovered3 ? hoverStyles : normalStyles}
-              onMouseEnter={() => setIsHovered3(true)}
-              onMouseLeave={() => setIsHovered3(false)}
-            >
-              <img
-                src="../assets/termoCard2.jpg"
-                className="card-img-top"
-                alt="Termo"
-                style={{
-                  width: "100%",
-                  height: "250px",
-                  transition: "transform 0.3s",
-                }}
-              />
-              <div className="card-body">
-                <p className="card-text text-center" style={{ color: "black" }}>
-                  Termos
-                </p>
-              </div>
+          <div
+            className="card"
+            style={isHovered3 ? hoverStyles : normalStyles}
+            onMouseEnter={() => setIsHovered3(true)}
+            onMouseLeave={() => setIsHovered3(false)}
+          >
+            <img
+              src="../assets/termoCard2.jpg"
+              className="card-img-top"
+              alt="Termo"
+              style={{
+                width: "100%",
+                height: "250px",
+                transition: "transform 0.3s",
+              }}
+            />
+            <div className="card-body">
+              <p className="card-text text-center" style={{ color: "black" }}>
+                Termos
+              </p>
             </div>
-          </a>
+          </div>
         </div>
       </div>
     </div>
