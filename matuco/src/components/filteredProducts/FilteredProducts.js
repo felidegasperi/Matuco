@@ -23,7 +23,6 @@ const FilteredProducts = ({ setFilterProduct, filterProduct }) => {
             name="value-radio"
             id="value-1"
             type="radio"
-            checked=""
             onClick={onAllHandler}
           />
           <span>Todos</span>
