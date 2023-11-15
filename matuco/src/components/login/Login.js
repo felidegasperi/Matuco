@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
-import { useFetch } from "../../hooks/useFetch";
+import { useFetchUsers } from "../../hooks/useFetchUsers";
 
 import "./Login.css";
 
@@ -18,10 +18,10 @@ const Login = () => {
 
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
-  const { handleLogin, handleLogout } = useContext(AuthenticationContext);
+  const { handleLogin } = useContext(AuthenticationContext);
 
   const apiUrl = "http://localhost:8000/users";
-  const { users, error } = useFetch(apiUrl);
+  const { users, error } = useFetchUsers(apiUrl);
 
   if (error) {
     return <p>Error: {error.message}</p>;

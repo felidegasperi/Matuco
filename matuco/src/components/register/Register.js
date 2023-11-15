@@ -3,18 +3,18 @@ import "./Register.css";
 
 import Footer from "../footer/Footer";
 import NavBar from "../navBar/NavBar";
-import { useCallback, useEffect, useState, useContext } from "react";
+import { useCallback, useContext } from "react";
 import NewRegister from "./NewRegister";
 
 import { ThemeContext } from "../../services/themeContext/Theme.context";
-import { useFetch } from "../../hooks/useFetch";
+import { useFetchUsers } from "../../hooks/useFetchUsers";
 
 const Register = () => {
   // const [users, setUsers] = useState([]);
   const { theme } = useContext(ThemeContext);
 
   const apiUrl = "http://localhost:8000/users";
-  const { users, error } = useFetch(apiUrl);
+  const { users, error } = useFetchUsers(apiUrl);
 
   if (error) {
     return <p>Error: {error.message}</p>;
