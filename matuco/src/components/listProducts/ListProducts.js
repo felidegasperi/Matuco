@@ -1,10 +1,8 @@
-import React, { useEffect, useState, useContext } from "react";
+import React, { useContext } from "react";
 
 import { TiDeleteOutline, TiDelete } from "react-icons/ti";
 import { MdOutlineModeEdit, MdModeEdit } from "react-icons/md";
 
-import NavBar from "../navBar/NavBar";
-import Footer from "../footer/Footer";
 import "./ListProducts.css";
 
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
@@ -17,7 +15,6 @@ const ListProducts = ({
   deleteProductHandler,
   editProductHandler,
 }) => {
-  // const [products, setProducts] = useState([]);
 
   const navigate = useNavigate();
 
@@ -27,20 +24,6 @@ const ListProducts = ({
   const backToHomePageHandler = () => {
     navigate("/home");
   };
-
-  // useEffect(() => {
-  //   // Llama a la API aquí
-  //   fetch("http://localhost:8000/products", {
-  //     headers: {
-  //       accept: "application/json",
-  //     },
-  //   })
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setProducts(data);
-  //     })
-  //     .catch((error) => console.error("Error:", error));
-  // }, []);
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>

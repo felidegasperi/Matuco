@@ -1,8 +1,8 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
 
 import FormProduct from "./FormProduct";
 
+import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const AddProduct = () => {
@@ -66,33 +66,6 @@ const AddProduct = () => {
     },
     [products]
   );
-
-  // const postNewProductHandler = useCallback(async (product) => {
-  //   try {
-  //     console.log("User data in postNewUserHandler: ", product);
-  //     const response = await fetch("http://localhost:8000/products", {
-  //       method: "POST",
-  //       headers: {
-  //         "content-type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         name: product.name,
-  //         type: product.type,
-  //         price: product.price,
-  //       }),
-  //     });
-
-  //     if (!response.ok) {
-  //       throw new Error("The response had some errors");
-  //     }
-
-  //     const newProduct = await response.json();
-  //     console.log("newProduct en then", newProduct);
-  //     setProducts((prevProducts) => [newProduct, ...prevProducts]);
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, []);
 
   return (
     <div className="row justify-content-center mt-5 p-5">

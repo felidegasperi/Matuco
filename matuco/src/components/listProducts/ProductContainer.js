@@ -40,10 +40,6 @@ const ProductContainer = () => {
             setProducts((prevProducts) =>
               prevProducts.filter((product) => product.id !== id)
             );
-            // const newListProducts = products.filter(
-            //   (product) => product.id !== id
-            // );
-            // setProducts(newListProducts);
           } else {
             throw new Error("No se pudo eliminar el producto.");
           }
@@ -66,12 +62,6 @@ const ProductContainer = () => {
   const updateProductHandler = () => {
     if (!selectedProduct) return;
 
-    console.log("Datos a enviar:", JSON.stringify(selectedProduct));
-    console.log(
-      "Estado de selectedProduct antes de la solicitud PUT:",
-      selectedProduct
-    );
-
     // Llamada a la API para actualizar el producto seleccionado
     fetch(`http://localhost:8000/products/${selectedProduct.id}`, {
       method: "PUT",
@@ -93,8 +83,6 @@ const ProductContainer = () => {
             product.id === updatedProduct.id ? updatedProduct : product
           )
         );
-        // Limpiar la selección después de la actualización
-        // setSelectedProduct(null);
       })
       .catch((err) => {
         console.error("Error", err);
