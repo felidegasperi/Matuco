@@ -45,11 +45,6 @@ const Products = () => {
                 <CardProducts key={index} product={product} />
               ))}
         </div>
-        <div className="border-top">
-          {user.type === "owner" && (
-            <AddProduct onPostNewProductHandler={postNewProductHandler} />
-          )}
-        </div>
       </div>
       <Footer />
     </div>
