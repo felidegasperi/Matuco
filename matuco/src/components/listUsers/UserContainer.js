@@ -8,6 +8,7 @@ import { useFetchUsers } from "../../hooks/useFetchUsers";
 
 const UserContainer = () => {
   const [selectedUser, setSelectedUser] = useState(null);
+  const [errors, setErrors] = useState("");
 
   const { theme } = useContext(ThemeContext);
 
@@ -69,20 +70,17 @@ const UserContainer = () => {
 
     // Realizar validaciones adicionales aquí
     if (!selectedUser.username || selectedUser.username.length <= 3) {
-      alert(
+      setErrors(
         "Ingrese un nombre de usuario válido (mayor o igual a 4 caracteres)"
       );
-      return;
     }
 
     if (!selectedUser.email || validateEmail(selectedUser.email) === false) {
-      alert("Ingrese un correo electrónico válido");
-      return;
+      setErrors("Ingrese un correo electrónico válido");
     }
 
     if (!selectedUser.password || selectedUser.password.length <= 7) {
-      alert("Ingrese una contraseña válida (mayor o igual a 8 caracteres)");
-      return;
+      setErrors("Ingrese una contraseña válida (mayor o igual a 8 caracteres)");
     }
 
     fetch(`http://localhost:8000/users/${selectedUser.id}`, {
@@ -198,7 +196,7 @@ const UserContainer = () => {
                   }
                 />
               </div>
-              {/* <div className="text-danger">{error}</div> */}
+              <p className="text-danger">{errors}</p>
               <div className="row justify-content-center">
                 <button
                   type="button"
@@ -221,9 +219,7 @@ const UserContainer = () => {
           )}
         </div>
       </div>
-      <div className="footer-container">
-        <Footer />
-      </div>
+      <div className="footer-container"></div>
     </div>
   );
 };

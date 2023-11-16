@@ -15,7 +15,6 @@ const ListProducts = ({
   deleteProductHandler,
   editProductHandler,
 }) => {
-
   const navigate = useNavigate();
 
   const { theme } = useContext(ThemeContext);
@@ -30,19 +29,23 @@ const ListProducts = ({
       <div>
         {user.type !== "owner" ? (
           <>
-            <h2> No tiene los permisos para vizualizar esta pagina.</h2>
-            <div className="py-4">
-              <button
-                className={`${
-                  theme === "DARK"
-                    ? "btn btn-outline-light btn-sm p-2 m-2"
-                    : "btn btn-outline-dark btn-sm p-2 m-2"
-                }`}
-                type="button"
-                onClick={backToHomePageHandler}
-              >
-                Volver al inicio
-              </button>
+            <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
+              <h2 className="mb-4">
+                No tiene los permisos para visualizar esta página.
+              </h2>
+              <div className="py-4">
+                <button
+                  className={`${
+                    theme === "DARK"
+                      ? "btn btn-outline-light btn-sm p-2 m-2"
+                      : "btn btn-outline-dark btn-sm p-2 m-2"
+                  }`}
+                  type="button"
+                  onClick={backToHomePageHandler}
+                >
+                  Volver al inicio
+                </button>
+              </div>
             </div>
           </>
         ) : (
