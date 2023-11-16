@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 
+import "./Products.css";
+
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import FilteredProducts from "../filteredProducts/FilteredProducts";
@@ -8,10 +10,8 @@ import CardProducts from "./CardProducts"; // Asegúrate de importar el componen
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
-import AddProduct from "../listProducts/AddProduct";
 
 const Products = () => {
-  // const [products, setProducts] = useState([]);
   const [filterProduct, setFilterProduct] = useState();
 
   const { user } = useContext(AuthenticationContext);
@@ -38,11 +38,11 @@ const Products = () => {
           {filterProduct
             ? products
                 .filter((product) => product.type === filterProduct)
-                .map((filteredProduct, index) => (
-                  <CardProducts key={index} product={filteredProduct} />
+                .map((filteredProduct, product) => (
+                  <CardProducts key={product.id} {...filteredProduct} />
                 ))
-            : products.map((product, index) => (
-                <CardProducts key={index} product={product} />
+            : products.map((product) => (
+                <CardProducts key={product.id} {...product} />
               ))}
         </div>
       </div>

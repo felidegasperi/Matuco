@@ -38,7 +38,7 @@ const Home = () => {
               <p></p>
             </div>
           </div>
-          <div>
+          {/* <div>
             <h2
               className="d-flex justify-content-center aling-items-center"
               style={{ fontSize: "40px" }}
@@ -46,7 +46,7 @@ const Home = () => {
               En este E-Commerse vas a encontrar
             </h2>
             <Card />
-          </div>
+          </div> */}
         </div>
         <Footer />
       </div>
