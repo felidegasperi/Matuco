@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 
 import "./ListUsers.css";
+import AddUser from "./AddUser";
 
 import { TiDeleteOutline, TiDelete } from "react-icons/ti";
 import { MdOutlineModeEdit, MdModeEdit } from "react-icons/md";
@@ -41,7 +42,10 @@ const ListUsers = ({ users, deleteUserHandler, editUserHandler }) => {
           </>
         ) : (
           <div className="table-container">
-            <div>{/* <AddProduct /> */}</div>
+            <div>
+              <AddUser />
+            </div>
+
             <table
               className={`${
                 theme === "DARK"

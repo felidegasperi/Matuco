@@ -1,6 +1,7 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useEffect, useState } from "react";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useNavigate } from "react-router-dom";
+import UserForm from "./UserForm";
 
 const AddUser = () => {
   const [users, setUsers] = useState([]);
@@ -21,6 +22,41 @@ const AddUser = () => {
       .catch((error) => console.error("Error al obtener los usuarios", error));
   }, []);
 
+  const postNewUserHandler = useCallback(
+    (user) => {
+      //setUsers((prevUsers) => [user, ...prevUsers]);
+
+      const newUserId = users[users.length - 1].id + 1;
+      console.log("User data in postNewUserHandler: ", user);
+      fetch("http://localhost:8000/users", {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({
+          id: newUserId,
+          username: user.username,
+          email: user.email,
+          password: user.password,
+          type: "client",
+        }),
+      })
+        .then((response) => {
+          if (response.ok) return response.json();
+          else {
+            throw new Error("The response had some errors");
+          }
+        })
+        .then(() => {
+          console.log("user en then", user);
+          const newUserArray = [{ ...user, id: newUserId }, ...users];
+          setUsers(newUserArray);
+        })
+        .catch((error) => console.log(error));
+    },
+    [users]
+  );
+
   const onValidHandler = () => {
     setIsValid(true);
     navigate("/listUsers");
@@ -38,11 +74,20 @@ const AddUser = () => {
             }`}
             onClick={onValidHandler}
           >
-            Agregar Producto
+            Agregar Usuario
           </button>
         )}
       </div>
-      <div className="col-6"></div>
+      <div className="col-6">
+        {isValid === true && (
+          <UserForm
+            onNewUserHandler={postNewUserHandler}
+            isValid={isValid}
+            setIsValid={setIsValid}
+            users={users}
+          />
+        )}
+      </div>
     </div>
   );
 };
