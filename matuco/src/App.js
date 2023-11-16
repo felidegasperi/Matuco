@@ -5,8 +5,8 @@ import Products from "./components/products/Products";
 import Register from "./components/register/Register";
 import Settings from "./components/settings/Settings";
 import Protected from "./components/security/protected/Protected";
+import UserContainer from "./components/listUsers/UserContainer";
 import ProductContainer from "./components/listProducts/ProductContainer";
-
 
 import { Navigate, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
@@ -50,6 +50,14 @@ function App() {
       ),
     },
     {
+      path: "/listUsers",
+      element: (
+        <Protected>
+          <UserContainer />
+        <Protected/>
+        ),
+     },
+     {
       path: "/listProducts",
       element: (
         <Protected>

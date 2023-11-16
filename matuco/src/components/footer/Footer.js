@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
 import { Row, Col } from "react-bootstrap";
+
+import "./Footer.css";
+
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const Footer = () => {
