@@ -9,7 +9,7 @@ import { AuthenticationContext } from "../../services/authenticationContext/Auth
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useNavigate } from "react-router-dom";
 
-const ListUsers = ({ users }) => {
+const ListUsers = ({ users, deleteUserHandler, editUserHandler }) => {
   const navigate = useNavigate();
 
   const { theme } = useContext(ThemeContext);
@@ -60,37 +60,39 @@ const ListUsers = ({ users }) => {
                 </tr>
               </thead>
               <tbody>
-                {users.map((user) => (
-                  <tr key={user.id}>
-                    <td>{user.id}</td>
-                    <td>{user.username}</td>
-                    <td>{user.email}</td>
-                    <td>{user.password}</td>
-                    <td>{user.type}</td>
-                    <td>
-                      <button
-                        className="btn"
-                        // onClick={() => editProductHandler(product)}
-                      >
-                        {theme === "DARK" ? (
-                          <MdOutlineModeEdit color="white" />
-                        ) : (
-                          <MdModeEdit />
-                        )}
-                      </button>
-                      <button
-                        className="btn"
-                        // onClick={() => deleteProductHandler(product.id)}
-                      >
-                        {theme === "DARK" ? (
-                          <TiDeleteOutline color="white" />
-                        ) : (
-                          <TiDelete />
-                        )}
-                      </button>
-                    </td>
-                  </tr>
-                ))}
+                {users
+                  .filter((user) => user.isActive)
+                  .map((user) => (
+                    <tr key={user.id}>
+                      <td>{user.id}</td>
+                      <td>{user.username}</td>
+                      <td>{user.email}</td>
+                      <td>{user.password}</td>
+                      <td>{user.type}</td>
+                      <td>
+                        <button
+                          className="btn"
+                          onClick={() => editUserHandler(user)}
+                        >
+                          {theme === "DARK" ? (
+                            <MdOutlineModeEdit color="white" />
+                          ) : (
+                            <MdModeEdit />
+                          )}
+                        </button>
+                        <button
+                          className="btn"
+                          onClick={() => deleteUserHandler(user.id)}
+                        >
+                          {theme === "DARK" ? (
+                            <TiDeleteOutline color="white" />
+                          ) : (
+                            <TiDelete />
+                          )}
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
               </tbody>
             </table>
           </div>
