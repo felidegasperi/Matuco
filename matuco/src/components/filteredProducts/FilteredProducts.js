@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import "./FilteredProducts.css";
 
-const FilteredProducts = ({ setFilterProduct, filterProduct }) => {
+const FilteredProducts = ({ setFilterProduct }) => {
   const onBombillaHandler = () => {
     setFilterProduct("bombilla");
   };

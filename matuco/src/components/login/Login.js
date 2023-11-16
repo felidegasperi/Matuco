@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import { useContext } from "react";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
+import { useFetchUsers } from "../../hooks/useFetchUsers";
 
 import "./Login.css";
 
@@ -10,30 +11,24 @@ import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 
 const Login = () => {
-  const [users, setUsers] = useState([]);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
+  const [errors, setErrors] = useState("")
 
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
-  const { handleLogin, handleLogout } = useContext(AuthenticationContext);
+  const { handleLogin } = useContext(AuthenticationContext);
+
+  const apiUrl = "http://localhost:8000/users";
+  const { users, error } = useFetchUsers(apiUrl);
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   const NavigateRegisterHandler = () => {
     navigate("/register");
   };
-
-  useEffect(() => {
-    // GET a la API y almacenar los usuarios en el estado
-    fetch("http://localhost:8000/users", {
-      headers: {
-        accept: "aplication/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) => console.error("Error al obtener los usuarios", error));
-  }, []);
 
   //funcion que va a manejar el envio del formulario
   const handleSumbit = (e) => {
@@ -54,7 +49,7 @@ const Login = () => {
       console.log(user);
       navigate("/");
     } else {
-      setError("Error al iniciar sesion, intente nuevamente.");
+      setErrors("Error al iniciar sesion, intente nuevamente.");
     }
   };
 
@@ -101,7 +96,7 @@ const Login = () => {
                     placeholder="Ingrese su contraseña"
                   />
                 </div>
-                <div className="text-danger">{error}</div>
+                <div className="text-danger">{errors}</div>
                 <div>
                   <a
                     href="#"

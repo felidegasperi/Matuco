@@ -1,68 +1,31 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
+
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import FilteredProducts from "../filteredProducts/FilteredProducts";
 import CardProducts from "./CardProducts"; // Asegúrate de importar el componente CardProducts desde la ubicación correcta
-import AddProduct from "./AddProduct";
+
+import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
+import { useFetchProducts } from "../../hooks/useFetchProducts";
+import AddProduct from "../listProducts/AddProduct";
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const [filterProduct, setFilterProduct] = useState();
+
   const { user } = useContext(AuthenticationContext);
+  const { theme } = useContext(ThemeContext);
 
-  useEffect(() => {
-    // Llama a la API aquí
-    fetch("http://localhost:8000/products", {
-      headers: {
-        accept: "application/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-      })
-      .catch((error) => console.error("Error:", error));
-  }, []);
+  const apiUrl = "http://localhost:8000/products";
+  const { products, error } = useFetchProducts(apiUrl);
 
-  const postNewProductHandler = useCallback(
-    (product) => {
-      const newProductId =
-        products.length > 0 ? products[products.length - 1].id + 1 : 1;
-      console.log("User data in postNewUserHandler: ", product);
-      fetch("http://localhost:8000/products", {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify({
-          id: newProductId,
-          name: product.name,
-          type: product.type,
-          price: product.price,
-        }),
-      })
-        .then((response) => {
-          if (response.ok) return response.json();
-          else {
-            throw new Error("The response had some errors");
-          }
-        })
-        .then(() => {
-          console.log("product en then", product);
-          const newProductArray = [
-            { ...product, id: newProductId },
-            ...products,
-          ];
-          setProducts(newProductArray);
-        })
-        .catch((error) => console.log(error));
-    },
-    [products]
-  );
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   return (
-    <>
+    <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
       <div>
         <div className="d-flex justify-content-end p-4">
@@ -82,14 +45,9 @@ const Products = () => {
                 <CardProducts key={index} product={product} />
               ))}
         </div>
-        <div className="border-top">
-          {user.type === "owner" && (
-            <AddProduct onPostNewProductHandler={postNewProductHandler} />
-          )}
-        </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 };
 

@@ -1,30 +1,34 @@
-import React, { useRef, useState } from "react";
+import React, { useContext, useRef, useState } from "react";
+
+import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const FormProduct = ({ onNewProductHandler, setIsValid }) => {
   const [nameProduct, setNameProduct] = useState("");
   const [typeProduct, setTypeProduct] = useState("");
   const [priceProduct, setPriceProduct] = useState("");
   const [error, setError] = useState("");
+
   const nameProductRef = useRef(null);
   const typeProductRef = useRef(null);
   const priceProductRef = useRef(null);
 
+  const { theme } = useContext(ThemeContext);
+
   const changeNameProductHandler = (e) => {
     setNameProduct(e.target.value);
-    setError(""); 
+    setError("");
   };
   const changeTypeProductHandler = (e) => {
     setTypeProduct(e.target.value);
-    setError(""); 
+    setError("");
   };
   const changePriceProductHandler = (e) => {
     setPriceProduct(e.target.value);
-    setError(""); 
+    setError("");
   };
 
   const onCancelFormHandler = () => {
     setIsValid(false);
-    
   };
 
   const productHandler = (e) => {
@@ -36,12 +40,17 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
       nameProductRef.current.style.outline = "none";
       setError("Debes ingresar un nombre valido.");
     }
-    if ( priceProductRef.current.value.length === 0 || priceProduct.includes("E") || priceProduct.includes("e") || priceProduct.includes("-")) {
+    if (
+      priceProductRef.current.value.length === 0 ||
+      priceProduct.includes("E") ||
+      priceProduct.includes("e") ||
+      priceProduct.includes("-")
+    ) {
       priceProductRef.current.focus();
       priceProductRef.current.style.borderColor = "red";
       priceProductRef.current.style.outline = "none";
       setError("Debes ingresar un precio valido.");
-    }else if (typeProductRef.current.value.length === 0) {
+    } else if (typeProductRef.current.value.length === 0) {
       typeProductRef.current.focus();
       typeProductRef.current.style.borderColor = "red";
       typeProductRef.current.style.outline = "none";
@@ -53,7 +62,7 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
         type: typeProduct,
       };
       onNewProductHandler(newProduct);
-      setIsValid(false)
+      setIsValid(false);
       console.log(newProduct);
     }
   };
@@ -64,7 +73,11 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
       <div className="input-conteiner mt-3 mb-4">
         <label>Ingrese el nombre del producto:</label>
         <input
-          className="form-control form-control-lg"
+          className={`${
+            theme === "DARK"
+              ? "form-control form-control-lg bg-dark text-light"
+              : "form-control form-control-lg bg-light text-dark"
+          }`}
           placeholder=""
           type="text"
           value={nameProduct}
@@ -75,7 +88,11 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
       <div className="input-conteiner mt-3 mb-4">
         <label>Seleccione el tipo de producto:</label>
         <select
-          className="form-control form-control-lg"
+          className={`${
+            theme === "DARK"
+              ? "form-control form-control-lg bg-dark text-light"
+              : "form-control form-control-lg bg-light text-dark"
+          }`}
           value={typeProduct}
           ref={typeProductRef}
           onChange={changeTypeProductHandler}
@@ -85,20 +102,16 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
           <option value="termo">termo</option>
           <option value="bombilla">bombilla</option>
         </select>
-        {/* <input
-          className="form-control form-control-lg"
-          placeholder=""
-          type="text"
-          value={typeProduct}
-          ref={typeProductRef}
-          onChange={changeTypeProductHandler}
-        /> */}
       </div>
       <div className="input-conteiner mt-3 mb-4">
         <label>Ingrese el precio del producto:</label>
         <input
+          className={`${
+            theme === "DARK"
+              ? "form-control form-control-lg bg-dark text-light"
+              : "form-control form-control-lg bg-light text-dark"
+          }`}
           min="0"
-          className="form-control form-control-lg"
           placeholder=""
           type="number"
           value={priceProduct}
