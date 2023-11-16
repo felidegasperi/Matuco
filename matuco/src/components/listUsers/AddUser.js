@@ -1,26 +1,21 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useNavigate } from "react-router-dom";
+import { useFetchUsers } from "../../hooks/useFetchUsers";
 import UserForm from "./UserForm";
 
 const AddUser = () => {
-  const [users, setUsers] = useState([]);
   const [isValid, setIsValid] = useState(false);
 
   const { theme } = useContext(ThemeContext);
-  const navigate = useNavigate();
+  const apiUrl = "http://localhost:8000/users";
+  const { users, setUsers, error } = useFetchUsers(apiUrl);
 
-  useEffect(() => {
-    // GET a la API y almacenar los usuarios en el estado
-    fetch("http://localhost:8000/users", {
-      headers: {
-        accept: "aplication/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) => console.error("Error al obtener los usuarios", error));
-  }, []);
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
+
+  const navigate = useNavigate();
 
   const postNewUserHandler = useCallback(
     (user) => {

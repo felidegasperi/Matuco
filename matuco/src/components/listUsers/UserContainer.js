@@ -1,33 +1,28 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useState } from "react";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import ListUsers from "./ListUsers";
 
 import { ThemeContext } from "../../services/themeContext/Theme.context";
+import { useFetchUsers } from "../../hooks/useFetchUsers";
 
 const UserContainer = () => {
-  const [users, setUsers] = useState([]);
   const [selectedUser, setSelectedUser] = useState(null);
 
   const { theme } = useContext(ThemeContext);
+
+  const apiUrl = "http://localhost:8000/users";
+  const { users, setUsers, error } = useFetchUsers(apiUrl);
+
+  if (error) {
+    return <p>Error: {error.message}</p>;
+  }
 
   // validacion para que el mail que ingrese sea correcto
   const validateEmail = (email) => {
     const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailValid.test(email);
   };
-
-  useEffect(() => {
-    // GET a la API y almacenar los usuarios en el estado
-    fetch("http://localhost:8000/users", {
-      headers: {
-        accept: "aplication/json",
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => setUsers(data))
-      .catch((error) => console.error("Error al obtener los usuarios", error));
-  }, []);
 
   const editUserHandler = (user) => {
     console.log("Estado de selectedUser antes de la solicitud PUT:", user);

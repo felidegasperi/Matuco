@@ -20,5 +20,5 @@ export const useFetchUsers = (url) => {
       .catch((err) => setError(err));
   }, [url]);
 
-  return { users, error };
+  return { users, setUsers, error };
 };
