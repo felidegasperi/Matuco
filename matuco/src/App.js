@@ -13,7 +13,6 @@ import { createBrowserRouter } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "./services/themeContext/Theme.context";
 
-
 function App() {
   const { theme } = useContext(ThemeContext);
   const router = createBrowserRouter([
@@ -54,10 +53,10 @@ function App() {
       element: (
         <Protected>
           <UserContainer />
-        <Protected/>
-        ),
-     },
-     {
+        </Protected>
+      ),
+    },
+    {
       path: "/listProducts",
       element: (
         <Protected>
