@@ -38,7 +38,8 @@ const AddUser = () => {
           username: user.username,
           email: user.email,
           password: user.password,
-          type: "client",
+          type: user.type,
+          isActive: true,
         }),
       })
         .then((response) => {

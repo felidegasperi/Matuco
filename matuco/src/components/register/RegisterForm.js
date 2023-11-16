@@ -22,6 +22,11 @@ const RegisterForm = ({ users, onSavedUser }) => {
 
   const navigate = useNavigate();
 
+  const validateEmail = (email) => {
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailValid.test(email);
+  };
+
   const NavigateLoginHandler = () => {
     navigate("/login");
   };
@@ -49,21 +54,20 @@ const RegisterForm = ({ users, onSavedUser }) => {
   const registerHandler = () => {
     const emailValidation = users.find((user) => user.email === email);
 
-    if (emailRef.current.value.length === 0) {
+    if (
+      emailRef.current.value.length === 0 ||
+      validateEmail(emailRef.current.value) === false
+    ) {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
       emailRef.current.style.outline = "none";
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
-    }
-
-    if (usernameRef.current.value.length === 0) {
+    } else if (usernameRef.current.value.length === 0) {
       usernameRef.current.focus();
       usernameRef.current.style.borderColor = "red";
       usernameRef.current.style.outline = "none";
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
-    }
-
-    if (password.length === 0 || confirmPassword.length === 0) {
+    } else if (password.length === 0 || confirmPassword.length === 0) {
       passwordRef.current.focus();
       passwordRef.current.style.borderColor = "red";
       passwordRef.current.style.outline = "none";

@@ -15,6 +15,12 @@ const UserForm = ({ setIsValid, onNewUserHandler, users }) => {
 
   const { theme } = useContext(ThemeContext);
 
+  // validacion para que el mail que ingrese sea correcto
+  const validateEmail = (email) => {
+    const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailValid.test(email);
+  };
+
   const changeEmailHandler = (e) => {
     if (emailRef.current.value.length > 0) {
       emailRef.current.style.borderColor = "";
@@ -42,27 +48,24 @@ const UserForm = ({ setIsValid, onNewUserHandler, users }) => {
   const onUserHandler = () => {
     const emailValidation = users.find((user) => user.email === email);
 
-    if (emailRef.current.value.length === 0) {
+    if (
+      emailRef.current.value.length === 0 ||
+      validateEmail(emailRef.current.value) === false
+    ) {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
       emailRef.current.style.outline = "none";
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
-    }
-
-    if (typeUserRef.current.value === "") {
+    } else if (typeUserRef.current.value === "") {
       typeUserRef.current.style.borderColor = "";
       typeUserRef.current.style.outline = "";
       setError("Debe ingresar un tipo de usuario. Intentelo de nuevo");
-    }
-
-    if (nameUserRef.current.value.length === 0) {
+    } else if (nameUserRef.current.value.length === 0) {
       nameUserRef.current.focus();
       nameUserRef.current.style.borderColor = "red";
       nameUserRef.current.style.outline = "none";
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
-    }
-
-    if (passwordUser.length === 0) {
+    } else if (passwordUser.length === 0) {
       passwordUserRef.current.focus();
       passwordUserRef.current.style.borderColor = "red";
       passwordUserRef.current.style.outline = "none";
