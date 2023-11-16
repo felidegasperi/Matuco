@@ -35,6 +35,9 @@ const NavBar = () => {
   const NavigateListProductHandler = () => {
     navigate("/listproducts");
   };
+  const NavigateListUserHandler = () => {
+    navigate("/listUsers");
+  };
 
   const onLogoutHandler = () => {
     handleLogout();
@@ -108,17 +111,33 @@ const NavBar = () => {
                       Lista de productos
                     </button>
                   ) : (
-                    <button
-                      className={`${
-                        theme === "DARK"
-                          ? "btn btn-outline-light btn-sm p-2 m-2"
-                          : "btn btn-outline-dark btn-sm p-2 m-2"
-                      }`}
-                      type="button"
-                      onClick={NavigateSettingsHandler}
-                    >
-                      Settings
-                    </button>
+                    <>
+                      {user.type === "superAdmin" ? (
+                        <button
+                          className={`${
+                            theme === "DARK"
+                              ? "btn btn-outline-light btn-sm p-2 m-2"
+                              : "btn btn-outline-dark btn-sm p-2 m-2"
+                          }`}
+                          type="button"
+                          onClick={NavigateListUserHandler}
+                        >
+                          Lista de Users
+                        </button>
+                      ) : (
+                        <button
+                          className={`${
+                            theme === "DARK"
+                              ? "btn btn-outline-light btn-sm p-2 m-2"
+                              : "btn btn-outline-dark btn-sm p-2 m-2"
+                          }`}
+                          type="button"
+                          onClick={NavigateSettingsHandler}
+                        >
+                          Settings
+                        </button>
+                      )}
+                    </>
                   )}
                 </>
               ) : (
