@@ -8,16 +8,15 @@ import { APIContextProvider } from "./services/apiContext/API.context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  
-  <React.StrictMode>
-    <APIContextProvider>
-    <ThemeContextProvider>
-      <AuthenticationContextProvider>
-      <App />
-      </AuthenticationContextProvider>
-    </ThemeContextProvider>
-    </APIContextProvider>
-  </React.StrictMode>
+  <APIContextProvider>
+    <React.StrictMode>
+      <ThemeContextProvider>
+        <AuthenticationContextProvider>
+          <App />
+        </AuthenticationContextProvider>
+      </ThemeContextProvider>
+    </React.StrictMode>
+  </APIContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
