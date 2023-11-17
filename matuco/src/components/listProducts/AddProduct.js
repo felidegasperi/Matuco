@@ -55,6 +55,7 @@ const AddProduct = () => {
             ...products,
           ];
           setProducts(newProductArray);
+          alert("Se agrego correctamente el producto!");
         })
         .catch((error) => console.log(error));
     },

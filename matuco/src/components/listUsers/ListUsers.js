@@ -22,22 +22,26 @@ const ListUsers = ({ users, deleteUserHandler, editUserHandler }) => {
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
-      <div className="table-container">
+      <div >
         {user.type !== "superAdmin" ? (
           <>
-            <h2> No tiene los permisos para vizualizar esta pagina.</h2>
-            <div className="py-4">
-              <button
-                className={`${
-                  theme === "DARK"
-                    ? "btn btn-outline-light btn-sm p-2 m-2"
-                    : "btn btn-outline-dark btn-sm p-2 m-2"
-                }`}
-                type="button"
-                onClick={backToHomePageHandler}
-              >
-                Volver al inicio
-              </button>
+            <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
+              <h2 className="mb-4">
+                No tiene los permisos para visualizar esta página.
+              </h2>
+              <div className="py-4">
+                <button
+                  className={`${
+                    theme === "DARK"
+                      ? "btn btn-outline-light btn-sm p-2 m-2"
+                      : "btn btn-outline-dark btn-sm p-2 m-2"
+                  }`}
+                  type="button"
+                  onClick={backToHomePageHandler}
+                >
+                  Volver al inicio
+                </button>
+              </div>
             </div>
           </>
         ) : (
