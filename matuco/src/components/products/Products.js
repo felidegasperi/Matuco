@@ -35,18 +35,19 @@ const Products = () => {
         </div>
         <div className="container text-center min-vh-">
           <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-5">
-            {filterProduct ? (
-              products
-                .filter((product) => product.type === filterProduct)
-                .map((filteredProduct, product) => (
-                  <CardProducts key={product.id} {...filteredProduct} />
-                ))
-            : products.map((product) => (
-                <CardProducts key={product.id} {...product} />
-              ))}
+            {filterProduct
+              ? products
+                  .filter((product) => product.type === filterProduct)
+                  .map((filteredProduct, product) => (
+                    <CardProducts key={product.id} {...filteredProduct} />
+                  ))
+              : products.map((product) => (
+                  <CardProducts key={product.id} {...product} />
+                ))}
+          </div>
         </div>
       </div>
-      
+      <Footer />
     </div>
   );
 };

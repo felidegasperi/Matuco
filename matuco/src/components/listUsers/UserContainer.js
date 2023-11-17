@@ -219,7 +219,7 @@ const UserContainer = () => {
           )}
         </div>
       </div>
-      <div className="footer-container"></div>
+      <Footer/>
     </div>
   );
 };
