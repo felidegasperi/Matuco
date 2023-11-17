@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 
+import "./Products.css";
+
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import FilteredProducts from "../filteredProducts/FilteredProducts";
@@ -10,7 +12,6 @@ import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
 
 const Products = () => {
-  // const [products, setProducts] = useState([]);
   const [filterProduct, setFilterProduct] = useState();
 
   const { theme } = useContext(ThemeContext);
@@ -37,24 +38,12 @@ const Products = () => {
             {filterProduct ? (
               products
                 .filter((product) => product.type === filterProduct)
-                .map((filteredProduct, index) => (
-                  <div className="col-3">
-                    <CardProducts key={index} product={filteredProduct} />
-                  </div>
+                .map((filteredProduct, product) => (
+                  <CardProducts key={product.id} {...filteredProduct} />
                 ))
-            ) : products.length === 0 ? (
-              <p>
-                Ocurrió un error, no hay productos cargados. Pregunta al dueño
-                de la tienda.
-              </p>
-            ) : (
-              products.map((product, index) => (
-                <div className="col-3">
-                  <CardProducts key={index} product={product} />
-                </div>
-              ))
-            )}
-          </div>
+            : products.map((product) => (
+                <CardProducts key={product.id} {...product} />
+              ))}
         </div>
       </div>
       

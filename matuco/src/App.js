@@ -7,6 +7,7 @@ import Settings from "./components/settings/Settings";
 import Protected from "./components/security/protected/Protected";
 import UserContainer from "./components/listUsers/UserContainer";
 import ProductContainer from "./components/listProducts/ProductContainer";
+import CartContainer from "./components/shoppingCart/CartContainer";
 
 import { Navigate, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
@@ -61,6 +62,14 @@ function App() {
       element: (
         <Protected>
           <ProductContainer />
+        </Protected>
+      ),
+    },
+    {
+      path: "/cart",
+      element: (
+        <Protected>
+          <CartContainer />
         </Protected>
       ),
     },

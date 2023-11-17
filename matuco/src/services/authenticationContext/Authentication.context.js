@@ -10,8 +10,8 @@ export const AuthenticationContextProvider = ({ children }) => {
   const [user, setUser] = useState(userValue);
 
   const handleLogin = (user) => {
-    localStorage.setItem("user", JSON.stringify({ ...user, user }));
-    setUser({ ...user, user });
+    localStorage.setItem("user", JSON.stringify(user));
+    setUser(user);
   };
 
   const handleLogout = () => {
