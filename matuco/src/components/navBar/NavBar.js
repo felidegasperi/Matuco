@@ -55,8 +55,14 @@ const NavBar = () => {
   };
 
   const onLogoutHandler = () => {
-    handleLogout();
-    navigate("/");
+    const loguotSesion = window.confirm(
+      "¿Estás seguro de que deseas cerrar su sesion?"
+    );
+    if (loguotSesion) {
+      setCart([])
+      handleLogout();
+      navigate("/");
+    }
   };
 
   return (
@@ -103,13 +109,11 @@ const NavBar = () => {
                 Carrito {user && <span className="cart-count">{quantity}</span>}
               </a>
             </Col>
-            <Col className="mx-2 ">
-              {user && <p className="">Hola {user.username}!</p>}
-            </Col>
+            <Col className="mx-2 ">{user && <p>Hola {user.username}!</p>}</Col>
             <Col className="d-flex">
               {user !== null ? (
                 <>
-                  {user.type === "owner" ? (
+                  {user.type === "owner" && (
                     <button
                       className={`${
                         theme === "DARK"
@@ -121,34 +125,20 @@ const NavBar = () => {
                     >
                       Lista de productos
                     </button>
-                  ) : (
-                    <>
-                      {user.type === "superAdmin" ? (
-                        <button
-                          className={`${
-                            theme === "DARK"
-                              ? "btn btn-outline-light btn-sm p-2 m-2"
-                              : "btn btn-outline-dark btn-sm p-2 m-2"
-                          }`}
-                          type="button"
-                          onClick={NavigateListUserHandler}
-                        >
-                          Lista de Users
-                        </button>
-                      ) : (
-                        <button
-                          className={`${
-                            theme === "DARK"
-                              ? "btn btn-outline-light btn-sm p-2 m-2"
-                              : "btn btn-outline-dark btn-sm p-2 m-2"
-                          }`}
-                          type="button"
-                          onClick={NavigateSettingsHandler}
-                        >
-                          Settings
-                        </button>
-                      )}
-                    </>
+                  )}
+
+                  {user.type === "superAdmin" && (
+                    <button
+                      className={`${
+                        theme === "DARK"
+                          ? "btn btn-outline-light btn-sm p-2 m-2"
+                          : "btn btn-outline-dark btn-sm p-2 m-2"
+                      }`}
+                      type="button"
+                      onClick={NavigateListUserHandler}
+                    >
+                      Lista de Users
+                    </button>
                   )}
                 </>
               ) : (
@@ -161,7 +151,7 @@ const NavBar = () => {
                   type="button"
                   onClick={NavigateLoginHandler}
                 >
-                  Iniciar Sesion
+                  Iniciar Sesión
                 </button>
               )}
             </Col>

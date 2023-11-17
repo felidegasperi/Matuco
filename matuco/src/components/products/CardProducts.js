@@ -98,7 +98,7 @@ const CardProducts = ({ id, name, price, type }) => {
             </div>
           ) : (
             <div>
-              <h4>
+              <h4 href="">
                 <CiCirclePlus color="green" onClick={() => AddToCart()} />
               </h4>
             </div>
