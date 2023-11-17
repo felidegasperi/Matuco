@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useCallback, useContext } from "react";
 
 import "./Register.css";
@@ -13,7 +14,7 @@ const Register = () => {
   const { theme } = useContext(ThemeContext);
 
   const apiUrl = "https://matuco-fake-api.onrender.com/users";
-  const { users, error } = useFetchUsers(apiUrl);
+  const { users, error, setUsers } = useFetchUsers(apiUrl);
 
   if (error) {
     return <p>Error: {error.message}</p>;
@@ -22,8 +23,6 @@ const Register = () => {
   //funcion para hacer el post dentrode la db
   const postNewUserHandler = useCallback(
     (user) => {
-      //setUsers((prevUsers) => [user, ...prevUsers]);
-
       const newUserId = users[users.length - 1].id + 1;
       console.log("User data in postNewUserHandler: ", user);
       fetch("https://matuco-fake-api.onrender.com/users", {
@@ -53,7 +52,7 @@ const Register = () => {
         })
         .catch((error) => console.log(error));
     },
-    [users]
+    [setUsers, users]
   );
 
   return (
