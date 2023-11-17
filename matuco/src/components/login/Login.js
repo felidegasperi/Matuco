@@ -19,7 +19,7 @@ const Login = () => {
   const { theme } = useContext(ThemeContext);
   const { handleLogin } = useContext(AuthenticationContext);
 
-  const apiUrl = "http://localhost:8000/users";
+  const apiUrl = "https://matuco-fake-api.onrender.com/users";
   const { users, error } = useFetchUsers(apiUrl);
 
   if (error) {

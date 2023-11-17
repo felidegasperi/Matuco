@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 
 import FormProduct from "./FormProduct";
 
@@ -13,7 +13,7 @@ const AddProduct = () => {
   const { theme } = useContext(ThemeContext);
   const navigate = useNavigate();
 
-  const apiUrl = "http://localhost:8000/products";
+  const apiUrl = "https://matuco-fake-api.onrender.com/products";
   const { products, setProducts, error } = useFetchProducts(apiUrl);
 
   if (error) {
@@ -30,7 +30,7 @@ const AddProduct = () => {
       const newProductId =
         products.length > 0 ? products[products.length - 1].id + 1 : 1;
       console.log("User data in postNewUserHandler: ", product);
-      fetch("http://localhost:8000/products", {
+      fetch("https://matuco-fake-api.onrender.com/products", {
         method: "POST",
         headers: {
           "content-type": "application/json",

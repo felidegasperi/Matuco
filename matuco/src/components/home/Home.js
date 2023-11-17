@@ -6,7 +6,6 @@ import "./Home.css";
 
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
-import Card from "../card/Card.js";
 
 const Home = () => {
   const { theme } = useContext(ThemeContext);
@@ -38,15 +37,6 @@ const Home = () => {
               <p></p>
             </div>
           </div>
-          {/* <div>
-            <h2
-              className="d-flex justify-content-center aling-items-center"
-              style={{ fontSize: "40px" }}
-            >
-              En este E-Commerse vas a encontrar
-            </h2>
-            <Card />
-          </div> */}
         </div>
         <Footer />
       </div>

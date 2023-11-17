@@ -71,11 +71,11 @@ const UserForm = ({ setIsValid, onNewUserHandler, users }) => {
       passwordUserRef.current.style.outline = "none";
 
       setError("Ingresar una contraseña");
-    }else if(passwordUser > 7){
+    } else if (passwordUser > 7) {
       passwordUserRef.current.focus();
       passwordUserRef.current.style.borderColor = "red";
       passwordUserRef.current.style.outline = "none";
-      setError("la contraseña debe tener 8 digitos o mas.")
+      setError("la contraseña debe tener 8 digitos o mas.");
     } else if (emailValidation) {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
@@ -90,7 +90,7 @@ const UserForm = ({ setIsValid, onNewUserHandler, users }) => {
         isActive: true,
       };
       onNewUserHandler(user);
-      alert("Felicitaciones lo a creado correctamente");
+      setIsValid(false);
     }
   };
   return (

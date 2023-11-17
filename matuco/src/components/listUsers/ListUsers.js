@@ -9,12 +9,15 @@ import { MdOutlineModeEdit, MdModeEdit } from "react-icons/md";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useNavigate } from "react-router-dom";
+import { APIContext } from "../../services/apiContext/API.context";
+import Loaders from "../ui/loaders/Loaders";
 
 const ListUsers = ({ users, deleteUserHandler, editUserHandler }) => {
   const navigate = useNavigate();
 
   const { theme } = useContext(ThemeContext);
   const { user } = useContext(AuthenticationContext);
+  const { isLoading } = useContext(APIContext);
 
   const backToHomePageHandler = () => {
     navigate("/home");
@@ -22,7 +25,7 @@ const ListUsers = ({ users, deleteUserHandler, editUserHandler }) => {
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
-      <div >
+      <div>
         {user.type !== "superAdmin" ? (
           <>
             <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
@@ -49,7 +52,6 @@ const ListUsers = ({ users, deleteUserHandler, editUserHandler }) => {
             <div>
               <AddUser />
             </div>
-
             <table
               className={`${
                 theme === "DARK"
@@ -67,6 +69,7 @@ const ListUsers = ({ users, deleteUserHandler, editUserHandler }) => {
                   <th>Opciones</th>
                 </tr>
               </thead>
+              {isLoading && <Loaders />}
               <tbody>
                 {users
                   .filter((user) => user.isActive)

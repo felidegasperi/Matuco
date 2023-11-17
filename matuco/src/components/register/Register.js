@@ -12,7 +12,7 @@ import { useFetchUsers } from "../../hooks/useFetchUsers";
 const Register = () => {
   const { theme } = useContext(ThemeContext);
 
-  const apiUrl = "http://localhost:8000/users";
+  const apiUrl = "https://matuco-fake-api.onrender.com/users";
   const { users, error } = useFetchUsers(apiUrl);
 
   if (error) {
@@ -26,7 +26,7 @@ const Register = () => {
 
       const newUserId = users[users.length - 1].id + 1;
       console.log("User data in postNewUserHandler: ", user);
-      fetch("http://localhost:8000/users", {
+      fetch("https://matuco-fake-api.onrender.com/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",
@@ -37,6 +37,7 @@ const Register = () => {
           email: user.email,
           password: user.password,
           type: "client",
+          isActive: true,
         }),
       })
         .then((response) => {

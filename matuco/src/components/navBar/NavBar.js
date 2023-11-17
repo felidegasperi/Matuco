@@ -4,6 +4,8 @@ import { Col, Row } from "react-bootstrap";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 
+import "./NavBar.css";
+
 import ToggleTheme from "../ui/toggleTheme/ToggleTheme";
 import { CartContext } from "../../services/shoppingCartContext/ShoppingCart.context";
 
@@ -59,7 +61,7 @@ const NavBar = () => {
       "¿Estás seguro de que deseas cerrar su sesion?"
     );
     if (loguotSesion) {
-      setCart([])
+      setCart([]);
       handleLogout();
       navigate("/");
     }

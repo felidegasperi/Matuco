@@ -9,8 +9,8 @@ import { ShoppingCartProvider } from "./services/shoppingCartContext/ShoppingCar
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <APIContextProvider>
-    <React.StrictMode>
+  <React.StrictMode>
+    <APIContextProvider>
       <ShoppingCartProvider>
         <ThemeContextProvider>
           <AuthenticationContextProvider>
@@ -18,8 +18,8 @@ root.render(
           </AuthenticationContextProvider>
         </ThemeContextProvider>
       </ShoppingCartProvider>
-    </React.StrictMode>
-  </APIContextProvider>
+    </APIContextProvider>
+  </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

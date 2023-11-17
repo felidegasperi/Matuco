@@ -56,6 +56,19 @@ const CartContainer = () => {
         {quantity === 0 ? (
           <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
             <h2> No hay elementos guardados en el carrito</h2>
+            <div className="d-flex align-items-center justify-content-center">
+              <button
+                className={`${
+                  theme === "DARK"
+                    ? "btn btn-outline-light btn-sm p-2 m-2"
+                    : "btn btn-outline-dark btn-sm p-2 m-2"
+                }`}
+                type="button"
+                onClick={navigateProductsHandler}
+              >
+                Volver a productos
+              </button>
+            </div>
           </div>
         ) : (
           <div className="table-container min-vh-100 pt-5">

@@ -8,12 +8,11 @@ import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
 
 const ProductContainer = () => {
-  // const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
   const { theme } = useContext(ThemeContext);
 
-  const apiUrl = "http://localhost:8000/products";
+  const apiUrl = "https://matuco-fake-api.onrender.com/products";
   const { products, setProducts, error } = useFetchProducts(apiUrl);
 
   if (error) {
@@ -27,7 +26,7 @@ const ProductContainer = () => {
 
     console.log(id);
     if (confirmDelete) {
-      fetch(`http://localhost:8000/products/${id}`, {
+      fetch(`https://matuco-fake-api.onrender.com/products/${id}`, {
         method: "DELETE",
       })
         .then((response) => {
@@ -59,13 +58,16 @@ const ProductContainer = () => {
     if (!selectedProduct) return;
 
     // Llamada a la API para actualizar el producto seleccionado
-    fetch(`http://localhost:8000/products/${selectedProduct.id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(selectedProduct),
-    })
+    fetch(
+      `https://matuco-fake-api.onrender.com/products/${selectedProduct.id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(selectedProduct),
+      }
+    )
       .then((response) => {
         if (!response.ok) {
           throw new Error("Error al actualizar el producto");
@@ -91,7 +93,7 @@ const ProductContainer = () => {
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
-      <div>
+      <div className="min-vh-100">
         <ListProducts
           products={products}
           deleteProductHandler={deleteProductHandler}

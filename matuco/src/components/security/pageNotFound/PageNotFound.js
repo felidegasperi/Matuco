@@ -14,11 +14,6 @@ const PageNotFount = () => {
   const backToHomePageHandler = () => {
     navigate("/");
   };
-  //className={`${
-  //theme === "DARK"
-  //  ? "text-container bg-dark text-light"
-  //  : "text-container bg-ligth text-dark"
-  //  }`}
 
   return (
     <>

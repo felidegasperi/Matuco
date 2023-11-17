@@ -9,6 +9,8 @@ import { AuthenticationContext } from "../../services/authenticationContext/Auth
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useNavigate } from "react-router-dom";
 import AddProduct from "./AddProduct";
+import { APIContext } from "../../services/apiContext/API.context";
+import Loaders from "../ui/loaders/Loaders";
 
 const ListProducts = ({
   products,
@@ -19,6 +21,7 @@ const ListProducts = ({
 
   const { theme } = useContext(ThemeContext);
   const { user } = useContext(AuthenticationContext);
+  const { isLoading } = useContext(APIContext);
 
   const backToHomePageHandler = () => {
     navigate("/home");
@@ -69,6 +72,7 @@ const ListProducts = ({
                   <th>Opciones</th>
                 </tr>
               </thead>
+              {isLoading && <Loaders />}
               <tbody>
                 {products.map((product) => (
                   <tr key={product.id}>

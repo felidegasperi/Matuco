@@ -8,7 +8,7 @@ const AddUser = () => {
   const [isValid, setIsValid] = useState(false);
 
   const { theme } = useContext(ThemeContext);
-  const apiUrl = "http://localhost:8000/users";
+  const apiUrl = "https://matuco-fake-api.onrender.com/users";
   const { users, setUsers, error } = useFetchUsers(apiUrl);
 
   if (error) {
@@ -19,11 +19,9 @@ const AddUser = () => {
 
   const postNewUserHandler = useCallback(
     (user) => {
-      //setUsers((prevUsers) => [user, ...prevUsers]);
-
       const newUserId = users[users.length - 1].id + 1;
       console.log("User data in postNewUserHandler: ", user);
-      fetch("http://localhost:8000/users", {
+      fetch("https://matuco-fake-api.onrender.com/users", {
         method: "POST",
         headers: {
           "content-type": "application/json",

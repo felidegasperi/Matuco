@@ -12,7 +12,7 @@ const UserContainer = () => {
 
   const { theme } = useContext(ThemeContext);
 
-  const apiUrl = "http://localhost:8000/users";
+  const apiUrl = "https://matuco-fake-api.onrender.com/users";
   const { users, setUsers, error } = useFetchUsers(apiUrl);
 
   if (error) {
@@ -41,7 +41,7 @@ const UserContainer = () => {
 
     if (confirmDelete) {
       // Realiza una "baja lógica" mediante una solicitud PUT
-      fetch(`http://localhost:8000/users/${id}`, {
+      fetch(`https://matuco-fake-api.onrender.com/users/${id}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -57,6 +57,7 @@ const UserContainer = () => {
               user.id === id ? { ...user, isActive: false } : user
             )
           );
+          alert("Se ha elimiado el usuario con exito!");
         })
         .catch((err) => {
           console.Error("Error", err);
@@ -83,7 +84,7 @@ const UserContainer = () => {
       setErrors("Ingrese una contraseña válida (mayor o igual a 8 caracteres)");
     }
 
-    fetch(`http://localhost:8000/users/${selectedUser.id}`, {
+    fetch(`https://matuco-fake-api.onrender.com/users/${selectedUser.id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -102,6 +103,8 @@ const UserContainer = () => {
             user.id === updatedUser.id ? updatedUser : user
           )
         );
+        alert("Se ha modificado el usuario con exito!");
+        setSelectedUser(null);
       })
       .catch((err) => {
         console.Error("Error", err);
@@ -114,7 +117,7 @@ const UserContainer = () => {
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
-      <div>
+      <div className="min-vh-100">
         <ListUsers
           users={users}
           deleteUserHandler={deleteUserHandler}
@@ -136,15 +139,11 @@ const UserContainer = () => {
                   value={selectedUser.username}
                   onChange={(e) => {
                     const inputValue = e.target.value;
-                    // if (inputValue.length < 0) {
-                    //   alert("Ingrese un nombre correcto");
-                    // } else {
                     setSelectedUser({
                       ...selectedUser,
                       username: inputValue,
                     });
                   }}
-                  // }
                 />
               </div>
               <div className="input-container mt-3 mb-4">
@@ -159,15 +158,11 @@ const UserContainer = () => {
                   value={selectedUser.email}
                   onChange={(e) => {
                     const inputValue = e.target.value;
-                    // if (inputValue.length <= 0) {
-                    //   alert("Ingrese un email correcto");
-                    // } else {
                     setSelectedUser({
                       ...selectedUser,
                       email: inputValue,
                     });
                   }}
-                  // }
                 />
               </div>
               <div className="input-container mt-3 mb-4">
@@ -181,19 +176,13 @@ const UserContainer = () => {
                   min="0"
                   type="password"
                   value={selectedUser.password}
-                  onChange={
-                    (e) => {
-                      const inputValue = e.target.value;
-                      // if (inputValue.length < 0) {
-                      //   alert("Ingrese una contraseña correcta");
-                      // } else {
-                      setSelectedUser({
-                        ...selectedUser,
-                        password: inputValue,
-                      });
-                    }
-                    // }
-                  }
+                  onChange={(e) => {
+                    const inputValue = e.target.value;
+                    setSelectedUser({
+                      ...selectedUser,
+                      password: inputValue,
+                    });
+                  }}
                 />
               </div>
               <p className="text-danger">{errors}</p>
@@ -219,7 +208,7 @@ const UserContainer = () => {
           )}
         </div>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   );
 };
