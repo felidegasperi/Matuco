@@ -47,6 +47,7 @@ const AddUser = () => {
           console.log("user en then", user);
           const newUserArray = [{ ...user, id: newUserId }, ...users];
           setUsers(newUserArray);
+          alert("Se creo el usuario correctamente");
         })
         .catch((error) => console.log(error));
     },
