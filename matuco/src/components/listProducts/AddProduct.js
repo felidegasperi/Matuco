@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useCallback, useContext, useState } from "react";
 
 import FormProduct from "./FormProduct";
@@ -59,7 +60,7 @@ const AddProduct = () => {
         })
         .catch((error) => console.log(error));
     },
-    [products]
+    [products, setProducts]
   );
 
   return (

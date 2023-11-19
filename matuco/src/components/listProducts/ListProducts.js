@@ -30,7 +30,7 @@ const ListProducts = ({
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <div>
-        {user.type !== "owner" ? (
+        {user.type === "client" ? (
           <>
             <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
               <h2 className="mb-4">

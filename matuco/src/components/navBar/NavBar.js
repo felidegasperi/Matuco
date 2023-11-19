@@ -130,17 +130,34 @@ const NavBar = () => {
                   )}
 
                   {user.type === "superAdmin" && (
-                    <button
-                      className={`${
-                        theme === "DARK"
-                          ? "btn btn-outline-light btn-sm p-2 m-2"
-                          : "btn btn-outline-dark btn-sm p-2 m-2"
-                      }`}
-                      type="button"
-                      onClick={NavigateListUserHandler}
-                    >
-                      Lista de Users
-                    </button>
+                    <div>
+                      <div>
+                        <button
+                          className={`${
+                            theme === "DARK"
+                              ? "btn btn-outline-light btn-sm p-2 m-2"
+                              : "btn btn-outline-dark btn-sm p-2 m-2"
+                          }`}
+                          type="button"
+                          onClick={NavigateListProductHandler}
+                        >
+                          Lista de productos
+                        </button>
+                      </div>
+                      <div>
+                        <button
+                          className={`${
+                            theme === "DARK"
+                              ? "btn btn-outline-light btn-sm p-2 m-2"
+                              : "btn btn-outline-dark btn-sm p-2 m-2"
+                          }`}
+                          type="button"
+                          onClick={NavigateListUserHandler}
+                        >
+                          Lista de Users
+                        </button>
+                      </div>
+                    </div>
                   )}
                 </>
               ) : (

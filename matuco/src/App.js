@@ -13,12 +13,10 @@ import { Navigate, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "./services/themeContext/Theme.context";
-import { APIContext } from "./services/apiContext/API.context";
-import Loaders from "./components/ui/loaders/Loaders";
+
 
 function App() {
   const { theme } = useContext(ThemeContext);
-  const { isLoading } = useContext(APIContext);
 
   const router = createBrowserRouter([
     {
