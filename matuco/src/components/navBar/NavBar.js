@@ -96,7 +96,7 @@ const NavBar = () => {
           </a>
 
           <Row className="navbar-nav mb-2 mb-lg-auto p-2">
-            <Col className="nav-item mx-2 py-2">
+            <Col className="nav-item py-2">
               <a className="nav-link" onClick={NavigateHomeHandler}>
                 Inicio
               </a>
@@ -106,7 +106,7 @@ const NavBar = () => {
                 Productos
               </a>
             </Col>
-            <Col className="py-2">
+            <Col className="nav-item  py-2">
               <a className="nav-link" onClick={NavigateCartHandler}>
                 Carrito {user && <span className="cart-count">{quantity}</span>}
               </a>
@@ -119,8 +119,8 @@ const NavBar = () => {
                     <button
                       className={`${
                         theme === "DARK"
-                          ? "btn btn-outline-light btn-sm p-2 m-2"
-                          : "btn btn-outline-dark btn-sm p-2 m-2"
+                          ? "btn btn-outline-light btn-sm p-2 m-2 w-100"
+                          : "btn btn-outline-dark btn-sm p-2 m-2 w-100"
                       }`}
                       type="button"
                       onClick={NavigateListProductHandler}
@@ -130,13 +130,13 @@ const NavBar = () => {
                   )}
 
                   {user.type === "superAdmin" && (
-                    <div>
-                      <div>
+                    <div className="d-flex">
+                      <div className="d-flex">
                         <button
                           className={`${
                             theme === "DARK"
-                              ? "btn btn-outline-light btn-sm p-2 m-2"
-                              : "btn btn-outline-dark btn-sm p-2 m-2"
+                              ? "btn btn-outline-light btn-sm p-2 m-2 w-100"
+                              : "btn btn-outline-dark btn-sm p-2 m-2 w-100"
                           }`}
                           type="button"
                           onClick={NavigateListProductHandler}
@@ -144,17 +144,17 @@ const NavBar = () => {
                           Lista de productos
                         </button>
                       </div>
-                      <div>
+                      <div className="d-flex ">
                         <button
                           className={`${
                             theme === "DARK"
-                              ? "btn btn-outline-light btn-sm p-2 m-2"
-                              : "btn btn-outline-dark btn-sm p-2 m-2"
+                              ? "btn btn-outline-light btn-sm p-2 m-2 w-100"
+                              : "btn btn-outline-dark btn-sm p-2 m-2 w-100"
                           }`}
                           type="button"
                           onClick={NavigateListUserHandler}
                         >
-                          Lista de Users
+                          Lista de Usuarios
                         </button>
                       </div>
                     </div>

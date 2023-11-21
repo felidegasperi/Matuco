@@ -37,6 +37,10 @@ const Home = () => {
               <p></p>
             </div>
           </div>
+          <div>
+            <h3 className="text-center">Productos destacados</h3>
+            
+          </div>
         </div>
         <Footer />
       </div>
