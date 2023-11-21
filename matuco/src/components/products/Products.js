@@ -38,7 +38,7 @@ const Products = () => {
         </div>
         <div className="container text-center min-vh-">
           <div className="row row-cols-2 row-cols-lg-5 g-2 g-lg-3 p-5">
-            {isLoading && <Loaders />}
+            {isLoading && <Loaders className="justify-content-center" />}
             {filterProduct
               ? products
                   .filter((product) => product.type === filterProduct)

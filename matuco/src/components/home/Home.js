@@ -6,6 +6,7 @@ import "./Home.css";
 
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
+import CardHomProducts from "./CardHomProducts";
 
 const Home = () => {
   const { theme } = useContext(ThemeContext);
@@ -37,9 +38,11 @@ const Home = () => {
               <p></p>
             </div>
           </div>
-          <div>
+          <div className="mt-5">
             <h3 className="text-center">Productos destacados</h3>
-            
+            <div>
+              <CardHomProducts />
+            </div>
           </div>
         </div>
         <Footer />
