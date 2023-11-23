@@ -107,9 +107,12 @@ const NavBar = () => {
               </a>
             </Col>
             <Col className="nav-item  py-2">
-              <a className="nav-link" onClick={NavigateCartHandler}>
-                Carrito {user && <span className="cart-count">{quantity}</span>}
-              </a>
+              {user && (
+                <a className="nav-link" onClick={NavigateCartHandler}>
+                  Carrito{" "}
+                  {user && <span className="cart-count">{quantity}</span>}
+                </a>
+              )}
             </Col>
             <Col className="mx-2 ">{user && <p>Hola {user.username}!</p>}</Col>
             <Col className="d-flex">

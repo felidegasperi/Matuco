@@ -14,7 +14,6 @@ import { createBrowserRouter } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "./services/themeContext/Theme.context";
 
-
 function App() {
   const { theme } = useContext(ThemeContext);
 
@@ -33,11 +32,7 @@ function App() {
     },
     {
       path: "/products",
-      element: (
-        <Protected>
-          <Products />
-        </Protected>
-      ),
+      element: <Products />,
     },
     {
       path: "/register",
