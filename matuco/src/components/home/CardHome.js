@@ -1,7 +1,7 @@
 import React from "react";
 import "./CardHome.css";
 
-const CardHome = ({product}) => {
+const CardHome = ({ product }) => {
   return (
     <div className="container">
       <div className="box">
@@ -9,7 +9,11 @@ const CardHome = ({product}) => {
         <div>
           <strong>{product.type}</strong>
           <p>${product.price}</p>
-          <button type="button" className="btn btn-outline-warning btn-sm w-100">Ver Producto</button>
+          <div className="d-flex justify-content-center">
+          <button type="button" className="btn btn-warning">
+            Ver Producto
+          </button>
+          </div>
         </div>
       </div>
     </div>
