@@ -6,10 +6,16 @@ import Footer from "../footer/Footer";
 import { useNavigate } from "react-router";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { CartContext } from "../../services/shoppingCartContext/ShoppingCart.context";
+import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
+import { useFetchOrders } from "../../hooks/useFetchOrders";
 
 const CartContainer = () => {
   const { theme } = useContext(ThemeContext);
   const [cart, setCart] = useContext(CartContext);
+  const { user } = useContext(AuthenticationContext);
+
+  const apiUrl = "https://matuco-fake-api.onrender.com/orders";
+  const { orders, setOrders, error } = useFetchOrders(apiUrl);
 
   const navigate = useNavigate();
 
@@ -29,6 +35,13 @@ const CartContainer = () => {
     );
 
     if (confirmPurchase) {
+      const newOrderId =
+        orders.length > 0 ? orders[orders.length - 1].id + 1 : 1;
+      const newOrder = {
+        id: newOrderId,
+        email: user.email,
+        cart: localStorage.getItem("cart"),
+      };
       setCart([]);
       alert("Compra finalizada. Gracias!");
     }

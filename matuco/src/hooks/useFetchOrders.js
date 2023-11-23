@@ -1,8 +1,8 @@
 import { useState, useEffect, useContext } from "react";
 import { APIContext } from "../services/apiContext/API.context";
 
-export const useFetchUsers = (url) => {
-  const [users, setUsers] = useState([]);
+export const useFetchOrders = (url) => {
+  const [orders, setOrders] = useState([]);
   const [error, setError] = useState(null);
   const { toggleLoading } = useContext(APIContext);
 
@@ -21,7 +21,7 @@ export const useFetchUsers = (url) => {
       })
       .then((data) => {
         toggleLoading(false);
-        setUsers(data);
+        setOrders(data);
       })
       .catch((err) => {
         toggleLoading(false);
@@ -29,5 +29,5 @@ export const useFetchUsers = (url) => {
       });
   }, [url]);
 
-  return { users, setUsers, error };
+  return { orders, setOrders, error };
 };
