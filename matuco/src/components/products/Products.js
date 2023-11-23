@@ -41,10 +41,17 @@ const Products = () => {
     <div>
       {user === null ? (
         <>
-          <div className={`${theme === "DARK" && "dark-theme"} min-vh-100`}>
+          <div className={`${theme === "DARK" && "dark-theme"}`}>
             <NavBar />
             <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
-              <p>
+              <div>
+                <img
+                  src="../assets/detective.png"
+                  alt="sherlock"
+                  className="img-custom"
+                />
+              </div>
+              <p className="mt-5">
                 Para poder ver los productos inicie sesion! por el siguiente
                 boton te enviara a iniciar sesion con tu cuenta!
               </p>
@@ -57,15 +64,11 @@ const Products = () => {
                       : "btn btn-outline-dark btn-sm p-2 m-2 w-100"
                   }`}
                 >
-                  inicie sesion
+                  Inicie Sesion
                 </button>
               </div>
               <div>
-                <a
-                  onClick={navigateRegisterHandler}
-                  href="#"
-                  class="link-primary"
-                >
+                <a onClick={navigateRegisterHandler} class="link-primary">
                   No tienes una cuenta? createla aqui!
                 </a>
               </div>

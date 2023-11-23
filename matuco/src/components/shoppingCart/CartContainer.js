@@ -40,10 +40,37 @@ const CartContainer = () => {
       const newOrder = {
         id: newOrderId,
         email: user.email,
-        cart: localStorage.getItem("cart"),
+        cart: cart.map((product) => ({
+          productId: product.id,
+          productPrice: product.price,
+          quantityProduct: product.quantity,
+          subTotalPrice: product.quantity * product.price,
+        })),
+        totalPrice: totalPrice,
+        status: false,
       };
-      setCart([]);
-      alert("Compra finalizada. Gracias!");
+      fetch("https://matuco-fake-api.onrender.com/orders", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newOrder),
+      })
+        .then((response) => {
+          if (response) return response.json();
+          else {
+            throw new Error("La respuesta tuvo algunos errores");
+          }
+        })
+        .then((newOrderData) => {
+          setOrders([...orders, newOrderData]);
+          alert("Compra finalizada. Gracias!");
+          localStorage.removeItem("cart")
+        });
+      
+       setCart([])
+      navigate("/products")
+      
     }
   };
 
@@ -85,19 +112,6 @@ const CartContainer = () => {
           </div>
         ) : (
           <div className="table-container min-vh-100 pt-5">
-            <div className="d-flex align-items-center justify-content-center">
-              <button
-                className={`${
-                  theme === "DARK"
-                    ? "btn btn-outline-light btn-sm p-2 m-2"
-                    : "btn btn-outline-dark btn-sm p-2 m-2"
-                }`}
-                type="button"
-                onClick={navigateProductsHandler}
-              >
-                Volver a productos
-              </button>
-            </div>
             <div>
               <table
                 className={`${

@@ -1,15 +1,18 @@
 import React from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
+import { APIContext } from "../../services/apiContext/API.context";
 
 import "./Home.css";
 
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import CardHomProducts from "./CardHomProducts";
+import Loaders from "../ui/loaders/Loaders";
 
 const Home = () => {
   const { theme } = useContext(ThemeContext);
+  const { isLoading } = useContext(APIContext);
   return (
     <>
       <NavBar />
@@ -40,7 +43,8 @@ const Home = () => {
           </div>
           <div className="mt-5">
             <h3 className="text-center">Productos destacados</h3>
-            <div>
+            <div className="d-flex align-items-center justify-content-center">
+              {isLoading && <Loaders className="justify-content-center" />}
               <CardHomProducts />
             </div>
           </div>
