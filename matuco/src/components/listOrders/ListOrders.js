@@ -23,7 +23,7 @@ const ListOrders = () => {
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
-      {orders === null ? (
+      {orders ? (
         <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
           <h2> No hay compras realizadas, por favor vuelva a Productos</h2>
           <div className="d-flex align-items-center justify-content-center">
@@ -42,7 +42,7 @@ const ListOrders = () => {
         </div>
       ) : (
         <div>
-          
+
         </div>
       )}
     </div>
