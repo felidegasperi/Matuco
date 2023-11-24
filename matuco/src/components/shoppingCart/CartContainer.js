@@ -15,7 +15,7 @@ const CartContainer = () => {
   const { user } = useContext(AuthenticationContext);
 
   const apiUrl = "https://matuco-fake-api.onrender.com/orders";
-  const { orders, setOrders, error } = useFetchOrders(apiUrl);
+  const { orders, setOrders } = useFetchOrders(apiUrl);
 
   const navigate = useNavigate();
 

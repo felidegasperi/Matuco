@@ -53,7 +53,7 @@ const ListOrders = () => {
             <thead>
               <tr>
                 <th>ID de compra</th>
-                <th>Email</th>
+                <th>Email comprador</th>
                 <th>Productos</th>
                 <th>Precio total</th>
                 <th>Opciones</th>
@@ -62,33 +62,23 @@ const ListOrders = () => {
             {isLoading && <Loaders />}
             <tbody>
               {orders.map((order) => (
-                <tr>
+                <tr key={order.id}>
                   <td>{order.id}</td>
                   <td>{order.email}</td>
-                  <td>{order.cart}</td>
+                  <td>
+                    <ul>
+                      {order.cart.map((product) => (
+                        <li key={product.productId}>
+                          {product.productName} - {product.quantityProduct}{" "}
+                          unidades - ${product.productPrice} por unidad
+                        </li>
+                      ))}
+                    </ul>
+                  </td>
                   <td>{order.totalPrice}</td>
-                  {/* <td>
-                    <button
-                      className="btn"
-                      // onClick={() => editProductHandler()}
-                    >
-                      {theme === "DARK" ? (
-                        <MdOutlineModeEdit color="white" />
-                      ) : (
-                        <MdModeEdit />
-                      )}
-                    </button>
-                    <button
-                      className="btn"
-                      // onClick={() => deleteProductHandler()}
-                    >
-                      {theme === "DARK" ? (
-                        <TiDeleteOutline color="white" />
-                      ) : (
-                        <TiDelete />
-                      )}
-                    </button>
-                  </td> */}
+                  <td>
+                    {order.status === false ? "No entregado" : "Entregado"}
+                  </td>
                 </tr>
               ))}
             </tbody>

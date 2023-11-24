@@ -9,7 +9,7 @@ const OrdersContainer = () => {
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
-      <div className="min-vh-100">
+      <div className={`${theme === "DARK" && "dark"}`}>
         <div>
           <ListOrders />
         </div>
