@@ -109,7 +109,7 @@ const RegisterForm = ({ users, onSavedUser }) => {
 
       onSavedUser(user);
       handleLogin(user);
-      navigate("/home");
+      navigate("/products");
     }
   };
   return (

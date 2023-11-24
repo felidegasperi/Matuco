@@ -8,11 +8,13 @@ import Protected from "./components/security/protected/Protected";
 import UserContainer from "./components/listUsers/UserContainer";
 import ProductContainer from "./components/listProducts/ProductContainer";
 import CartContainer from "./components/shoppingCart/CartContainer";
+import ListOrders from "./components/listOrders/ListOrders";
 
 import { Navigate, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "./services/themeContext/Theme.context";
+import OrdersContainer from "./components/listOrders/OrdersContainer";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -59,6 +61,14 @@ function App() {
       element: (
         <Protected>
           <ProductContainer />
+        </Protected>
+      ),
+    },
+    {
+      path: "/listOrders",
+      element: (
+        <Protected>
+          <OrdersContainer />
         </Protected>
       ),
     },

@@ -59,7 +59,7 @@ const Register = () => {
     <>
       <div className={`${theme === "DARK" && "dark-theme"}`}>
         <NavBar />
-        <div className="container-fluid ml-0">
+        <div className="container-fluid ml-0 min-vh-100">
           <div className="row ml-0">
             <div className="col-md-6 d-flex align-items-center justify-content-center ml-0 ">
               <img

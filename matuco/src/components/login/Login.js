@@ -13,7 +13,7 @@ import Footer from "../footer/Footer";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState("")
+  const [errors, setErrors] = useState("");
 
   const navigate = useNavigate();
   const { theme } = useContext(ThemeContext);
@@ -39,15 +39,13 @@ const Login = () => {
       (user) => user.email === email && user.password === password
     );
 
-    const userValid = users.find(
-      (user) => user.isActive === true 
-    );
+    const userValid = users.find((user) => user.isActive === true);
 
     if (user && userValid) {
       alert("Usuario ingresado correctamente");
       handleLogin(user);
       console.log(user);
-      navigate("/");
+      navigate("/products");
     } else {
       setErrors("Error al iniciar sesion, intente nuevamente.");
     }
@@ -56,7 +54,7 @@ const Login = () => {
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
-      <div className="container-fluid ml-0">
+      <div className="container-fluid ml-0 min-vh-100">
         <div className="row ml-0">
           <div className="col-md-6 d-flex align-items-center justify-content-center ml-0 ">
             <img

@@ -36,8 +36,8 @@ const NavBar = () => {
     navigate("/register");
   };
 
-  const NavigateSettingsHandler = () => {
-    navigate("/settings");
+  const NavigateOrdersHandler = () => {
+    navigate("/listOrders");
   };
 
   const NavigateProductHandler = () => {
@@ -118,6 +118,19 @@ const NavBar = () => {
             <Col className="d-flex">
               {user !== null ? (
                 <>
+                  {user.type === "client" && (
+                    <button
+                      className={`${
+                        theme === "DARK"
+                          ? "btn btn-outline-light btn-sm p-2 m-2 w-100"
+                          : "btn btn-outline-dark btn-sm p-2 m-2 w-100"
+                      }`}
+                      type="button"
+                      onClick={NavigateOrdersHandler}
+                    >
+                      Compras
+                    </button>
+                  )}
                   {user.type === "owner" && (
                     <button
                       className={`${
