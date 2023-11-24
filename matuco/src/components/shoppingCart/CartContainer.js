@@ -37,24 +37,37 @@ const CartContainer = () => {
     if (confirmPurchase) {
       const newOrderId =
         orders.length > 0 ? orders[orders.length - 1].id + 1 : 1;
-      const newOrder = {
-        id: newOrderId,
-        email: user.email,
-        cart: cart.map((product) => ({
-          productId: product.id,
-          productPrice: product.price,
-          quantityProduct: product.quantity,
-          subTotalPrice: product.quantity * product.price,
-        })),
-        totalPrice: totalPrice,
-        status: false,
-      };
+      // const newOrder = {
+      //   id: newOrderId,
+      //   email: user.email,
+      //   cart: cart.map((product) => ({
+      //     productId: product.id,
+      //     productName: product.name,
+      //     productPrice: product.price,
+      //     quantityProduct: product.quantity,
+      //     subTotalPrice: product.quantity * product.price,
+      //   })),
+      //   totalPrice: totalPrice,
+      //   status: false,
+      // };
       fetch("https://matuco-fake-api.onrender.com/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(newOrder),
+        body: JSON.stringify({
+          id: newOrderId,
+          email: user.email,
+          cart: cart.map((item) => ({
+            productId: item.id,
+            productName: item.name,
+            productPrice: item.price,
+            quantityProduct: item.quantity,
+            subTotalPrice: item.quantity * item.price,
+          })),
+          totalPrice: totalPrice,
+          status: false,
+        }),
       })
         .then((response) => {
           if (response) return response.json();
@@ -65,12 +78,11 @@ const CartContainer = () => {
         .then((newOrderData) => {
           setOrders([...orders, newOrderData]);
           alert("Compra finalizada. Gracias!");
-          localStorage.removeItem("cart")
+          localStorage.removeItem("cart");
         });
-      
-       setCart([])
-      navigate("/products")
-      
+
+      setCart([]);
+      navigate("/products");
     }
   };
 
