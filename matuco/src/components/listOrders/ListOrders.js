@@ -2,61 +2,21 @@ import React, { useContext } from "react";
 
 import "./ListOrders.css";
 
-import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
-// import { useFetchOrders } from "../../hooks/useFetchOrders";
 import { useNavigate } from "react-router-dom";
 import { APIContext } from "../../services/apiContext/API.context";
+import { ThemeContext } from "../../services/themeContext/Theme.context";
+import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 import Loaders from "../ui/loaders/Loaders";
 
-const ListOrders = ({ orders }) => {
+const ListOrders = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
   const navigate = useNavigate();
 
-  const { theme } = useContext(AuthenticationContext);
+  const { theme } = useContext(ThemeContext);
   const { isLoading } = useContext(APIContext);
-
-  // const apiUrl = "https://matuco-fake-api.onrender.com/orders";
-  // const { orders, error } = useFetchOrders(apiUrl);
-
-  // if (error) {
-  //   return <p>Error: {error.message}</p>;
-  // }
+  const { user } = useContext(AuthenticationContext);
 
   const navigateProductsHandler = () => {
     navigate("/products");
-  };
-
-  const changeStatusHandler = () => {
-    const confirmDelete = window.confirm(
-      "¿Estás seguro de que deseas cambiar el estado del pedido?"
-    );
-
-    //todavia esta condicion no hace nada, no apretar
-    // if (confirmDelete) {
-    //   //realiza el cambio de estado, de no entregado a entregado y viseversa
-    //   fetch(`https://matuco-fake-api.onrender.com/orders/${id}`, {
-    //     method: "PATCH",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     //falta condicional para ponerlo en true si esta en false y viseversa
-    //     body: JSON.stringify({ status: true }),
-    //   })
-    //     .then((response) => {
-    //       if (!response.ok) {
-    //         throw new Error("Error al eliminar el usuario");
-    //       }
-    //        setUsers((PrevUsers) =>
-    //          PrevUsers.map((user) =>
-    //            user.id === id ? { ...user, isActive: false } : user
-    //          )
-    //        );
-    //       alert("Se ha elimiado el usuario con exito!");
-    //     })
-    //     .catch((err) => {
-    //       console.Error("Error", err);
-    //       console.log("Error al eliminar el usuario");
-    //     });
-    // }
   };
 
   return (
@@ -89,8 +49,8 @@ const ListOrders = ({ orders }) => {
           >
             <thead>
               <tr>
-                <th>ID de compra</th>
-                <th>Email comprador</th>
+                {user.type !== "client" ? <th>ID de compra</th> : ""}
+                {user.type !== "client" ? <th>Email del comprador</th> : ""}
                 <th>Productos</th>
                 <th>Precio total</th>
                 <th>Estado</th>
@@ -98,30 +58,103 @@ const ListOrders = ({ orders }) => {
             </thead>
             {isLoading && <Loaders />}
             <tbody>
-              {orders.map((order) => (
-                <tr key={order.id}>
-                  <td>{order.id}</td>
-                  <td>{order.email}</td>
-                  <td>
-                    <ul>
-                      {order.cart.map((product) => (
-                        <li key={product.productId}>
-                          {product.productName} - {product.quantityProduct}{" "}
-                          unidades - ${product.productPrice} por unidad
-                        </li>
-                      ))}
-                    </ul>
-                  </td>
-                  <td>${order.totalPrice}</td>
-                  <td>
-                    {order.status === false ? "No entregado" : "Entregado"}
-                    <button onClick={() => changeStatusHandler()}>
-                      Cambiar estado a{" "}
-                      {order.status === false ? "Entregado" : "No entregado"}
-                    </button>
-                  </td>
-                </tr>
-              ))}
+              {/* condicional donde va a mostart el cuerpo de la tabla dependiendo 
+              que tipo de usuario es ( en este caso, muestra lo siguiente a usuarios que no son clientes ) */}
+              {user.type !== "client"
+                ? orders.map((order) => (
+                    <tr key={order.id}>
+                      <td>{order.id}</td>
+                      <td>{order.email}</td>
+                      <td>
+                        <ul>
+                          {order.cart.map((product) => (
+                            <li key={product.productId}>
+                              {product.productName} - {product.quantityProduct}{" "}
+                              unidades - ${product.productPrice} por unidad
+                            </li>
+                          ))}
+                        </ul>
+                      </td>
+                      <td>${order.totalPrice}</td>
+                      <td>
+                        {order.status === false ? "No entregado" : "Entregado"}
+                        <div>
+                          {order.status === false ? (
+                            <>
+                              <button
+                                className={`${
+                                  theme === "DARK"
+                                    ? "btn btn-outline-light btn-sm p-2 m-2"
+                                    : "btn btn-outline-dark btn-sm p-2 m-2"
+                                }`}
+                                type="button"
+                                onClick={() => changeStatusHandler(order.id)}
+                              >
+                                Cambiar estado a{" "}
+                                {order.status === false
+                                  ? "Entregado"
+                                  : "No entregado"}
+                              </button>
+                              <button
+                                className={`${
+                                  theme === "DARK"
+                                    ? "btn btn-outline-light btn-sm p-2 m-2"
+                                    : "btn btn-outline-dark btn-sm p-2 m-2"
+                                }`}
+                                type="button"
+                                onClick={() => cancelOrderHandler(order.id)}
+                              >
+                                Cancelar compra
+                              </button>
+                            </>
+                          ) : (
+                            ""
+                          )}
+                        </div>
+                      </td>
+                    </tr>
+                  ))
+                : // else donde va a mostrar el cuerpo de la tabla para solamente los clientes
+                  orders
+                    .filter((order) => order.email === user.email)
+                    .map((order) => (
+                      <tr key={order.id}>
+                        <td>
+                          <ul>
+                            {order.cart.map((product) => (
+                              <li key={product.productId}>
+                                {product.productName} -{" "}
+                                {product.quantityProduct} unidades - $
+                                {product.productPrice} por unidad
+                              </li>
+                            ))}
+                          </ul>
+                        </td>
+                        <td>${order.totalPrice}</td>
+                        <td>
+                          {order.status === false
+                            ? "No entregado"
+                            : "Entregado"}
+                          <div>
+                            {order.status === false ? (
+                              <button
+                                className={`${
+                                  theme === "DARK"
+                                    ? "btn btn-outline-light btn-sm p-2 m-2"
+                                    : "btn btn-outline-dark btn-sm p-2 m-2"
+                                }`}
+                                type="button"
+                                onClick={() => cancelOrderHandler(order.id)}
+                              >
+                                Cancelar compra
+                              </button>
+                            ) : (
+                              ""
+                            )}
+                          </div>
+                        </td>
+                      </tr>
+                    ))}
             </tbody>
           </table>
         </div>
