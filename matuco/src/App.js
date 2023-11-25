@@ -12,7 +12,7 @@ import { Navigate, RouterProvider } from "react-router";
 import { createBrowserRouter } from "react-router-dom";
 import { useContext } from "react";
 import { ThemeContext } from "./services/themeContext/Theme.context";
-import OrdersContainer from "./components/listOrders/OrdersContainer";
+import OrderContainer from "./components/listOrder/OrderContainer";
 
 function App() {
   const { theme } = useContext(ThemeContext);
@@ -66,7 +66,7 @@ function App() {
       path: "/listOrders",
       element: (
         <Protected>
-          <OrdersContainer />
+          <OrderContainer />
         </Protected>
       ),
     },

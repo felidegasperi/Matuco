@@ -1,11 +1,12 @@
 import React, { useContext } from "react";
+
+import { ThemeContext } from "../../services/themeContext/Theme.context";
+import { useFetchOrders } from "../../hooks/useFetchOrders";
+import ListOrder from "./ListOrder";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
-import ListOrders from "./ListOrders";
-import { useFetchOrders } from "../../hooks/useFetchOrders";
-import { ThemeContext } from "../../services/themeContext/Theme.context";
 
-const OrdersContainer = () => {
+const OrderContainer = () => {
   const { theme } = useContext(ThemeContext);
 
   const apiUrl = "https://matuco-fake-api.onrender.com/orders";
@@ -28,7 +29,6 @@ const OrdersContainer = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        //falta condicional para ponerlo en true si esta en false y viseversa
         body: JSON.stringify({ status: true }),
       })
         .then((response) => {
@@ -64,7 +64,7 @@ const OrdersContainer = () => {
       <NavBar />
       <div className={`${theme === "DARK" && "dark"}`}>
         <div>
-          <ListOrders
+          <ListOrder
             orders={orders}
             changeStatusHandler={changeStatusHandler}
             cancelOrderHandler={cancelOrderHandler}
@@ -76,4 +76,4 @@ const OrdersContainer = () => {
   );
 };
 
-export default OrdersContainer;
+export default OrderContainer;

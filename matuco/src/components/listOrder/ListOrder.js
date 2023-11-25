@@ -3,12 +3,12 @@ import React, { useContext } from "react";
 import "./ListOrders.css";
 
 import { useNavigate } from "react-router-dom";
+import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 import { APIContext } from "../../services/apiContext/API.context";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
-import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 import Loaders from "../ui/loaders/Loaders";
 
-const ListOrders = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
+const ListOrder = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
   const navigate = useNavigate();
 
   const { theme } = useContext(ThemeContext);
@@ -21,25 +21,27 @@ const ListOrders = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
-      {orders === false ? (
-        <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
-          <h2> No hay compras realizadas, por favor vuelva a Productos</h2>
-          <div className="d-flex align-items-center justify-content-center">
-            <button
-              className={`${
-                theme === "DARK"
-                  ? "btn btn-outline-light btn-sm p-2 m-2"
-                  : "btn btn-outline-dark btn-sm p-2 m-2"
-              }`}
-              type="button"
-              onClick={navigateProductsHandler}
-            >
-              Volver a productos
-            </button>
+      {orders.length === 0 ? (
+        <div>
+          <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
+            <h2> No hay compras realizadas, por favor vuelva a Productos</h2>
+            <div className="d-flex align-items-center justify-content-center">
+              <button
+                className={`${
+                  theme === "DARK"
+                    ? "btn btn-outline-light btn-sm p-2 m-2"
+                    : "btn btn-outline-dark btn-sm p-2 m-2"
+                }`}
+                type="button"
+                onClick={navigateProductsHandler}
+              >
+                Volver a productos
+              </button>
+            </div>
           </div>
         </div>
       ) : (
-        <div className="table-container">
+        <div className="table-container min-vh-100">
           <table
             className={`${
               theme === "DARK"
@@ -163,4 +165,4 @@ const ListOrders = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
   );
 };
 
-export default ListOrders;
+export default ListOrder;
