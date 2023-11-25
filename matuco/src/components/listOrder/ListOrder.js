@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 
-import "./ListOrders.css";
+import "./ListOrder.css";
 
 import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
@@ -21,7 +21,7 @@ const ListOrder = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
-      {orders.length === 0 ? (
+      {orders === false ? (
         <div>
           <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
             <h2> No hay compras realizadas, por favor vuelva a Productos</h2>
