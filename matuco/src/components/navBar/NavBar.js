@@ -77,10 +77,7 @@ const NavBar = () => {
         }`}
       >
         <div class="container fs-5">
-          <a
-            class="navbar-brand px-5 "
-            onClick={NavigateHomeHandler}
-          >
+          <a class="navbar-brand px-5 " onClick={NavigateHomeHandler}>
             {theme === "DARK" ? (
               <>
                 <img
@@ -109,14 +106,20 @@ const NavBar = () => {
                 Productos
               </a>
             </Col>
+
             <Col className="nav-item  py-4">
               {user && (
-                <a className="nav-link" onClick={NavigateCartHandler}>
-                  Carrito{" "}
-                  {user && <span className="cart-count">{quantity}</span>}
-                </a>
+                <>
+                  {user.type !== "superAdmin" && (
+                    <a className="nav-link" onClick={NavigateCartHandler}>
+                      Carrito{" "}
+                      {user && <span className="cart-count">{quantity}</span>}
+                    </a>
+                  )}
+                </>
               )}
             </Col>
+
             <Col className="mx-2 py-4">
               {user && <p className="fs-6">Hola {user.username}!</p>}
             </Col>
