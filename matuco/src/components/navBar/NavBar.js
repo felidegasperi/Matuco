@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
+/* eslint-disable jsx-a11y/alt-text */
 import React, { useContext } from "react";
 import { useNavigate } from "react-router";
 import { Col, Row } from "react-bootstrap";
