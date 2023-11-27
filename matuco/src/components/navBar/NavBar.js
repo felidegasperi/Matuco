@@ -76,8 +76,11 @@ const NavBar = () => {
             : "navbar navbar-expand-lg navbar-light bg-light border-bottom"
         }`}
       >
-        <div class="container fw-bold fs-5">
-          <a class="navbar-brand" onClick={NavigateHomeHandler}>
+        <div class="container fs-5">
+          <a
+            class="navbar-brand px-5 "
+            onClick={NavigateHomeHandler}
+          >
             {theme === "DARK" ? (
               <>
                 <img
@@ -96,17 +99,17 @@ const NavBar = () => {
           </a>
 
           <Row className="navbar-nav mb-2 mb-lg-auto p-2">
-            <Col className="nav-item py-2">
+            <Col className="nav-item py-4">
               <a className="nav-link" onClick={NavigateHomeHandler}>
                 Inicio
               </a>
             </Col>
-            <Col className="nav-item  py-2">
+            <Col className="nav-item  py-4">
               <a className="nav-link " onClick={NavigateProductHandler}>
                 Productos
               </a>
             </Col>
-            <Col className="nav-item  py-2">
+            <Col className="nav-item  py-4">
               {user && (
                 <a className="nav-link" onClick={NavigateCartHandler}>
                   Carrito{" "}
@@ -114,7 +117,9 @@ const NavBar = () => {
                 </a>
               )}
             </Col>
-            <Col className="mx-2 ">{user && <p>Hola {user.username}!</p>}</Col>
+            <Col className="mx-2 py-4">
+              {user && <p className="fs-6">Hola {user.username}!</p>}
+            </Col>
             <Col className="d-flex">
               {user !== null ? (
                 <>
@@ -132,21 +137,51 @@ const NavBar = () => {
                     </button>
                   )}
                   {user.type === "owner" && (
-                    <button
-                      className={`${
-                        theme === "DARK"
-                          ? "btn btn-outline-light btn-sm p-2 m-2 w-100"
-                          : "btn btn-outline-dark btn-sm p-2 m-2 w-100"
-                      }`}
-                      type="button"
-                      onClick={NavigateListProductHandler}
-                    >
-                      Lista de productos
-                    </button>
+                    <div className="d-flex">
+                      <div className="d-flex">
+                        <button
+                          className={`${
+                            theme === "DARK"
+                              ? "btn btn-outline-light btn-sm p-2 m-2 w-100"
+                              : "btn btn-outline-dark btn-sm p-2 m-2 w-100"
+                          }`}
+                          type="button"
+                          onClick={NavigateOrdersHandler}
+                        >
+                          Lista de ventas
+                        </button>
+                      </div>
+                      <div className="d-flex">
+                        <button
+                          className={`${
+                            theme === "DARK"
+                              ? "btn btn-outline-light btn-sm p-2 m-2 w-100"
+                              : "btn btn-outline-dark btn-sm p-2 m-2 w-100"
+                          }`}
+                          type="button"
+                          onClick={NavigateListProductHandler}
+                        >
+                          Lista de productos
+                        </button>
+                      </div>
+                    </div>
                   )}
 
                   {user.type === "superAdmin" && (
                     <div className="d-flex">
+                      <div className="d-flex">
+                        <button
+                          className={`${
+                            theme === "DARK"
+                              ? "btn btn-outline-light btn-sm p-2 m-2 w-100"
+                              : "btn btn-outline-dark btn-sm p-2 m-2 w-100"
+                          }`}
+                          type="button"
+                          onClick={NavigateOrdersHandler}
+                        >
+                          Lista de ventas
+                        </button>
+                      </div>
                       <div className="d-flex">
                         <button
                           className={`${
