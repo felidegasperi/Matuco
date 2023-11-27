@@ -86,22 +86,19 @@ const ListOrder = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
                               <button
                                 className={`${
                                   theme === "DARK"
-                                    ? "btn btn-outline-light btn-sm p-2 m-2"
-                                    : "btn btn-outline-dark btn-sm p-2 m-2"
+                                    ? "btn btn-outline-success btn-sm p-2 m-2"
+                                    : "btn btn-outline-success btn-sm p-2 m-2"
                                 }`}
                                 type="button"
                                 onClick={() => changeStatusHandler(order.id)}
                               >
-                                Cambiar estado a{" "}
-                                {order.status === false
-                                  ? "Entregado"
-                                  : "No entregado"}
+                                Cambiar estado a entregado
                               </button>
                               <button
                                 className={`${
                                   theme === "DARK"
-                                    ? "btn btn-outline-light btn-sm p-2 m-2"
-                                    : "btn btn-outline-dark btn-sm p-2 m-2"
+                                    ? "btn btn-outline-danger btn-sm p-2 m-2"
+                                    : "btn btn-outline-danger btn-sm p-2 m-2"
                                 }`}
                                 type="button"
                                 onClick={() => cancelOrderHandler(order.id)}
@@ -142,8 +139,8 @@ const ListOrder = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
                               <button
                                 className={`${
                                   theme === "DARK"
-                                    ? "btn btn-outline-light btn-sm p-2 m-2"
-                                    : "btn btn-outline-dark btn-sm p-2 m-2"
+                                    ? "btn btn-outline-danger btn-sm p-2 m-2"
+                                    : "btn btn-outline-danger btn-sm p-2 m-2"
                                 }`}
                                 type="button"
                                 onClick={() => cancelOrderHandler(order.id)}
