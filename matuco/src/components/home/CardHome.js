@@ -11,7 +11,7 @@ const CardHome = ({ product }) => {
   return (
     <div className="container">
       <div className="box">
-        <span className="title">{product.name}</span>
+        <span className="title fs-4">{product.name}</span>
         <div>
           <strong>{product.type}</strong>
           <p>${product.price}</p>

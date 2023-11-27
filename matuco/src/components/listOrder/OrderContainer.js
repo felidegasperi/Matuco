@@ -49,13 +49,27 @@ const OrderContainer = () => {
     }
   };
 
-  const cancelOrderHandler = () => {
+  const cancelOrderHandler = (id) => {
     const confirmDelete = window.confirm(
       "¿Estás seguro de que deseas cancelar el pedido?"
     );
 
     //valida que hayamos dado click en si, para seguir
     if (confirmDelete) {
+      fetch(`https://matuco-fake-api.onrender.com/orders/${id}`, {
+        method: "DELETE",
+      })
+        .then((response) => {
+          if (response.ok) {
+            alert("Pedido eliminado con exito");
+            setOrders((PrevOrders) =>
+              PrevOrders.filter((order) => order.id !== id)
+            );
+          } else {
+            throw new Error("No se pudo eliminar el pedido.");
+          }
+        })
+        .catch((err) => console.error(err));
     }
   };
 
