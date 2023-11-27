@@ -68,7 +68,6 @@ const AddProduct = () => {
             theme: "dark",
           });
           setProducts(newProductArray);
-          
         })
         .catch((error) => console.log(error));
     },
