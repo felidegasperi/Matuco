@@ -55,7 +55,6 @@ const Login = () => {
         progress: undefined,
         theme: "colored",
       });
-      alert("Usuario ingresado correctamente");
       handleLogin(user);
       console.log(user);
       navigate("/products");
@@ -120,11 +119,7 @@ const Login = () => {
                 </div>
                 <div className="text-danger">{errors}</div>
                 <div>
-                  <a
-                    href="#"
-                    class="link-primary"
-                    onClick={NavigateRegisterHandler}
-                  >
+                  <a className="link-primary" onClick={NavigateRegisterHandler}>
                     Deseas registrarte? Clickea aqui!
                   </a>
                 </div>

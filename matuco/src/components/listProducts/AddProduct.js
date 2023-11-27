@@ -2,6 +2,8 @@
 import React, { useCallback, useContext, useState } from "react";
 
 import FormProduct from "./FormProduct";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { useNavigate } from "react-router-dom";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
@@ -55,8 +57,18 @@ const AddProduct = () => {
             { ...product, id: newProductId },
             ...products,
           ];
+          toast.success("Se agrego correctamente el producto!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
           setProducts(newProductArray);
-          alert("Se agrego correctamente el producto!");
+          
         })
         .catch((error) => console.log(error));
     },

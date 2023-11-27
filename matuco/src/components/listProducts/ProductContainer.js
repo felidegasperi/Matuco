@@ -4,6 +4,9 @@ import ListProducts from "./ListProducts";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useFetchProducts } from "../../hooks/useFetchProducts";
 
@@ -31,11 +34,31 @@ const ProductContainer = () => {
       })
         .then((response) => {
           if (response.ok) {
-            alert("Producto eliminado con exito");
+            toast.success("Proucto eliminado con exito", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
+
             setProducts((prevProducts) =>
               prevProducts.filter((product) => product.id !== id)
             );
           } else {
+            toast.warn("No se pudo eliminar", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
             throw new Error("No se pudo eliminar el producto.");
           }
         })
@@ -76,14 +99,39 @@ const ProductContainer = () => {
       })
       .then((updatedProduct) => {
         // Actualizar la lista de productos con el producto actualizado
+
         setProducts((prevProducts) =>
           prevProducts.map((product) =>
             product.id === updatedProduct.id ? updatedProduct : product
           )
         );
+        toast.success("Actualizado el producto correctamente", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
+        setSelectedProduct(null);
       })
       .catch((err) => {
         console.error("Error", err);
+        toast.warn(
+          "Error al actualizar el producto. Por favor, inténtelo de nuevo.",
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          }
+        );
         console.log(
           "Error al actualizar el producto. Por favor, inténtelo de nuevo."
         );
@@ -93,6 +141,7 @@ const ProductContainer = () => {
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
+      <ToastContainer />
       <div className="min-vh-100">
         <ListProducts
           products={products}

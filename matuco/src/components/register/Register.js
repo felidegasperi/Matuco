@@ -1,6 +1,9 @@
 /* eslint-disable react-hooks/rules-of-hooks */
 import React, { useCallback, useContext } from "react";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import "./Register.css";
 
 import Footer from "../footer/Footer";
@@ -9,6 +12,7 @@ import RegisterForm from "./RegisterForm";
 
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useFetchUsers } from "../../hooks/useFetchUsers";
+
 
 const Register = () => {
   const { theme } = useContext(ThemeContext);
@@ -49,6 +53,16 @@ const Register = () => {
           console.log("user en then", user);
           const newUserArray = [{ ...user, id: newUserId }, ...users];
           setUsers(newUserArray);
+          toast.success("felicitaciones ya estas registrado!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         })
         .catch((error) => console.log(error));
     },
@@ -59,6 +73,7 @@ const Register = () => {
     <>
       <div className={`${theme === "DARK" && "dark-theme"}`}>
         <NavBar />
+        <ToastContainer/>
         <div className="container-fluid ml-0 min-vh-100">
           <div className="row ml-0">
             <div className="col-md-6 d-flex align-items-center justify-content-center ml-0 ">

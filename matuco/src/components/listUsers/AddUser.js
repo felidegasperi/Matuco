@@ -1,7 +1,10 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import React, { useCallback, useContext, useState } from "react";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useNavigate } from "react-router-dom";
 import { useFetchUsers } from "../../hooks/useFetchUsers";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import UserForm from "./UserForm";
 
 const AddUser = () => {
@@ -45,11 +48,20 @@ const AddUser = () => {
           console.log("user en then", user);
           const newUserArray = [{ ...user, id: newUserId }, ...users];
           setUsers(newUserArray);
-          alert("Se creo el usuario correctamente");
+          toast.success("Se creo el usuario correctamente.", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         })
         .catch((error) => console.log(error));
     },
-    [users]
+    [setUsers, users]
   );
 
   const onValidHandler = () => {
@@ -59,6 +71,7 @@ const AddUser = () => {
 
   return (
     <div className="row justify-content-center mt-5 p-5">
+      <ToastContainer />
       <div className=" col-1 d-flex align-items-center">
         {isValid === false && (
           <button

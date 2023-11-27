@@ -171,16 +171,6 @@ const RegisterForm = ({ users, onSavedUser }) => {
         password: password,
         isActive: true,
       };
-      toast.success("Ingresado correctamente!", {
-        position: "top-center",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "colored",
-      });
 
       onSavedUser(user);
       handleLogin(user);
@@ -255,7 +245,7 @@ const RegisterForm = ({ users, onSavedUser }) => {
 
           <div className="text-danger">{error}</div>
           <div>
-            <a onClick={NavigateLoginHandler} href="#" class="link-primary">
+            <a onClick={NavigateLoginHandler} className="link-primary">
               Ya tienes una cuenta? Ingresa aqui!
             </a>
           </div>

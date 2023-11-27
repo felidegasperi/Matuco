@@ -3,6 +3,9 @@ import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import ListUsers from "./ListUsers";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useFetchUsers } from "../../hooks/useFetchUsers";
 
@@ -57,10 +60,29 @@ const UserContainer = () => {
               user.id === id ? { ...user, isActive: false } : user
             )
           );
-          alert("Se ha elimiado el usuario con exito!");
+          toast.success("Se ha elimiado el usuario con exito!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         })
         .catch((err) => {
           console.Error("Error", err);
+          toast.warn("Error al eliminar el usuario", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
           console.log("Error al eliminar el usuario");
         });
     }
@@ -71,16 +93,52 @@ const UserContainer = () => {
 
     // Realizar validaciones adicionales aquí
     if (!selectedUser.username || selectedUser.username.length <= 3) {
+      toast.error(
+        "Ingrese un nombre de usuario válido (mayor o igual a 4 caracteres)",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
       setErrors(
         "Ingrese un nombre de usuario válido (mayor o igual a 4 caracteres)"
       );
     }
 
     if (!selectedUser.email || validateEmail(selectedUser.email) === false) {
+      toast.error("Ingrese un correo electrónico válido", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setErrors("Ingrese un correo electrónico válido");
     }
 
     if (!selectedUser.password || selectedUser.password.length <= 7) {
+      toast.error(
+        "Ingrese una contraseña válida (mayor o igual a 8 caracteres)",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
       setErrors("Ingrese una contraseña válida (mayor o igual a 8 caracteres)");
     }
 
@@ -103,11 +161,33 @@ const UserContainer = () => {
             user.id === updatedUser.id ? updatedUser : user
           )
         );
-        alert("Se ha modificado el usuario con exito!");
+        toast.success("Se ha modificado el usuario con exito!", {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         setSelectedUser(null);
       })
       .catch((err) => {
         console.Error("Error", err);
+        toast.warn(
+          "Error al modificar el usuario. Por favor, intentelo de nuevo",
+          {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          }
+        );
         console.log(
           "Error al modificar el usuario. Por favor, intentelo de nuevo"
         );
@@ -118,6 +198,7 @@ const UserContainer = () => {
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
       <div className="min-vh-100">
+        <ToastContainer />
         <ListUsers
           users={users}
           deleteUserHandler={deleteUserHandler}

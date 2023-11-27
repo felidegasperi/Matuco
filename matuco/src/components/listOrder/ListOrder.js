@@ -1,8 +1,9 @@
 import React, { useContext } from "react";
 
+import { useNavigate } from "react-router-dom";
+
 import "./ListOrder.css";
 
-import { useNavigate } from "react-router-dom";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 import { APIContext } from "../../services/apiContext/API.context";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
@@ -30,7 +31,7 @@ const ListOrder = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
-      {!userDoesNotMatchOrders ? (
+      {!userDoesNotMatchOrders && user.type === "client" ? (
         <div>
           <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
             <h2> No hay compras realizadas, por favor vuelva a Productos</h2>

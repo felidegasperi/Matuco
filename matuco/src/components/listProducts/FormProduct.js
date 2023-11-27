@@ -1,5 +1,8 @@
 import React, { useContext, useRef, useState } from "react";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 
 const FormProduct = ({ onNewProductHandler, setIsValid }) => {
@@ -38,6 +41,16 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
       nameProductRef.current.focus();
       nameProductRef.current.style.borderColor = "red";
       nameProductRef.current.style.outline = "none";
+      toast.error("Debes ingresar un nombre valido.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Debes ingresar un nombre valido.");
     }
     if (
@@ -49,11 +62,31 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
       priceProductRef.current.focus();
       priceProductRef.current.style.borderColor = "red";
       priceProductRef.current.style.outline = "none";
+      toast.error("Debes ingresar un precio valido.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Debes ingresar un precio valido.");
     } else if (typeProductRef.current.value.length === 0) {
       typeProductRef.current.focus();
       typeProductRef.current.style.borderColor = "red";
       typeProductRef.current.style.outline = "none";
+      toast.error("Por favor ingresa un tipo de producto.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Por favor ingresa un tipo de producto.");
     } else {
       const newProduct = {
@@ -61,6 +94,16 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
         price: priceProduct,
         type: typeProduct,
       };
+      toast.success("Producto subido correctamente!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       onNewProductHandler(newProduct);
       setIsValid(false);
       console.log(newProduct);
@@ -69,6 +112,7 @@ const FormProduct = ({ onNewProductHandler, setIsValid }) => {
 
   return (
     <form className="border rounded-3 p-5 ">
+      <ToastContainer />
       <h2>Ingreso de un producto</h2>
       <div className="input-conteiner mt-3 mb-4">
         <label>Ingrese el nombre del producto:</label>

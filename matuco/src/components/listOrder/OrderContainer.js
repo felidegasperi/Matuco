@@ -1,7 +1,12 @@
 import React, { useContext } from "react";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import { ThemeContext } from "../../services/themeContext/Theme.context";
+
 import { useFetchOrders } from "../../hooks/useFetchOrders";
+
 import ListOrder from "./ListOrder";
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
@@ -40,10 +45,29 @@ const OrderContainer = () => {
               order.id === id ? { ...order, status: true } : order
             )
           );
-          alert("Se ha modicado correctamente el estado del pedido!");
+          toast.success("Se ha modicado correctamente el estado del pedido!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
         })
         .catch((err) => {
           console.Error("Error", err);
+          toast.error("Error al cambiar el estado del pedido", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
           console.log("Error al cambiar el estado del pedido");
         });
     }
@@ -61,21 +85,43 @@ const OrderContainer = () => {
       })
         .then((response) => {
           if (response.ok) {
-            alert("Pedido eliminado con exito");
             setOrders((PrevOrders) =>
               PrevOrders.filter((order) => order.id !== id)
             );
+            toast.warn("Pedido eliminado con exito", {
+              position: "top-center",
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
           } else {
             throw new Error("No se pudo eliminar el pedido.");
           }
         })
-        .catch((err) => console.error(err));
+        .catch((err) => {
+          toast.error("Error al eliminar la compra", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+          console.log(err);
+        });
     }
   };
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
+      <ToastContainer />
       <div className={`${theme === "DARK" && "dark"}`}>
         <div>
           <ListOrder

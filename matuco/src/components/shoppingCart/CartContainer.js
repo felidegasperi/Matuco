@@ -1,5 +1,8 @@
 import React, { useContext } from "react";
 
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 
@@ -65,7 +68,16 @@ const CartContainer = () => {
         })
         .then((newOrderData) => {
           setOrders([...orders, newOrderData]);
-          alert("Compra finalizada. Gracias!");
+          toast.success("Compra finalizada. Gracias!", {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
           localStorage.removeItem("cart");
         });
 
@@ -81,7 +93,16 @@ const CartContainer = () => {
 
     if (confirmEmptyCart) {
       setCart([]);
-      alert("Carrito eliminado");
+      toast.warn("Carrito eliminado!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   };
 
@@ -92,6 +113,7 @@ const CartContainer = () => {
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
+      <ToastContainer/>
       <div>
         {quantity === 0 ? (
           <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">

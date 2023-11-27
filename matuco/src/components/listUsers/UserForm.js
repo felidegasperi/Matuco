@@ -1,5 +1,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UserForm = ({ setIsValid, onNewUserHandler, users }) => {
   const [nameUser, setNameUser] = useState("");
@@ -55,31 +57,91 @@ const UserForm = ({ setIsValid, onNewUserHandler, users }) => {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
       emailRef.current.style.outline = "none";
+      toast.error("Credenciales incorrectas. Por favor, inténtalo de nuevo.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     } else if (typeUserRef.current.value === "") {
       typeUserRef.current.style.borderColor = "";
       typeUserRef.current.style.outline = "";
+      toast.error("Debe ingresar un tipo de usuario. Intentelo de nuevo.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Debe ingresar un tipo de usuario. Intentelo de nuevo");
     } else if (nameUserRef.current.value.length === 0) {
       nameUserRef.current.focus();
       nameUserRef.current.style.borderColor = "red";
       nameUserRef.current.style.outline = "none";
+      toast.error("Credenciales incorrectas. Por favor, inténtalo de nuevo.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     } else if (passwordUser.length === 0) {
       passwordUserRef.current.focus();
       passwordUserRef.current.style.borderColor = "red";
       passwordUserRef.current.style.outline = "none";
+      toast.error("Ingresar una contraseña", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
 
       setError("Ingresar una contraseña");
     } else if (passwordUser > 7) {
       passwordUserRef.current.focus();
       passwordUserRef.current.style.borderColor = "red";
       passwordUserRef.current.style.outline = "none";
+      toast.error("la contraseña debe tener 8 digitos o mas.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("la contraseña debe tener 8 digitos o mas.");
     } else if (emailValidation) {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
       emailRef.current.style.outline = "none";
+      toast.error("Email ya registrado, intente con otro email.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Email ya registrado, intente con otro email.");
     } else {
       const user = {
@@ -89,12 +151,14 @@ const UserForm = ({ setIsValid, onNewUserHandler, users }) => {
         password: passwordUser,
         isActive: true,
       };
+      
       onNewUserHandler(user);
       setIsValid(false);
     }
   };
   return (
     <form className="border rounded-3 p-5 ">
+      <ToastContainer />
       <h2>Ingrese un nuevo Usuario</h2>
       <div>
         <div className="input-conteiner mt-3 mb-4">
