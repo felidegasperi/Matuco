@@ -18,10 +18,19 @@ const ListOrder = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
   const navigateProductsHandler = () => {
     navigate("/products");
   };
+  // Verificar si hay un usuario almacenado en localStorage
+  const storedUser = localStorage.getItem("user");
+  const storedUserObject = storedUser ? JSON.parse(storedUser) : null;
+
+  // Verificar si el usuario almacenado no coincide con ninguna orden
+  const userDoesNotMatchOrders =
+    storedUserObject &&
+    orders &&
+    orders.some((order) => order.email === storedUserObject.email);
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
-      {orders === false ? (
+      {!userDoesNotMatchOrders ? (
         <div>
           <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
             <h2> No hay compras realizadas, por favor vuelva a Productos</h2>

@@ -37,19 +37,7 @@ const CartContainer = () => {
     if (confirmPurchase) {
       const newOrderId =
         orders.length > 0 ? orders[orders.length - 1].id + 1 : 1;
-      // const newOrder = {
-      //   id: newOrderId,
-      //   email: user.email,
-      //   cart: cart.map((product) => ({
-      //     productId: product.id,
-      //     productName: product.name,
-      //     productPrice: product.price,
-      //     quantityProduct: product.quantity,
-      //     subTotalPrice: product.quantity * product.price,
-      //   })),
-      //   totalPrice: totalPrice,
-      //   status: false,
-      // };
+
       fetch("https://matuco-fake-api.onrender.com/orders", {
         method: "POST",
         headers: {

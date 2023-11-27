@@ -3,3 +3,6 @@
   color: white;
   height: 150%;
 }
+p {
+  cursor: pointer;
+}

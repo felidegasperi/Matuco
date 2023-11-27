@@ -68,9 +68,9 @@ const Products = () => {
                 </button>
               </div>
               <div>
-                <a onClick={navigateRegisterHandler} class="link-primary">
+                <p onClick={navigateRegisterHandler} class="link-primary">
                   No tienes una cuenta? createla aqui!
-                </a>
+                </p>
               </div>
             </div>
             <Footer />

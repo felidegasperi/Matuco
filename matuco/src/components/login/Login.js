@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+
 import { useNavigate } from "react-router";
-import { useContext } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 import { useFetchUsers } from "../../hooks/useFetchUsers";
 
 import "./Login.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
@@ -42,11 +45,31 @@ const Login = () => {
     const userValid = users.find((user) => user.isActive === true);
 
     if (user && userValid) {
+      toast.success("Usuario ingresado correctamente!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       alert("Usuario ingresado correctamente");
       handleLogin(user);
       console.log(user);
       navigate("/products");
     } else {
+      toast.error(" Error al iniciar sesion, intente nuevamente.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setErrors("Error al iniciar sesion, intente nuevamente.");
     }
   };
@@ -55,6 +78,7 @@ const Login = () => {
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
       <div className="container-fluid ml-0 min-vh-100">
+        <ToastContainer />
         <div className="row ml-0">
           <div className="col-md-6 d-flex align-items-center justify-content-center ml-0 ">
             <img

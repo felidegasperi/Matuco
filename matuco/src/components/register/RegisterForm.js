@@ -1,6 +1,8 @@
 import React from "react";
 import { useRef, useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
@@ -61,11 +63,31 @@ const RegisterForm = ({ users, onSavedUser }) => {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
       emailRef.current.style.outline = "none";
+      toast.error("Credenciales incorrectas. Por favor, inténtalo de nuevo.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     } else if (usernameRef.current.value.length === 0) {
       usernameRef.current.focus();
       usernameRef.current.style.borderColor = "red";
       usernameRef.current.style.outline = "none";
+      toast.error("Credenciales incorrectas. Por favor, inténtalo de nuevo.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Credenciales incorrectas. Por favor, inténtalo de nuevo.");
     } else if (password.length === 0 || confirmPassword.length === 0) {
       passwordRef.current.focus();
@@ -74,6 +96,16 @@ const RegisterForm = ({ users, onSavedUser }) => {
       confirmPasswordRef.current.focus();
       confirmPasswordRef.current.style.borderColor = "red";
       confirmPasswordRef.current.style.outline = "none";
+      toast.error("Ingresar una contraseña", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Ingresar una contraseña");
     } else if (password !== confirmPassword) {
       passwordRef.current.focus();
@@ -82,14 +114,37 @@ const RegisterForm = ({ users, onSavedUser }) => {
       confirmPasswordRef.current.focus();
       confirmPasswordRef.current.style.borderColor = "red";
       confirmPasswordRef.current.style.outline = "none";
+      toast.error("Las contraseñas no coinciden", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Las contraseñas no coinciden");
-    } else if (password.length <= 8 && confirmPassword.length <= 8) {
+    } else if (password.length < 7 && confirmPassword.length < 7) {
       passwordRef.current.focus();
       passwordRef.current.style.borderColor = "red";
       passwordRef.current.style.outline = "none";
       confirmPasswordRef.current.focus();
       confirmPasswordRef.current.style.borderColor = "red";
       confirmPasswordRef.current.style.outline = "none";
+      toast.error(
+        "Credenciales incorrectas. Por favor, inténtalo de nuevo con una contraseña más larga.",
+        {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        }
+      );
       setError(
         "Credenciales incorrectas. Por favor, inténtalo de nuevo con una contraseña más larga."
       );
@@ -97,6 +152,16 @@ const RegisterForm = ({ users, onSavedUser }) => {
       emailRef.current.focus();
       emailRef.current.style.borderColor = "red";
       emailRef.current.style.outline = "none";
+      toast.error("Email ya registrado, intente con otro email.", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
       setError("Email ya registrado, intente con otro email.");
     } else {
       const user = {
@@ -106,6 +171,16 @@ const RegisterForm = ({ users, onSavedUser }) => {
         password: password,
         isActive: true,
       };
+      toast.success("Ingresado correctamente!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
 
       onSavedUser(user);
       handleLogin(user);
@@ -114,6 +189,7 @@ const RegisterForm = ({ users, onSavedUser }) => {
   };
   return (
     <>
+      <ToastContainer />
       <form className="border rounded-3 p-5 ">
         <h2>Registrarte</h2>
         <div>
