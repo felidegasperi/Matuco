@@ -78,6 +78,7 @@ const CartContainer = () => {
             progress: undefined,
             theme: "dark",
           });
+          navigate("/products");
           localStorage.removeItem("cart");
         });
 
@@ -113,7 +114,7 @@ const CartContainer = () => {
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
       <NavBar />
-      <ToastContainer/>
+      <ToastContainer />
       <div>
         {quantity === 0 ? (
           <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">
