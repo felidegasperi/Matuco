@@ -112,7 +112,7 @@ const NavBar = () => {
             <Col className="nav-item  py-4">
               {user && (
                 <>
-                  {user.type !== "superAdmin" && (
+                  {user.type === "client" && (
                     <a className="nav-link" onClick={NavigateCartHandler}>
                       Carrito{" "}
                       {user && <span className="cart-count">{quantity}</span>}
