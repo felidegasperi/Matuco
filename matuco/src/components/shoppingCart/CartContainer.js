@@ -78,12 +78,11 @@ const CartContainer = () => {
             progress: undefined,
             theme: "dark",
           });
-          navigate("/products");
+          navigate("/listOrders");
           localStorage.removeItem("cart");
         });
 
       setCart([]);
-      navigate("/products");
     }
   };
 
@@ -136,6 +135,7 @@ const CartContainer = () => {
         ) : (
           <div className="table-container min-vh-100 pt-5">
             <div>
+              <ToastContainer />
               <table
                 className={`${
                   theme === "DARK"

@@ -4,6 +4,7 @@ import { TiDeleteOutline, TiDelete } from "react-icons/ti";
 import { MdOutlineModeEdit, MdModeEdit } from "react-icons/md";
 
 import "./ListProducts.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
@@ -11,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import AddProduct from "./AddProduct";
 import { APIContext } from "../../services/apiContext/API.context";
 import Loaders from "../ui/loaders/Loaders";
+import { ToastContainer } from "react-toastify";
 
 const ListProducts = ({
   products,
@@ -29,6 +31,7 @@ const ListProducts = ({
 
   return (
     <div className={`${theme === "DARK" && "dark-theme"}`}>
+      <ToastContainer />
       <div>
         {user.type === "client" ? (
           <>

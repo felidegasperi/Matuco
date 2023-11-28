@@ -174,7 +174,7 @@ const RegisterForm = ({ users, onSavedUser }) => {
 
       onSavedUser(user);
       handleLogin(user);
-      navigate("/products");
+      navigate("/");
     }
   };
   return (

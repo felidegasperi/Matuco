@@ -14,6 +14,8 @@ import { APIContext } from "../../services/apiContext/API.context";
 
 import { useFetchProducts } from "../../hooks/useFetchProducts";
 import { useNavigate } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Products = () => {
   const [filterProduct, setFilterProduct] = useState();
@@ -41,6 +43,7 @@ const Products = () => {
     <div>
       {user === null ? (
         <>
+        <ToastContainer />
           <div className={`${theme === "DARK" && "dark-theme"}`}>
             <NavBar />
             <div className="d-flex flex-column align-items-center justify-content-center min-vh-100">

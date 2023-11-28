@@ -8,6 +8,8 @@ import { AuthenticationContext } from "../../services/authenticationContext/Auth
 import { APIContext } from "../../services/apiContext/API.context";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import Loaders from "../ui/loaders/Loaders";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ListOrder = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
   const navigate = useNavigate();
@@ -52,6 +54,7 @@ const ListOrder = ({ orders, changeStatusHandler, cancelOrderHandler }) => {
         </div>
       ) : (
         <div className="table-container min-vh-100">
+          <ToastContainer />
           <table
             className={`${
               theme === "DARK"
