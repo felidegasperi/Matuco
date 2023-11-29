@@ -45,6 +45,9 @@ const Login = () => {
     const userValid = users.find((user) => user.isActive === true);
 
     if (user && userValid) {
+      handleLogin(user);
+      console.log(user);
+      navigate("/products");
       toast.success("Usuario ingresado correctamente!", {
         position: "top-center",
         autoClose: 5000,
@@ -55,9 +58,6 @@ const Login = () => {
         progress: undefined,
         theme: "colored",
       });
-      handleLogin(user);
-      console.log(user);
-      navigate("/products");
     } else {
       toast.error(" Error al iniciar sesion, intente nuevamente.", {
         position: "top-center",

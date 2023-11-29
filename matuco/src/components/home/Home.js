@@ -4,17 +4,20 @@ import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { APIContext } from "../../services/apiContext/API.context";
 
 import "./Home.css";
+import "react-toastify/dist/ReactToastify.css";
 
 import NavBar from "../navBar/NavBar";
 import Footer from "../footer/Footer";
 import CardHomProducts from "./CardHomProducts";
 import Loaders from "../ui/loaders/Loaders";
+import { ToastContainer } from "react-toastify";
 
 const Home = () => {
   const { theme } = useContext(ThemeContext);
   const { isLoading } = useContext(APIContext);
   return (
     <>
+      <ToastContainer />
       <NavBar />
       <div className={`${theme === "DARK" && "dark-theme"}`}>
         <div>

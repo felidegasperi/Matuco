@@ -13,7 +13,6 @@ import RegisterForm from "./RegisterForm";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { useFetchUsers } from "../../hooks/useFetchUsers";
 
-
 const Register = () => {
   const { theme } = useContext(ThemeContext);
 
@@ -73,7 +72,7 @@ const Register = () => {
     <>
       <div className={`${theme === "DARK" && "dark-theme"}`}>
         <NavBar />
-        <ToastContainer/>
+        <ToastContainer />
         <div className="container-fluid ml-0 min-vh-100">
           <div className="row ml-0">
             <div className="col-md-6 d-flex align-items-center justify-content-center ml-0 ">

@@ -6,10 +6,12 @@ import { CiCirclePlus } from "react-icons/ci";
 import { IoIosRemoveCircleOutline } from "react-icons/io";
 import { ThemeContext } from "../../services/themeContext/Theme.context";
 import { CartContext } from "../../services/shoppingCartContext/ShoppingCart.context";
+import { AuthenticationContext } from "../../services/authenticationContext/Authentication.context";
 
 const CardProducts = ({ id, name, price, type }) => {
   const { theme } = useContext(ThemeContext);
   const [cart, setCart] = useContext(CartContext);
+  const { user } = useContext(AuthenticationContext);
 
   const AddToCart = () => {
     console.log(id);
@@ -83,7 +85,7 @@ const CardProducts = ({ id, name, price, type }) => {
           >
             ${price}
           </span>
-          {quantityPerItem === 0 ? (
+          {quantityPerItem === 0 && user.type === "client" && (
             <div
               onClick={AddToCart}
               className={`${
@@ -96,22 +98,23 @@ const CardProducts = ({ id, name, price, type }) => {
                 <path d="M13.972,12.386c-1.022,0-1.855,0.834-1.855,1.856s0.833,1.853,1.855,1.853s1.854-0.83,1.854-1.853S14.994,12.386,13.972,12.386z M13.972,15.116c-0.484,0-0.878-0.393-0.878-0.874c0-0.484,0.394-0.878,0.878-0.878c0.482,0,0.875,0.394,0.875,0.878C14.847,14.724,14.454,15.116,13.972,15.116z"></path>
               </svg>
             </div>
-          ) : (
-            <div>
-              <h4 href="">
-                <CiCirclePlus color="green" onClick={() => AddToCart()} />
-              </h4>
-            </div>
           )}
           {quantityPerItem > 0 && (
-            <div>
-              <h4>
-                <IoIosRemoveCircleOutline
-                  color="red"
-                  onClick={() => RemoveItem(id)}
-                />
-              </h4>
-            </div>
+            <>
+              <div>
+                <h4 href="">
+                  <CiCirclePlus color="green" onClick={() => AddToCart()} />
+                </h4>
+              </div>
+              <div>
+                <h4>
+                  <IoIosRemoveCircleOutline
+                    color="red"
+                    onClick={() => RemoveItem(id)}
+                  />
+                </h4>
+              </div>
+            </>
           )}
         </div>
       </div>
