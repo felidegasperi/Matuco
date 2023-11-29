@@ -68,21 +68,18 @@ const CartContainer = () => {
         })
         .then((newOrderData) => {
           setOrders([...orders, newOrderData]);
-          navigate("/products");
           localStorage.removeItem("cart");
-          alert("Compra finalizda. Gracias!");
-          // toast.success("Compra finalizada. Gracias!", {
-          //   position: "top-center",
-          //   autoClose: 5000,
-          //   hideProgressBar: false,
-          //   closeOnClick: true,
-          //   pauseOnHover: true,
-          //   draggable: true,
-          //   progress: undefined,
-          //   theme: "dark",
-          // });
         });
-
+      toast.success("Compra finalizada. Gracias!", {
+        position: "top-center",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
       setCart([]);
     }
   };
